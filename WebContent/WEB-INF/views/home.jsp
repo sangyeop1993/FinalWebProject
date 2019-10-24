@@ -137,6 +137,7 @@
 	</c:if>
 	</div>
 	</div>
+	<a href="selectMenu" class="btn btn-primary">임시버튼 주문페이지</a>
 	<footer>
 		<div id="footer">&copy;copyright 2019 . <a href="https://github.com/Framda" target="_blank">Framda</a> </div>
 	</footer>
