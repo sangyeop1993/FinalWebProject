@@ -141,6 +141,7 @@
 	</c:if>
 	</div>
 	</div>
+	<a href="selectMenu" class="btn btn-primary">임시버튼 주문페이지</a>
 	<footer>
 		<div id="footer">&copy;copyright 2019 . <a href="https://github.com/sangyeop1993/FinalWebProject" target="_blank">치킨날다</a></div>
 	</footer>

@@ -10,4 +10,10 @@ public class HomeController {
 	public String home() {
 		return "home";
 	}
+	
+	//임시 selectMenu 접속버튼
+	@RequestMapping("/selectMenu")
+	public String selectMenu() {
+		return "selectMenu";
+	}
 }
