@@ -127,18 +127,22 @@
 				<span style="color:red;">아이디나 비밀번호가 틀렸습니다.</span><br/>
 			</c:if>
 			<input type="checkbox" id="idSaveCheck"> 아이디 저장
-			<input id="loginButton1" type="submit" class="btn btn-danger" value="Log in"/>
+			<div class="loginButton">
+				<input id="loginButton1" type="submit" class="btn btn-danger" value="로그인"/>
+				<a id="loginButton2" href="join" class="btn btn-danger">회원가입</a>
+			</div>
 		</form>
+		
 	</c:if>
 	<c:if test="${loginResult == 'success'}">
 		<div id="logoutDiv">
-			<button onclick="btnLogout()" class="btn btn-danger" style="text-align: center;">Log out</button>
+			<button onclick="btnLogout()" class="btn btn-danger" style="text-align: center;">로그아웃</button>
 		</div>
 	</c:if>
 	</div>
 	</div>
 	<footer>
-		<div id="footer">&copy;copyright 2019 . <a href="https://github.com/Framda" target="_blank">Framda</a> </div>
+		<div id="footer">&copy;copyright 2019 . <a href="https://github.com/sangyeop1993/FinalWebProject" target="_blank">치킨날다</a></div>
 	</footer>
 </body>
 </html>

@@ -20,4 +20,9 @@ public class MemberDao {
 		return member;
 	}
 
+	public int insert(ChickenMember member) {
+		int rows = sqlSessionTemplate.insert("member.insert", member);
+		return rows;
+	}
+
 }

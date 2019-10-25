@@ -20,4 +20,8 @@ public class LoginService {
 		else if(mpassword.equals(member.getMpassword())) return true;
 		return false;
 	}
+
+	public void join(ChickenMember member) {
+		memberDao.insert(member);
+	}
 }
