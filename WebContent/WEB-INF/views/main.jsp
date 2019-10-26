@@ -42,19 +42,31 @@
 		    
 		    #userInfoBox {
 		    	width: 100px;
-		    	border: 5px solid red;
+		    	border: 4px solid white;
 		    }
-		    .sideBar {
+		    #loggerBox {
 		    	width: 300px;
-		    	border: 5px solid red;
+		    	border: 4px solid white;
 		    }
 		    
+		    #contentBox{
+		    	width: 300px;
+		    	display: flex;
+		    	flex-direction: column;
+		    }
+		    
+		    .contents {
+		    	margin-top: 5px;
+		    	border: 4px solid white;
+		    	flex-grow: 1;
+		    }
 		    #mapBox {
 		    	flex-grow: 1;
 		    }
 		    
 		    #locationBar {
-		    	border: 5px solid red;
+		    	margin: 5px;
+		    	border: 4px solid white;
 		    	height: 150px;
 		    }
 		    footer {
@@ -74,7 +86,9 @@
 		</header>
 		<div id="center">
 			<div id="contentBox" class="sideBar">
-				
+				<div id="userBox" class="contents"></div>
+				<div id="orderListBox" class="contents"></div>
+				<div id="TemperatureBox" class="contents"></div>
 			</div>
 			<div id="mapBox"></div>
 			<div id="loggerBox" class="sideBar"></div>
