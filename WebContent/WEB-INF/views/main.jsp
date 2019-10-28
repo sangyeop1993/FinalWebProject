@@ -34,6 +34,7 @@
 		    
 		    #logoBox {
 		    	width: 150px;
+		    	margin: 10px;
 		    }
 		    
 		    #headCenter {
@@ -41,12 +42,14 @@
 		    }
 		    
 		    #userInfoBox {
-		    	width: 100px;
+		    	margin: 10px;
+		    	width: 150px;
 		    	border: 4px solid white;
 		    }
 		    #loggerBox {
 		    	width: 300px;
 		    	border: 4px solid white;
+		    	margin: 10px;
 		    }
 		    
 		    #contentBox{
@@ -56,7 +59,7 @@
 		    }
 		    
 		    .contents {
-		    	margin-top: 5px;
+		    	margin: 10px;
 		    	border: 4px solid white;
 		    	flex-grow: 1;
 		    }
@@ -65,7 +68,7 @@
 		    }
 		    
 		    #locationBar {
-		    	margin: 5px;
+		    	margin: 10px;
 		    	border: 4px solid white;
 		    	height: 150px;
 		    }
@@ -86,7 +89,9 @@
 		</header>
 		<div id="center">
 			<div id="contentBox" class="sideBar">
-				<div id="userBox" class="contents"></div>
+				<div id="userBox" class="contents">
+					<!-- <button onclick=""></button> -->
+				</div>
 				<div id="orderListBox" class="contents"></div>
 				<div id="TemperatureBox" class="contents"></div>
 			</div>

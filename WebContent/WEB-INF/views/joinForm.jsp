@@ -19,7 +19,7 @@
 		        height: 100vh;
 		    }
 		    
-		    #wrap {
+		    #wrapper {
 		    	flex-grow: 1;
 		    }
 		    
@@ -35,17 +35,14 @@
 			}
 					    
 		    #joinFormBox {
-				flex-grow: 1;
+				width: 450px;
 				text-align: center;
 			}
 			
 			.marginDiv {
-				flex-grow: 2;
+				flex-grow: 1;
 			}
 		    
-		    #btn-login {
-		        margin: 50px 0;
-		    }
 		    footer {
 		    	height: 50px;
 		        line-height: 50px;
