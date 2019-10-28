@@ -20,10 +20,10 @@ public class OrderController {
 	MenuService service;
 	
 	//menu
-	@RequestMapping("/select")
-	public String select(Model model) {
+	@RequestMapping("/order")
+	public String order(Model model) {
 		List<ChickenMenu> list = service.getChickenMenu();
 		model.addAttribute("menus", list);
-		return "selectMenu";
+		return "orderMenu";
 	}
 }

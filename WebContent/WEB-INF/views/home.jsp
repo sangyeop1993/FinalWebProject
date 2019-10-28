@@ -59,9 +59,7 @@
 		}
 		return result;
 	}
-	function btnLogout() {
-		location.href = "logout";
-	}
+	
 	$(document).ready(function(){
 		 
 	    // 저장된 쿠키값을 가져와서 ID 칸에 넣어준다. 없으면 공백으로 들어감.
@@ -144,10 +142,10 @@
 			</div>
 		</c:if>
 		<c:if test="${loginResult == 'success'}">
-			<div id="logoutDiv">
-				<button id="orderPage" onclick="location.href='select'" class="btn btn-primary">임시버튼 주문페이지</button>
-				<button id="mainPage" onclick="location.href='main'" class="btn btn-primary">임시버튼 메인페이지</button>
-				<button id="logoutButton" onclick="btnLogout()" class="btn btn-danger">로그아웃</button>
+			<div id="logoutDiv" style="padding-top: 300px;">
+				<a href="order" id="orderPage"><img src="<%=application.getContextPath()%>/resources/images/order.png" width=200/></a>
+				<a href="main" id="mainPage"><img src="<%=application.getContextPath()%>/resources/images/ordercheck.png" width=200/></a>
+				<a href="logout" id="logoutButton"><img src="<%=application.getContextPath()%>/resources/images/logout.png" width=200/></a>
 			</div>
 		</c:if>
 	</div>
