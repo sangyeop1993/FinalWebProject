@@ -108,7 +108,7 @@
 							<img id="userPng" src="<%=application.getContextPath()%>/resources/images/user_icon.png" width=80>
 						</p>
 						<div id="userTextBox">
-							<p>ID: ${member.mid}</p>
+							<p>NAME: ${member.mname}</p>
 							<p>LEVEL: ${member.lname}</p>
 						</div>
 					</div>
