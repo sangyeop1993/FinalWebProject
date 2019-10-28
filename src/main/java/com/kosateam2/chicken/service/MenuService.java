@@ -13,7 +13,6 @@ public class MenuService {
 	
 	@Autowired
 	MenuDao menuDao;
-	
 	public List<ChickenMenu> getChickenMenu() {
 		List<ChickenMenu> menuList = menuDao.selectMenu();  
 		return menuList;

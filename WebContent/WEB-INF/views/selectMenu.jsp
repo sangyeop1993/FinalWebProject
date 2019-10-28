@@ -59,7 +59,7 @@
 
 <script type="text/javascript">
 	function countUp(param) {
-		console.log("${menu}");
+		console.log(${"menu.get(param).menuPrice"});
 	}
 	
 	
@@ -134,7 +134,7 @@
 	
 	<div id="menuWrap">
 		<h3>장바구니</h3>
-		<div id="menu">
+		<div id="menus">
 		    Test Text
 		    <div class="selecItem"></div>
 		</div>
