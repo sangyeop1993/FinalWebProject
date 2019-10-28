@@ -68,13 +68,12 @@
 		    }
 		    
 		    #userTextBox {
-		    	margin: 10px;
+		    	margin: 20px;
 		    	
 		    }
 		    
 		    #logoutButton {
 		    	margin: 10px;
-		    	margin-top: 25px;
 		    }
 		    
 		    #mapBox {
@@ -92,6 +91,13 @@
 		        text-align: center;
 		    }
 		</style>
+		<script type="text/javascript">
+			function test(param) {
+				console.log("${member_model.mid}");
+				console.log("${member_model.mname}");
+				console.log("${member_model.mid}");
+			}
+		</script>
 	</head>
 	<body>
 		<header>
@@ -108,8 +114,9 @@
 							<img id="userPng" src="<%=application.getContextPath()%>/resources/images/user_icon.png" width=80>
 						</p>
 						<div id="userTextBox">
-							<p>NAME: ${member.mname}</p>
-							<p>LEVEL: ${member.lname}</p>
+							<p>NAME: ${member.mname}
+							LEVEL: ${member.lname}
+							DRONE: 드론1</p>
 						</div>
 					</div>
 					<button id="logoutButton" class="btn btn-danger" type="button" onclick="location.href='logout'">로그아웃</button>
@@ -119,6 +126,8 @@
 			</div>
 			<div id="mapBox">
 				<img src="<%=application.getContextPath()%>/resources/images/logout.png" width=200/>
+				<button id=testing onclick="test('admin')" class="btn btn-danger" >테스트</button>
+				${member_model.mid}
 			</div>
 			<div id="loggerBox" class="sideBar"></div>
 		</div>

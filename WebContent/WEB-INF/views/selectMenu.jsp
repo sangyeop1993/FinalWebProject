@@ -58,8 +58,8 @@
 </style>
 
 <script type="text/javascript">
-	function countUp() {
-		
+	function countUp(param) {
+		console.log("${menu}");
 	}
 	
 	
