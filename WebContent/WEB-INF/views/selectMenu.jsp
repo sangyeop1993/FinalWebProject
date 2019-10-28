@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -59,7 +60,7 @@
 
 <script type="text/javascript">
 	function countUp(param) {
-		console.log("${menu}");
+		console.log("${menus.get(0).menuPrice}");
 	}
 	
 	
@@ -116,7 +117,7 @@
                         </p>
 						<button class="btn btn-primary" onClick="countDown()">-</button>
 						<span class="item_count">0</span>
-						<button class="btn btn-primary" value="허니콤보" onClick="countUp()">+</button>
+						<button class="btn btn-primary" value="허니콤보" onClick="countUp('1')">+</button>
 						<button type="submit" class="btn btn-primary">submit</button>
                     </div>
                 </div>
