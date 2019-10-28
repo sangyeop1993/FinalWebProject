@@ -58,8 +58,10 @@
 </style>
 
 <script type="text/javascript">
+	var url="Drone";
 	var value = 0;
-	function countUp(N) {
+	function countUp() {
+		url= url +"?"+ "";
 		var chickenName = N;
 		value = value + 1 ;
 		$(".item_count").html(value);
@@ -69,6 +71,15 @@
 	function countDown() {
 		value = value - 1;
 		$(".item_count").html(value);
+	}
+	function test() {
+		$.ajax({
+			url: ,
+			data: ,
+			success function() {
+				
+			}
+		});
 	}
 </script>
 </head>
@@ -119,7 +130,7 @@
                         </p>
 						<button class="btn btn-primary" onClick="countDown()">-</button>
 						<span class="item_count">0</span>
-						<button class="btn btn-primary" onClick="countUp()">+</button>
+						<button class="btn btn-primary" onClick="countUp(hc)">+</button>
                     </div>
                 </div>
 			</div>

@@ -132,7 +132,6 @@
 				<a id="loginButton2" href="join" class="btn btn-danger">회원가입</a>
 			</div>
 		</form>
-		
 	</c:if>
 	<c:if test="${loginResult == 'success'}">
 		<div id="logoutDiv">
