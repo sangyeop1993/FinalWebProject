@@ -5,6 +5,7 @@ public class ChickenMember {
 	private String mname;
 	private String mpassword;
 	private String mphonenumber;
+	private int mlevel;
 	private String lname;
 	private float discount;
 	public String getMid() {
@@ -42,5 +43,11 @@ public class ChickenMember {
 	}
 	public void setDiscount(float discount) {
 		this.discount = discount;
+	}
+	public int getMlevel() {
+		return mlevel;
+	}
+	public void setMlevel(int mlevel) {
+		this.mlevel = mlevel;
 	}
 }
