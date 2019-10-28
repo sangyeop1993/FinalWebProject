@@ -1,5 +1,9 @@
 package com.kosateam2.chicken.controller;
 
-public class OrderController {
+import org.springframework.stereotype.Controller;
 
+@Controller
+public class OrderController {
+	//menu√≥∏Æ
+	
 }
