@@ -35,17 +35,13 @@
 		    #logoBox {
 		    	width: 150px;
 		    	margin: 10px;
+		    	margin-top: 30px;
 		    }
 		    
 		    #headCenter {
 		    	flex-grow: 1;
 		    }
 		    
-		    #userInfoBox {
-		    	margin: 10px;
-		    	width: 150px;
-		    	border: 4px solid white;
-		    }
 		    #loggerBox {
 		    	width: 300px;
 		    	border: 4px solid white;
@@ -54,15 +50,33 @@
 		    
 		    #contentBox{
 		    	width: 300px;
-		    	display: flex;
-		    	flex-direction: column;
 		    }
 		    
 		    .contents {
 		    	margin: 10px;
 		    	border: 4px solid white;
-		    	flex-grow: 1;
+		    	height: 200px;
+		    	padding: 7px;
 		    }
+		    
+		    #userMiniBox {
+		    	display: flex;
+		    }
+		    
+		    #userImage {
+		    	margin: 10px;
+		    }
+		    
+		    #userTextBox {
+		    	margin: 10px;
+		    	
+		    }
+		    
+		    #logoutButton {
+		    	margin: 10px;
+		    	margin-top: 25px;
+		    }
+		    
 		    #mapBox {
 		    	flex-grow: 1;
 		    }
@@ -84,18 +98,28 @@
 			<div id="header">
 				<img id="logoBox" src="<%=application.getContextPath()%>/resources/images/Chicken_logo.PNG"/>
 				<div id="headCenter"></div>
-				<div id="userInfoBox">VVIP 김상엽</div>
 			</div>
 		</header>
 		<div id="center">
 			<div id="contentBox" class="sideBar">
 				<div id="userBox" class="contents">
-					<!-- <button onclick=""></button> -->
+					<div id="userMiniBox">
+						<p id="userImage">
+							<img id="userPng" src="<%=application.getContextPath()%>/resources/images/user_icon.png" width=80>
+						</p>
+						<div id="userTextBox">
+							<p>ID: ${member.mid}</p>
+							<p>LEVEL: ${member.lname}</p>
+						</div>
+					</div>
+					<button id="logoutButton" class="btn btn-danger" type="button" onclick="location.href='logout'">로그아웃</button>
 				</div>
 				<div id="orderListBox" class="contents"></div>
 				<div id="TemperatureBox" class="contents"></div>
 			</div>
-			<div id="mapBox"></div>
+			<div id="mapBox">
+				<img src="<%=application.getContextPath()%>/resources/images/logout.png" width=200/>
+			</div>
 			<div id="loggerBox" class="sideBar"></div>
 		</div>
 		<div id="locationBar"></div>

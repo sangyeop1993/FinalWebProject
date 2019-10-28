@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,9 +25,10 @@ public class LoginController {
 	@PostMapping("/login")
 	public String login(String mid, String mpassword, HttpSession session) {
 		String loginResult;
-		boolean result = service.logincheck(mid, mpassword);
-		if(result) {
+		ChickenMember member = service.logincheck(mid, mpassword);
+		if(member.getMid().equals(mid)) {
 			loginResult="success";
+			session.setAttribute("member", member);
 		} else {
 			loginResult="fail";
 		}
@@ -38,6 +40,7 @@ public class LoginController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("loginResult");
+		session.removeAttribute("member");
 		return "redirect:/";
 	}
 	

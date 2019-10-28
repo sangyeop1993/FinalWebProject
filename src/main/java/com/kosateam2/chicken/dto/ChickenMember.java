@@ -5,8 +5,8 @@ public class ChickenMember {
 	private String mname;
 	private String mpassword;
 	private String mphonenumber;
-	private int mlevel;
-	
+	private String lname;
+	private float discount;
 	public String getMid() {
 		return mid;
 	}
@@ -31,11 +31,16 @@ public class ChickenMember {
 	public void setMphonenumber(String mphonenumber) {
 		this.mphonenumber = mphonenumber;
 	}
-	public int getMlevel() {
-		return mlevel;
+	public String getLname() {
+		return lname;
 	}
-	public void setMlevel(int mlevel) {
-		this.mlevel = mlevel;
+	public void setLname(String lname) {
+		this.lname = lname;
 	}
-
+	public float getDiscount() {
+		return discount;
+	}
+	public void setDiscount(float discount) {
+		this.discount = discount;
+	}
 }
