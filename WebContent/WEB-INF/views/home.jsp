@@ -27,9 +27,18 @@
         width: 300px;
         
     }
-    #btn-login {
-        margin: 50px 0;
+    
+    #loginButton1, #loginButton2 {
+    	flex-grow: 1;
+    	height: 40px;
+    	width: 180px;
+    	margin: 15px;
     }
+    
+    #logoutDiv {
+    	text-align: center;
+    }
+    
     footer {
     	height: 50px;
         line-height: 50px;
@@ -109,38 +118,39 @@
 </head>
 <body>
 	<div id="wrap">
-	<div id="imageDiv">
-		<img id="mainimage" src="<%=application.getContextPath()%>/resources/images/chicken.PNG" width = 320/>
-	</div>
-    <div id="content-box">
-	<c:if test="${loginResult != 'success'}">
-		<form id="loginForm" method="post" action="login" onsubmit="return btnLogin()">
-			<div class="form-group">
-				<input type="text" class="form-control" id="mid" name="mid" placeholder="아이디">
-				<p id="idError" style="color: red;"></p>
+		<c:if test="${loginResult != 'success'}">
+			<div id="imageDiv">
+				<img id="mainimage" src="<%=application.getContextPath()%>/resources/images/chicken.PNG" width = 320/>
 			</div>
-			<div class="form-group">
-				<input type="password" class="form-control" id="mpassword" name="mpassword" placeholder="비밀번호">
-				<p id="passwordError" style="color: red;"></p>
+		    <div id="content-box">
+				<form id="loginForm" method="post" action="login" onsubmit="return btnLogin()">
+					<div class="form-group">
+						<input type="text" class="form-control" id="mid" name="mid" placeholder="아이디">
+						<p id="idError" style="color: red;"></p>
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" id="mpassword" name="mpassword" placeholder="비밀번호">
+						<p id="passwordError" style="color: red;"></p>
+					</div>
+					<c:if test="${loginResult == 'fail'}">
+						<span style="color:red;">아이디나 비밀번호가 틀렸습니다.</span><br/>
+					</c:if>
+					<input type="checkbox" id="idSaveCheck"> 아이디 저장
+					<div class="loginButton">
+						<input id="loginButton1" type="submit" class="btn btn-danger" value="로그인"/>
+						<button id="loginButton2" type="button" onclick="location.href='join'" class="btn btn-danger">회원가입</button>
+					</div>
+				</form>
 			</div>
-			<c:if test="${loginResult == 'fail'}">
-				<span style="color:red;">아이디나 비밀번호가 틀렸습니다.</span><br/>
-			</c:if>
-			<input type="checkbox" id="idSaveCheck"> 아이디 저장
-			<div class="loginButton">
-				<input id="loginButton1" type="submit" class="btn btn-danger" value="로그인"/>
-				<a id="loginButton2" href="join" class="btn btn-danger">회원가입</a>
+		</c:if>
+		<c:if test="${loginResult == 'success'}">
+			<div id="logoutDiv">
+				<button id="orderPage" onclick="location.href='selectMenu'" class="btn btn-primary">임시버튼 주문페이지</button>
+				<button id="mainPage" onclick="location.href='main'" class="btn btn-primary">임시버튼 메인페이지</button>
+				<button id="logoutButton" onclick="btnLogout()" class="btn btn-danger">로그아웃</button>
 			</div>
-		</form>
-	</c:if>
-	<c:if test="${loginResult == 'success'}">
-		<div id="logoutDiv">
-			<button onclick="btnLogout()" class="btn btn-danger" style="text-align: center;">로그아웃</button>
-		</div>
-	</c:if>
+		</c:if>
 	</div>
-	</div>
-	<a href="selectMenu" class="btn btn-primary">임시버튼 주문페이지</a>
 	<footer>
 		<div id="footer">&copy;copyright 2019 . <a href="https://github.com/sangyeop1993/FinalWebProject" target="_blank">치킨날다</a></div>
 	</footer>

@@ -1,7 +1,10 @@
 package com.kosateam2.chicken.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.kosateam2.chicken.dto.ChickenMember;
 
 @Controller
 public class HomeController {
@@ -11,9 +14,10 @@ public class HomeController {
 		return "home";
 	}
 	
-	//임시 selectMenu 접속버튼
+	//SelectMenu
 	@RequestMapping("/selectMenu")
-	public String selectMenu() {
+	public String selectMenu(ChickenMember member, Model model) {
+		model.addAttribute("member", member);
 		return "selectMenu";
 	}
 }

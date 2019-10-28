@@ -14,11 +14,9 @@ public class LoginService {
 	@Autowired
 	private MemberDao memberDao;
 	
-	public boolean logincheck(String mid, String mpassword) {
+	public ChickenMember logincheck(String mid, String mpassword) {
 		ChickenMember member = memberDao.getMember(mid);
-		if(member == null) return false;
-		else if(mpassword.equals(member.getMpassword())) return true;
-		return false;
+		return member;
 	}
 
 	public void join(ChickenMember member) {

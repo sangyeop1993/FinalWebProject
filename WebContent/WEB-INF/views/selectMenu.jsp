@@ -58,28 +58,14 @@
 </style>
 
 <script type="text/javascript">
-	var url="Drone";
-	var value = 0;
 	function countUp() {
-		url= url +"?"+ "";
-		var chickenName = N;
-		value = value + 1 ;
-		$(".item_count").html(value);
-		$(".selectItem").html(chickenName);
+		
 	}
+	
 	
 	function countDown() {
 		value = value - 1;
 		$(".item_count").html(value);
-	}
-	function test() {
-		$.ajax({
-			url: ,
-			data: ,
-			success function() {
-				
-			}
-		});
 	}
 </script>
 </head>
@@ -130,7 +116,8 @@
                         </p>
 						<button class="btn btn-primary" onClick="countDown()">-</button>
 						<span class="item_count">0</span>
-						<button class="btn btn-primary" onClick="countUp(hc)">+</button>
+						<button class="btn btn-primary" value="허니콤보" onClick="countUp()">+</button>
+						<button type="submit" class="btn btn-primary">submit</button>
                     </div>
                 </div>
 			</div>
