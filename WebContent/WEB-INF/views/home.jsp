@@ -138,7 +138,7 @@
 					<input type="checkbox" id="idSaveCheck"> 아이디 저장
 					<div class="loginButton">
 						<input id="loginButton1" type="submit" class="btn btn-danger" value="로그인"/>
-						<button id="loginButton2" type="button" onclick="lo	cation.href='join'" class="btn btn-danger">회원가입</button>
+						<button id="loginButton2" type="button" onclick="location.href='join'" class="btn btn-danger">회원가입</button>
 					</div>
 				</form>
 			</div>
