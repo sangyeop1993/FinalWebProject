@@ -145,7 +145,7 @@
 		</c:if>
 		<c:if test="${loginResult == 'success'}">
 			<div id="logoutDiv">
-				<button id="orderPage" onclick="location.href='selectMenu'" class="btn btn-primary">임시버튼 주문페이지</button>
+				<button id="orderPage" onclick="location.href='select'" class="btn btn-primary">임시버튼 주문페이지</button>
 				<button id="mainPage" onclick="location.href='main'" class="btn btn-primary">임시버튼 메인페이지</button>
 				<button id="logoutButton" onclick="btnLogout()" class="btn btn-danger">로그아웃</button>
 			</div>

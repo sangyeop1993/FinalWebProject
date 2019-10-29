@@ -93,7 +93,9 @@
 					<p id="passwordError" style="color: red;"></p>
 					
 					<div class="input-group mb-3">
-						<input id="mphonenumber" name="mphonenumber" type="text" class="form-control" placeholder="전화번호">
+						<input id="mphonenumber1" name="mphonenumber1" type="text" class="form-control" placeholder="">
+						<input id="mphonenumber2" name="mphonenumber2" type="text" class="form-control" placeholder="">
+						<input id="mphonenumber3" name="mphonenumber3" type="text" class="form-control" placeholder="">
 					</div>
 					<p id="phonenumberError" style="color: red;"></p>
 					
