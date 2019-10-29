@@ -9,8 +9,10 @@
 		<link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 		<style>
+		@import url('https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean');
 			* {
 				box-sizing: border-box;
+				font-family: 'Jua', sans-serif;
 			}
 		    body {
 		    	display:flex;
@@ -37,6 +39,9 @@
 		    #joinFormBox {
 				width: 450px;
 				text-align: center;
+			}
+			#joinButton , #BackHomeButton{
+			     font-size:16pt;
 			}
 			
 			.marginDiv {
@@ -152,7 +157,8 @@
 					<p id="phonenumberError" style="color: red;"></p>
 					
 					<input id="mlevel" name="mlevel" type="hidden" value="1"/>
-					<input id="joinButton" type="submit" class="btn btn-danger" value="회원가입"/>
+					<input id="joinButton" type="submit" class="btn btn-danger" value="회원가입"  style="width:80pt; height:40pt;"/>
+					<button id="BackHomeButton" class="btn btn-secondary" type="button" onclick="location.href='logout'"  style="width:80pt; height:40pt;">취소</button>
 				</form>
 			</div>
 			<div class="marginDiv"></div>

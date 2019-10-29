@@ -10,9 +10,13 @@
 <link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 <style>
-	* {
-		box-sizing: border-box;
-	}
+	@import url('https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean');
+	
+			* {
+				box-sizing: border-box;
+				font-family: 'Jua', sans-serif;
+			}
+			
     body {
     	display:flex;
     	flex-direction: column;
@@ -33,8 +37,13 @@
     	height: 40px;
     	width: 180px;
     	margin: 15px;
+    	padding:0px;
+    	
     }
     
+     #loginButton1, #loginButton2 {
+     	font-size:16pt;
+     }
     #logoutDiv {
     	text-align: center;
     }
@@ -44,6 +53,7 @@
         line-height: 50px;
         text-align: center;
     }
+   
 </style>
 <link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/css/style.css">
 <script type="text/javascript">
@@ -134,15 +144,15 @@
 						<span style="color:red;">아이디나 비밀번호가 틀렸습니다.</span><br/>
 					</c:if>
 					<input type="checkbox" id="idSaveCheck"> 아이디 저장
-					<div class="loginButton">
-						<input id="loginButton1" type="submit" class="btn btn-danger" value="로그인"/>
-						<button id="loginButton2" type="button" onclick="location.href='join'" class="btn btn-danger">회원가입</button>
+					<div class="loginButton" style="margin-top:0px;">
+						<input id="loginButton1" type="submit" class="btn btn-danger" value="로그인" style="width:80pt; height:40pt;"/>
+						<button id="loginButton2" type="button" onclick="location.href='join'" class="btn btn-danger" style="width:80pt; height:40pt;">회원가입</button>
 					</div>
 				</form>
 			</div>
 		</c:if>
 		<c:if test="${loginResult == 'success'}">
-			<div id="logoutDiv" style="padding-top: 300px;">
+			<div id="logoutDiv" style="padding-top: 100px;">
 				<a href="order" id="orderPage"><img src="<%=application.getContextPath()%>/resources/images/order.png" width=200/></a>
 				<a href="main" id="mainPage"><img src="<%=application.getContextPath()%>/resources/images/ordercheck.png" width=200/></a>
 				<a href="logout" id="logoutButton"><img src="<%=application.getContextPath()%>/resources/images/logout.png" width=200/></a>

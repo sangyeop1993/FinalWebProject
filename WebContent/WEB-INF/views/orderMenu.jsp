@@ -11,10 +11,14 @@
 <link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 <style>
+@import url('https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean');
+	#logoBox{
+	background-color: rgb(253, 189, 51);
+	}
 	#wrap {
 		display: flex;
 		box-sizing: border-box;
-		padding-top: 100px;
+		background-color: rgb(253, 189, 51);
 	}
 	#innerWrap {
 		height: 100vh;
@@ -25,38 +29,54 @@
 		flex-grow: 1;
 	}
 	#menuWrap {
+		padding-top:20px;
 		width: 300px;
 		text-align: center;
+		background-color:#ffffff;
 	}
 	ul {
 	} 
-	ul li {
+	#innerWrap ul li {
 		width: 150px;
 		margin: 0 auto;
-		height: 42px;
+		height: 80px;
+		line-height: 80px;
 	}
 	ul li a {
 		text-align: center;
+		height: 80px;
 	}
 	
 	#myTabContent {
 		background-color: #EEE;
 		flex-grow: 1;
+		height: 80px;
 	}
 	#myTabContent div {
-		
+		height: 80px;
 	}
     #myTabContent .cards {
         margin: 0 auto;
         display: flex;
         width: 90%; 
+        height: 80px;
     }
     #myTabContent .card {
         margin: 0 auto;
+        height: 80px;
     }
     #myTabContent .cend {
-    
+   		 height: 80px;
     }
+    
+    #cart{
+    	display: flex;
+    	justify-content: center;
+    	align-items:center;
+    }
+    h5 {
+ 	 font-size: 35px;
+	}
 </style>
 
 <script type="text/javascript">
@@ -81,6 +101,15 @@
 
 </head>
 <body>
+	<header>
+		<div id="header">
+			<div id="logoBox" style="padding-left: 900px; padding-top: 25px;">
+				<img src="<%=application.getContextPath()%>/resources/images/Chicken_logo.PNG" >
+			</div>
+			<div id="headCenter">
+			</div>
+		</div>
+	</header>
 <div id="wrap">
 	<div id="innerWrap">
 	<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -139,9 +168,12 @@
         </div>
 	</div>
 	</div>
-	
-	<div id="menuWrap">
-		<h3>장바구니</h3>
+	<div id="menuWrap" >
+		<div id="cart">
+		
+		<img src="<%=application.getContextPath()%>/resources/images/shoppingcarticon.png" width="60px"/> 
+		<h5>장바구니</h5>
+		</div>
 		<div id="menus">
 		    <div class="selecItem">
 		    </div>
