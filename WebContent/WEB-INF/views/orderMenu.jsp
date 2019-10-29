@@ -99,7 +99,6 @@
 
 </head>
 <body>
-<% ArrayList<Integer> list = new ArrayList<>();%>
 	<header>
 			<div id="header">
 				<div id="logoBox" style="padding-left: 900px; padding-top: 25px;">
