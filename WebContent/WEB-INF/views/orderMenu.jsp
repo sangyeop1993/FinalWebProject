@@ -99,7 +99,7 @@
 
 <script type="text/javascript">
 	
-	var menuArray = [0,0,0,0,0,0,0,0,0,0,0,0];
+	var menuArray = [0,0,0,0,0,0,0,0,0,0,0];
 	var i = 0;
 	function countUp(param) {
 		menuArray[param] += 1;
