@@ -26,6 +26,9 @@
 	}
 	#menuWrap {
 		width: 300px;
+		min-width: 300px;
+	}
+	#menuWrap h3 {
 		text-align: center;
 	}
 	ul {
@@ -57,6 +60,11 @@
     #myTabContent .cend {
     
     }
+    .card-body .item_count {
+    	width: 80px;
+    	text-align: center;
+    	display:inline-block;
+    }
 </style>
 
 <script type="text/javascript">
@@ -64,29 +72,19 @@
 	var menuArray = new Array();
 	var i = 0;
 	function countUp(param) {
-<<<<<<< HEAD
-		var test = param;
- 		console.log("매개변수 Test: " + "${test}");
- 		console.log("get에 전역변수test 대입: " + "${menus.get(integer.parseInt(test)).menuName}");
- 		console.log("get에 2 대입: "     + "${menus.get(2).menuName}");
-	} 
-=======
-		menuArray[i] = param;
-		i = i+1;
-		sessionStorage.setItem('menuArray', menuArray);
-		$(".selecItem").html(menuArray)
+		i++;
+		$(".selecItem").html("<li>${menus.get(2).menuName}" + i + "</li>" + "${menus.get(2).menuPrice}원");
+		$(".item_count").html(i);
 	}
-		 
->>>>>>> branch 'master' of https://github.com/sangyeop1993/FinalWebProject
 
 	function countDown() {
-		value = value - 1;
-		$(".item_count").html(value);
+		i--;
+		$(".selecItem").html("<li>${menus.get(2).menuName}" + i + "</li>" + "${menus.get(2).menuPrice}원");
+		$(".item_count").html(i);
 	}
 </script>
 </head>
 <body>
-<% ArrayList<Integer> list = new ArrayList<>();%>
 
 <div id="wrap">
 	<div id="innerWrap">
@@ -151,9 +149,9 @@
 	<div id="menuWrap">
 		<h3>장바구니</h3>
 		<div id="menus">
-		    <div class="selecItem">
-		    	${menus.get(0).getMenuPrice()}
-		    </div>
+		    <ol class="selecItem">
+		    	
+		    </ol>
 		</div>
 	    <button type="submit" class="btn btn-danger">구매하기</button>
 	</div>
