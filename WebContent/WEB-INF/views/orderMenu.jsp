@@ -34,7 +34,7 @@
 		margin: 0 auto;
 		height: 42px;
 	}
-	ul li a {
+	ul li a {	
 		text-align: center;
 	}
 	
@@ -63,7 +63,7 @@
 		var test = param;
  		console.log("매개변수 Test: " + "${test}");
  		console.log("get에 전역변수test 대입: " + "${menus.get(integer.parseInt(test)).menuName}");
- 		console.log("get에" +test+ "대입: "     + "${menus.get(2).menuName}");
+ 		console.log("get에 2 대입: "     + "${menus.get(2).menuName}");
 	} 
 
 	function countDown() {
@@ -71,7 +71,6 @@
 		$(".item_count").html(value);
 	}
 </script>
-
 </head>
 <body>
 <div id="wrap">
