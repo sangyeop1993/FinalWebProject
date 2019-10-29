@@ -99,15 +99,17 @@
 
 <script type="text/javascript">
 	
-	var menuArray = new Array();
+	var menuArray = [0,0,0,0,0,0,0,0,0,0,0,0];
 	var i = 0;
 	function countUp(param) {
-		menuArray[i] = param;
-		i = i+1;
-		sessionStorage.setItem('menuArray', menuArray);
-		$(".selecItem").html(menuArray)
+		menuArray[param] += 1;
+		
+		console.log(menuArray);
 	}
-		 
+	
+	function send() {
+				location.href="finalOrder?arr="+JSON.stringify(menuArray);
+	}
 
 	function countDown() {
 		value = value - 1;
@@ -118,15 +120,14 @@
 </head>
 <body>
 	<header>
-			<div id="header">
-				<div id="logoBox" style="padding-left: 900px; padding-top: 25px;">
-					<img src="<%=application.getContextPath()%>/resources/images/Chicken_logo.PNG" >
-				</div>
-				<div id="headCenter">
-				</div>
+		<div id="header">
+			<div id="logoBox" style="padding-left: 900px; padding-top: 25px;">
+				<img src="<%=application.getContextPath()%>/resources/images/Chicken_logo.PNG" >
 			</div>
-		</header>
-
+			<div id="headCenter">
+			</div>
+		</div>
+	</header>
 <div id="wrap">
 	<div id="innerWrap">
 	<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -185,22 +186,17 @@
         </div>
 	</div>
 	</div>
-	
-	
 	<div id="menuWrap" >
 		<div id="cart">
 		
 		<img src="<%=application.getContextPath()%>/resources/images/shoppingcarticon.png" width="60px"/> 
 		<h5>장바구니</h5>
 		</div>
-		
 		<div id="menus">
 		    <div class="selecItem">
-		    	${menus.get(0).getMenuPrice()}
 		    </div>
 		</div>
-		
-	    <button type="submit" class="btn btn-danger">구매하기</button>
+	    <button onclick="send()" class="btn btn-danger">구매하기</button>
 	</div>
 </div>
 </body>

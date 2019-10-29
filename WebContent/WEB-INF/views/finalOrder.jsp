@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="javax.servlet.http.HttpSession"%>
 
 <!DOCTYPE html>
 <html>
@@ -28,7 +30,7 @@
 		    	display: flex;
 		    }
 		    
-		    .sideHeader {
+		    #logoBox {
 		    	width: 150px;
 		    	margin: 10px;
 		    	margin-top: 30px;
@@ -38,8 +40,41 @@
 		    	flex-grow: 1;
 		    }
 		    
-		    #userBox {
-		    	border: 4px solid white;
+		    #userInfoLine {
+		    	display: flex;
+		    	height: 50px;
+		    }
+		    
+		    #userInfoLineLeftBox {
+		    	flex-grow: 1;
+		    }
+		    
+		    .userLine {
+		    	margin-right: 5px;	
+		    }
+		    
+		    #center {
+		    	height: 4000px;
+		    	background-color: white;
+		    	margin: 30px;
+		    	margin-bottom: 0px;
+		    	overflow: auto;
+		    	text-align: center;
+		    }
+		    
+		    .centerElements {
+		    	width: 1200px;
+		    	margin: 20px;
+		    }
+		    
+		    .elementTitle {
+		    	text-align: left;
+		    	font: bold 20px;
+		    }
+		    footer {
+		    	height: 50px;
+		        line-height: 50px;
+		        text-align: center;
 		    }
 		    
 		</style>
@@ -52,8 +87,41 @@
 				</div>
 				<div id="headCenter">
 				</div>
-				<div id="userBox" class="sideHeader"></div>
+			</div>
+			<div id="userInfoLine">
+				<div id="userInfoLineLeftBox"></div>
+				<div class="userLine" style="color: red;">${member.lname}</div>
+				<div class="userLine" style="margin-right: 40px;">${member.mname}님 환영합니다</div>
 			</div>
 		</header>
+		<div id="center">
+			<div class="centerElements">
+				<div class="elementTitle">
+					<p class="elementnName">주문 제품</p>
+					<hr/>
+					<ul>
+						<c:forEach items="${selectedMenu}" var="menuList">
+							<li>${menuList[0]}, ${menuList[1]}, ${menuList[2]}</li>
+						</c:forEach>
+					</ul>
+					<hr/>
+				</div>
+			</div>
+			<div class="centerElements">
+				<div class="elementTitle">
+					<p class="elementnName">배달지</p>
+					<hr/>
+				</div>
+			</div>
+			<div class="centerElements">
+				<div class="elementTitle">
+					<p class="elementnName">결제 금액</p>
+					<hr/>
+				</div>
+			</div>
+		</div>
+		<footer>
+			<div id="footer">&copy;copyright 2019 . <a href="https://github.com/sangyeop1993/FinalWebProject" target="_blank">치킨날다</a></div>
+		</footer>
 	</body>
 </html>
