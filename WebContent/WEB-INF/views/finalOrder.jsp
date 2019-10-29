@@ -24,9 +24,36 @@
 		    	height: 100px;
 		    }
 		    
+		    #header {
+		    	display: flex;
+		    }
+		    
+		    .sideHeader {
+		    	width: 150px;
+		    	margin: 10px;
+		    	margin-top: 30px;
+		    }
+		    
+		    #headCenter {
+		    	flex-grow: 1;
+		    }
+		    
+		    #userBox {
+		    	border: 4px solid white;
+		    }
+		    
 		</style>
 	</head>
 	<body>
-		
+		<header>
+			<div id="header">
+				<div id="logoBox" class="sideHeader">
+					<img src="<%=application.getContextPath()%>/resources/images/Chicken_logo.PNG">
+				</div>
+				<div id="headCenter">
+				</div>
+				<div id="userBox" class="sideHeader"></div>
+			</div>
+		</header>
 	</body>
 </html>

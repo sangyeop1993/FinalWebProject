@@ -26,4 +26,9 @@ public class OrderController {
 		model.addAttribute("menus", list);
 		return "orderMenu";
 	}
+	
+	@RequestMapping("/finalOrder")
+	public String finalOrder() {
+		return "finalOrder";
+	}
 }
