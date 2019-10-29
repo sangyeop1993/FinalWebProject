@@ -102,8 +102,8 @@
 	<body>
 		<header>
 			<div id="header">
-				<img id="logoBox" src="<%=application.getContextPath()%>/resources/images/Chicken_logo.PNG"/>
-				<div id="headCenter"></div>
+				<div id="headCenter">
+				</div>
 			</div>
 		</header>
 		<div id="center">
