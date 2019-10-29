@@ -35,8 +35,7 @@
 		    
 		    #logoBox {
 		    	width: 150px;
-		    	margin: 10px;
-		    	margin-top: 30px;
+		    	margin: 0px;
 		    }
 		    
 		    #headCenter {
@@ -68,6 +67,9 @@
 		    
 		    #userMiniBox {
 		    	display: flex;
+		    	margin-top:20px;
+		    	margin-bottom: 0px;
+		    	padding:0px;
 		    }
 		    
 		    #userImage {
@@ -75,16 +77,23 @@
 		    }
 		    
 		    #userTextBox {
-		    	margin: 10px;
+		    	margin-top: 10px;
+		    	margin-right: 10px;
+		    	margin-left: 10px;
 		    	
 		    }
 		    
 		    #logoutButton {
-		    	margin: 10px;
 		    }
 		    
 		    #mapBox {
-		    	flex-grow: 1;
+		  		margin-left: 10px;
+				margin-right: 10px;
+				margin-top: 10px;
+		    	margin: 10px;
+		    	height: 600px;
+		    	width: 1300px;
+		    	border: 4px solid white;
 		    }
 		    
 		    #locationBar {
@@ -121,13 +130,13 @@
 			<div id="contentBox" class="sideBar">
 				<div id="userBox" class="contents">
 					<div id="userMiniBox">
-						<p id="userImage">
-							<img id="userPng" src="<%=application.getContextPath()%>/resources/images/user_icon.png" width=80>
-						</p>
-						<div id="userTextBox">
-							<p>NAME: ${member.mname}
-							LEVEL: ${member.lname}
-							DRONE: 드론1</p>
+							<p>
+							<img id="userPng" src="<%=application.getContextPath()%>/resources/images/user_icon.png" width=80px; hight=80px; style="margin-bottom: 0px;"/>
+							</p>
+						<div id="userTextBox" >
+							<p>NAME: ${member.mname} <br/>
+							LEVEL: ${member.lname} <br/>
+							DRONE: ${droen.dname}</p>
 						</div>
 					</div>
 					<button id="logoutButton" class="btn btn-danger" type="button" onclick="location.href='logout'">로그아웃</button>
@@ -136,9 +145,7 @@
 				<div id="TemperatureBox" class="contents"></div>
 			</div>
 			<div id="mapBox">
-				<img src="<%=application.getContextPath()%>/resources/images/logout.png" width=200/>
-				<button id=testing onclick="test('admin')" class="btn btn-danger" >테스트</button>
-				${member_model.mid}
+				
 			</div>
 			<div id="loggerBox" class="sideBar"></div>
 		</div>

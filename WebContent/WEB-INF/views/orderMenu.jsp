@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -59,12 +60,24 @@
 </style>
 
 <script type="text/javascript">
+	
+	var menuArray = new Array();
+	var i = 0;
 	function countUp(param) {
+<<<<<<< HEAD
 		var test = param;
  		console.log("매개변수 Test: " + "${test}");
  		console.log("get에 전역변수test 대입: " + "${menus.get(integer.parseInt(test)).menuName}");
  		console.log("get에 2 대입: "     + "${menus.get(2).menuName}");
 	} 
+=======
+		menuArray[i] = param;
+		i = i+1;
+		sessionStorage.setItem('menuArray', menuArray);
+		$(".selecItem").html(menuArray)
+	}
+		 
+>>>>>>> branch 'master' of https://github.com/sangyeop1993/FinalWebProject
 
 	function countDown() {
 		value = value - 1;
@@ -73,6 +86,8 @@
 </script>
 </head>
 <body>
+<% ArrayList<Integer> list = new ArrayList<>();%>
+
 <div id="wrap">
 	<div id="innerWrap">
 	<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -136,8 +151,9 @@
 	<div id="menuWrap">
 		<h3>장바구니</h3>
 		<div id="menus">
-		    Test Text
-		    <div class="selecItem"></div>
+		    <div class="selecItem">
+		    	${menus.get(0).getMenuPrice()}
+		    </div>
 		</div>
 	    <button type="submit" class="btn btn-danger">구매하기</button>
 	</div>
