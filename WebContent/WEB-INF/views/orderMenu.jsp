@@ -53,9 +53,8 @@
 	border-bottom: 3px solid #ffffff;
 	} 
 	#innerWrap ul li {
-		
-		width: 150px;
-		margin: 0 auto;
+		width: 400px;
+		margin: 0px;
 		height: 80px;
 		line-height: 80px;
 	}
@@ -130,9 +129,9 @@
 	</header>
 <div id="wrap">
 	<div id="innerWrap">
-	<ul class="nav nav-tabs" id="myTab" role="tablist">
+	<ul class="nav nav-tabs" id="myTab" role="tablist" >
 		<li class="nav-item">
-			<a class="nav-link active" id="menu_all-tab" data-toggle="tab" href="#menu_all" role="tab" aria-controls="menu_all" aria-selected="true">전체메뉴</a>
+			<a class="nav-link active" id="menu_all-tab" data-toggle="tab" href="#menu_all" role="tab" aria-controls="menu_all" aria-selected="true" style="padding:0px 30px;">전체메뉴</a>
 		</li>
 		<li class="nav-item">
 			<a class="nav-link" id="menu_chicken-tab" data-toggle="tab" href="#menu_chicken" role="tab" aria-controls="menu_chicken" aria-selected="false">치킨</a>
