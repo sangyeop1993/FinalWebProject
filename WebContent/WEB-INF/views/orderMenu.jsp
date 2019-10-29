@@ -12,14 +12,25 @@
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean');
+	* {
+	box-sizing: border-box;
+	font-family: 'Jua', sans-serif;
+	
+	}
+	body{
+	
+	}
+			
 	#logoBox{
 	background-color: rgb(253, 189, 51);
+	padding-bottom: 10px;
 	}
+	
 	#wrap {
 		display: flex;
 		box-sizing: border-box;
-		background-color: rgb(253, 189, 51);
 	}
+	
 	#innerWrap {
 		height: 100vh;
 		width: 1200px;
@@ -27,16 +38,22 @@
 		display: flex;
 		flex-direction: column;
 		flex-grow: 1;
+		background-color: rgb(253, 189, 51);
+		
 	}
 	#menuWrap {
+	
 		padding-top:20px;
 		width: 300px;
 		text-align: center;
 		background-color:#ffffff;
 	}
-	ul {
+	#myTab {
+	border-top:3px solid #ffffff; 
+	border-bottom: 3px solid #ffffff;
 	} 
 	#innerWrap ul li {
+		
 		width: 150px;
 		margin: 0 auto;
 		height: 80px;
@@ -48,9 +65,10 @@
 	}
 	
 	#myTabContent {
-		background-color: #EEE;
 		flex-grow: 1;
 		height: 80px;
+		background-color: rgb(253, 189, 51);
+		
 	}
 	#myTabContent div {
 		height: 80px;
