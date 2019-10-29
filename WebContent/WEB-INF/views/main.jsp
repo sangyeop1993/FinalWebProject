@@ -127,7 +127,7 @@
 						<div id="userTextBox">
 							<p>NAME: ${member.mname}
 							LEVEL: ${member.lname}
-							DRONE: 드론1</p>
+							DRONE: 드론</p>
 						</div>
 					</div>
 					<button id="logoutButton" class="btn btn-danger" type="button" onclick="location.href='logout'">로그아웃</button>
