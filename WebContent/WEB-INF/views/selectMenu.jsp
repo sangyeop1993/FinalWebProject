@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>proJext</title>
+<title>reset</title>
 <script src="<%=application.getContextPath()%>/resources/js/jquery-3.4.1.min.js" ></script>
 <link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
@@ -60,14 +60,18 @@
 
 <script type="text/javascript">
 	function countUp(param) {
-		console.log("${menus.get(0).menuPrice}");
-	}
+		var test = param;
+ 		console.log("매개변수 Test: " + "${test}");
+ 		console.log("get에 전역변수test 대입: " + "${menus.get(integer.parseInt(test)).menuName}");
+ 		console.log("get에" +test+ "대입: "     + "${menus.get(2).menuName}");
+	} 
 
 	function countDown() {
 		value = value - 1;
 		$(".item_count").html(value);
 	}
 </script>
+
 </head>
 <body>
 <div id="wrap">
@@ -94,30 +98,28 @@
 		    <div class="cards">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">후라이드치킨</h5>
-                        <p class="card-text"><label for="price"></label></p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title">허니콤보</h5>
+                        <p>19000won</p>
+						<button class="btn btn-primary" onClick="countDown()">-</button><span class="item_count">0</span>
+						<button class="btn btn-primary" onClick="countUp(0)">+</button>
                     </div>
                 </div>
                 
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">소이살살치킨</h5>
-                        <p class="card-text"><label for="price"></label></p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title">뿌링클</h5>
+                        <p>20000won</p>
+						<button class="btn btn-primary" onClick="countDown()">-</button><span class="item_count">0</span>
+						<button class="btn btn-primary" onClick="countUp(1)">+</button>
                     </div>
                 </div>
                 
                 <div class="card cend" style="width: 18rem;">
                     <div class="card-body">	
-                        <h5 class="card-title">허니콤보</h5>
-                        <p>
-                        18000won
-                        </p>
-						<button class="btn btn-primary" onClick="countDown()">-</button>
-						<span class="item_count">0</span>
-						<button class="btn btn-primary" value="허니콤보" onClick="countUp('1')">+</button>
-						<button type="submit" class="btn btn-primary">submit</button>
+                        <h5 class="card-title">황금올리브</h5>
+                        <p>18000won</p>
+						<button class="btn btn-primary" onClick="countDown()">-</button><span class="item_count">0</span>
+						<button class="btn btn-primary" onClick="countUp(2)">+</button>
                     </div>
                 </div>
 			</div>
