@@ -23,9 +23,10 @@
 		    	height: 100px;
 		    }
 		    
-		    #center {
+		    #center, #lower {
 		    	flex-grow: 1;
 		    	display: flex;
+		    	margin: 0px;
 		    }
 		    
 		    #header {
@@ -41,19 +42,25 @@
 		    #headCenter {
 		    	flex-grow: 1;
 		    }
-		    
+
 		    #loggerBox {
+		    	height: 600px;
 		    	width: 300px;
 		    	border: 4px solid white;
 		    	margin: 10px;
 		    }
 		    
 		    #contentBox{
+		    	display: flex;
+		    	flex-direction: column;
 		    	width: 300px;
+		    	height: 608px;
 		    }
 		    
 		    .contents {
-		    	margin: 10px;
+				margin-left: 10px;
+				margin-right: 10px;
+				margin-top: 10px;
 		    	border: 4px solid white;
 		    	height: 200px;
 		    	padding: 7px;
@@ -68,7 +75,7 @@
 		    }
 		    
 		    #userTextBox {
-		    	margin: 20px;
+		    	margin: 10px;
 		    	
 		    }
 		    
@@ -81,9 +88,10 @@
 		    }
 		    
 		    #locationBar {
+		    	flex-grow: 1;
 		    	margin: 10px;
 		    	border: 4px solid white;
-		    	height: 150px;
+		    	height: 170px;
 		    }
 		    footer {
 		    	height: 50px;
@@ -102,6 +110,9 @@
 	<body>
 		<header>
 			<div id="header">
+				<div id="logoBox">
+					<img src="<%=application.getContextPath()%>/resources/images/Chicken_logo.PNG">
+				</div>
 				<div id="headCenter">
 				</div>
 			</div>
@@ -131,7 +142,9 @@
 			</div>
 			<div id="loggerBox" class="sideBar"></div>
 		</div>
-		<div id="locationBar"></div>
+		<div id="lower">
+			<div id="locationBar"></div>
+		</div>
 		<footer>
 			<div id="footer">&copy;copyright 2019 . <a href="https://github.com/sangyeop1993/FinalWebProject" target="_blank">치킨날다</a></div>
 		</footer>
