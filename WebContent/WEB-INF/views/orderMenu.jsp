@@ -61,15 +61,17 @@
 
 <script type="text/javascript">
 	
-	var menuArray = new Array();
+	var menuArray = [0,0,0,0,0,0,0,0,0,0,0,0];
 	var i = 0;
 	function countUp(param) {
-		menuArray[i] = param;
-		i = i+1;
-		sessionStorage.setItem('menuArray', menuArray);
-		$(".selecItem").html(menuArray)
+		menuArray[param] += 1;
+		
+		console.log(menuArray);
 	}
-		 
+	
+	function send() {
+				location.href="finalOrder?arr="+JSON.stringify(menuArray);
+	}
 
 	function countDown() {
 		value = value - 1;
@@ -79,8 +81,6 @@
 
 </head>
 <body>
-<% ArrayList<Integer> list = new ArrayList<>();%>
-
 <div id="wrap">
 	<div id="innerWrap">
 	<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -140,15 +140,13 @@
 	</div>
 	</div>
 	
-	
 	<div id="menuWrap">
 		<h3>장바구니</h3>
 		<div id="menus">
 		    <div class="selecItem">
-		    	${menus.get(0).getMenuPrice()}
 		    </div>
 		</div>
-	    <button type="submit" class="btn btn-danger">구매하기</button>
+	    <button onclick="send()" class="btn btn-danger">구매하기</button>
 	</div>
 </div>
 </body>
