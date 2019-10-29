@@ -128,7 +128,7 @@
 			</div>
 			<div id="joinFormBox">
 			<p>
-			<img id="mainimage" src="<%=application.getContextPath()%>/resources/images/chicken.PNG" width = 320/>
+		
 			</p>
 				<form id="joinForm" method="post" action="join" onsubmit="return checkJoin()">
 					<div class="input-group mb-3">
@@ -140,7 +140,6 @@
 						<input id="mname" name="mname" type="text" class="form-control" placeholder="이름">
 					</div>
 					<p id="nameError" style="color: red;"></p>
-					
 					<div class="input-group mb-3">
 						<input id="mpassword" name="mpassword" type="password" class="form-control" placeholder="비밀번호">
 					</div>
