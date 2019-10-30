@@ -97,26 +97,19 @@
 </style>
 
 <script type="text/javascript">
-	
 	var menuArray = [0,0,0,0,0,0,0,0,0,0,0];
 	var i = 0;
 	function countUp(param) {
 		menuArray[param] += 1;
 		console.log(menuArray);
 	}
-	
 	function send() {
-		location.href="finalOrder?arr="+JSON.stringify(menuArray);
+		location.href="finalOrder?arr="+menuArray;
+		
 	}
 	function countDown() {
 		value = value - 1;
 		$(".item_count").html(value);
-	}
-	function countUp(param) {
-		menuArray[i] = param;
-		i = i+1;
-		sessionStorage.setItem('menuArray', menuArray);
-		$(".selecItem").html(menuArray)
 	}
 </script>
 
@@ -198,8 +191,8 @@
 		<div id="menus">
 		    <div class="selecItem">
 		    </div>
+		    <button onclick="send()" class="btn btn-danger">구매하기</button>
 		</div>
-	    <button onclick="send()" class="btn btn-danger">구매하기</button>
 	</div>
 </div>
 </body>

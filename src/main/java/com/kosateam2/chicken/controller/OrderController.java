@@ -3,9 +3,11 @@ package com.kosateam2.chicken.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,7 @@ import com.kosateam2.chicken.service.MenuService;
 
 @Controller
 public class OrderController {
-	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
+	private static final Logger log = LoggerFactory.getLogger(OrderController.class);
 	
 	@Autowired
 	MenuService service;
@@ -33,16 +35,18 @@ public class OrderController {
 	
 	@RequestMapping("/finalOrder")
 	public String finalOrder(HttpSession sess, String arr) {
-		JSONArray jsonArray = new JSONArray(arr);
+		String[] array = arr.split(",");
 		List<ChickenMenu> list = service.getChickenMenu();
 		List<String[]> selectedList = new ArrayList<>();
-		for(int i=0;i<jsonArray.length();i+=1) {
-			if(jsonArray.getInt(i) != 0) {
-				String[] strarr = {list.get(i).getMenuName(), list.get(i).getMenuPrice()+"", jsonArray.getInt(i)+""};
+		
+		
+		for(int i=0;i<array.length;i+=1) {
+			if(!array[i].equals("0")) {
+				String[] strarr = {list.get(i).getMenuName(), list.get(i).getMenuPrice()+"", array[i]};
 				selectedList.add(strarr);
 			}
 		}
 		sess.setAttribute("selectedMenu", selectedList);
-		return "finalOrder";
+		return "/finalOrder";
 	}
 }
