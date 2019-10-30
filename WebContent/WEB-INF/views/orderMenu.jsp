@@ -97,19 +97,16 @@
 </style>
 
 <script type="text/javascript">
-	
 	var menuArray = [0,0,0,0,0,0,0,0,0,0,0];
 	var i = 0;
 	function countUp(param) {
 		menuArray[param] += 1;
-		
 		console.log(menuArray);
 	}
-	
 	function send() {
-				location.href="finalOrder?arr="+JSON.stringify(menuArray);
+		location.href="finalOrder?arr="+menuArray;
+		
 	}
-
 	function countDown() {
 		value = value - 1;
 		$(".item_count").html(value);
@@ -153,7 +150,7 @@
                     <div class="card-body">
                         <h5 class="card-title">허니콤보</h5>
                         <p>19000won</p>
-						<button class="btn btn-primary" onClick="countDown()">-</button><span class="item_count">0</span>
+						<button class="btn btn-primary" onClick="countDown(0)">-</button><span class="item_count">0</span>
 						<button class="btn btn-primary" onClick="countUp(0)">+</button>
                     </div>
                 </div>
@@ -162,7 +159,7 @@
                     <div class="card-body">
                         <h5 class="card-title">뿌링클</h5>
                         <p>20000won</p>
-						<button class="btn btn-primary" onClick="countDown()">-</button><span class="item_count">0</span>
+						<button class="btn btn-primary" onClick="countDown(1)">-</button><span class="item_count">0</span>
 						<button class="btn btn-primary" onClick="countUp(1)">+</button>
                     </div>
                 </div>
@@ -171,7 +168,7 @@
                     <div class="card-body">	
                         <h5 class="card-title">황금올리브</h5>
                         <p>18000won</p>
-						<button class="btn btn-primary" onClick="countDown()">-</button><span class="item_count">0</span>
+						<button class="btn btn-primary" onClick="countDown(2)">-</button><span class="item_count">0</span>
 						<button class="btn btn-primary" onClick="countUp(2)">+</button>
                     </div>
                 </div>
@@ -194,8 +191,8 @@
 		<div id="menus">
 		    <div class="selecItem">
 		    </div>
+		    <button onclick="send()" class="btn btn-danger">구매하기</button>
 		</div>
-	    <button onclick="send()" class="btn btn-danger">구매하기</button>
 	</div>
 </div>
 </body>
