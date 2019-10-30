@@ -99,8 +99,18 @@
 				costArr[i] = s;
 			}
 			%>
+			var check = ($("#selectCoupon").val() == "1");
 			
-			console.log(("#selectCoupon option:selected").val());
+			function couponSelect(){
+				if($("#selectCoupon").val()=="0"){
+					$("#couponCost").html("0원");
+					$("#finalOrderCost").html("${finalCost}원");
+				}
+				if($("#selectCoupon").val()=="1"){
+					$("#couponCost").html("-${finalCost}원");
+					$("#finalOrderCost").html("0원");
+				}
+			}
 		</script>
 	</head>
 	<body>
@@ -179,16 +189,24 @@
 							-${discountCost}원
 						</div>
 						<br/>
-						<div>
-							-${finalCost}원
+						<div style="display: flex;">
+							<div id="couponCost" style="width: 150px;">
+								0원
+							</div>
 							<div class="input-group mb-3">
-								<select class="custom-select" id="selectCoupon">
-							    	<option selected>쿠폰 선택</option>
+								<select class="custom-select" id="selectCoupon" name="selectCoupon" onchange="couponSelect()">
+							    	<option value="0">쿠폰 선택</option>
 								    <option value="1">☆특별 100% 할인 쿠폰★</option>
 								</select>
 							</div>
 						</div>
 					</div>
+					
+				</div>
+				<hr/>
+				<div style="display: flex; margin: 10px;">
+					<div style="margin-right: 100px;">총 주문 금액</div>
+					<div id="finalOrderCost" style="margin-left: 100px;">${finalCost}원</div>
 				</div>
 			</div>
 		</div>
