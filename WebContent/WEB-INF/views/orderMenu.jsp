@@ -130,6 +130,7 @@
 		$(".item_count" + param).html(menuArray[param]);
 		$(".selecItem").html(html1);
 		$("#totalPrice").html("총"+tp+"won");
+		alert(menuArray);
 	}
 	function countDown(param) {
 		if(menuArray[param] > 0){
@@ -144,7 +145,6 @@
 					html1 = html1 + "</li>";
 				}
 			}
-			
 			menuPriceArray[param] *= 1;
 			tp = tp - menuPriceArray[param];
 		}
