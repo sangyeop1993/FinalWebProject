@@ -71,16 +71,23 @@
 	
 	var menuArray = new Array();
 	var i = 0;
-	function countUp(param) {
-		i++;
-		$(".selecItem").html("<li>${menus.get(2).menuName}" + i + "</li>" + "${menus.get(2).menuPrice}원");
-		$(".item_count").html(i);
-	}
+//	function countUp(param) {
+//		i++;
+//		$(".selecItem").html("<li>${menus.get(2).menuName}" + i + "</li>" + "${menus.get(2).menuPrice}원");
+//		$(".item_count").html(i);
+//	}
 
-	function countDown() {
+	function countDown(param) {
 		i--;
 		$(".selecItem").html("<li>${menus.get(2).menuName}" + i + "</li>" + "${menus.get(2).menuPrice}원");
 		$(".item_count").html(i);
+	}
+	
+	function countUp(param) {
+		menuArray[i] = param;
+		i = i+1;
+		sessionStorage.setItem('menuArray', menuArray);
+		$(".selecItem").html(menuArray)
 	}
 </script>
 </head>
@@ -112,7 +119,7 @@
                     <div class="card-body">
                         <h5 class="card-title">허니콤보</h5>
                         <p>19000won</p>
-						<button class="btn btn-primary" onClick="countDown()">-</button><span class="item_count">0</span>
+						<button class="btn btn-primary" onClick="countDown(0)">-</button><span class="item_count">0</span>
 						<button class="btn btn-primary" onClick="countUp(0)">+</button>
                     </div>
                 </div>
@@ -121,7 +128,7 @@
                     <div class="card-body">
                         <h5 class="card-title">뿌링클</h5>
                         <p>20000won</p>
-						<button class="btn btn-primary" onClick="countDown()">-</button><span class="item_count">0</span>
+						<button class="btn btn-primary" onClick="countDown(1)">-</button><span class="item_count">0</span>
 						<button class="btn btn-primary" onClick="countUp(1)">+</button>
                     </div>
                 </div>
@@ -130,7 +137,7 @@
                     <div class="card-body">	
                         <h5 class="card-title">황금올리브</h5>
                         <p>18000won</p>
-						<button class="btn btn-primary" onClick="countDown()">-</button><span class="item_count">0</span>
+						<button class="btn btn-primary" onClick="countDown(2)">-</button><span class="item_count">0</span>
 						<button class="btn btn-primary" onClick="countUp(2)">+</button>
                     </div>
                 </div>
