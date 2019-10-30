@@ -1,13 +1,16 @@
 package com.kosateam2.chicken.controller;
 
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +41,18 @@ public class LoginController {
 		}
 		session.setAttribute("loginResult", loginResult);
 		return "redirect:/";
+	}
+	
+	@RequestMapping("/checkMid")
+	public void checkMid(String mid, HttpServletResponse response) throws Exception{
+		boolean result = service.checkMid(mid);
+		response.setContentType("application/json; charset=UTF-8");
+		PrintWriter pw = response.getWriter();
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("result",result);
+		pw.print(jsonObject+"");
+		pw.flush();
+		pw.close();
 	}
 
 	

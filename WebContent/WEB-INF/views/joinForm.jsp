@@ -66,7 +66,7 @@
 					result = false;
 				}
 				if($("#mpassword").val() == ""){
-					$("#passwordError").text("비밀번호를 입력해주세요.");
+					$("#mpasswordError").text("비밀번호를 입력해주세요.");
 					result = false;
 				}
 				if($("#mphonenumber").val() == ""){
@@ -75,6 +75,48 @@
 				}
 				return result;
 			}
+			
+			function checkMid(){
+				$.ajax({
+					url: "checkMid",
+					data: {mid:$("#mid").val()},
+					success: function(data){
+						if(data.result){
+							$("#idError").text("*사용할 수 있는 아이디 입니다.");
+							$("#idError").css("color","green");
+							$("#joinButton").removeAttr("disabled"); 
+						} else {
+							$("#idError").text("*사용할 수 없는 아이디 입니다.");
+							$("#idError").css("color","red");	
+						}
+					}
+				});
+				
+			}
+			
+			$(function(){
+				$("#alert-success").hide(); 
+				$("#alert-danger").hide(); 
+				$("input").keyup(function(){
+					var pwd1=$("#mpassword").val();
+					var pwd2=$("#mpassword2").val();
+					if(pwd1 != "" && pwd2 != ""){
+						if(pwd1 == pwd2){ 
+							$("#alert-success").show();
+							$("#alert-danger").hide(); 
+							$("#joinButton").removeAttr("disabled"); 
+							$("#mpasswordError").text("*비밀번호가 일치합니다.");
+							$("#mpasswordError").css("color","green");
+						}else{ 
+								$("#alert-success").hide(); 
+								$("#alert-danger").show();
+								$("#joinButton").attr("disabled", "disabled");
+								$("#mpasswordError").text("*비밀번호가 일치하지 않습니다.");
+								$("#mpasswordError").css("color","red");
+						}
+					}
+				});
+			});
 			
 			function inputPhoneNumber(mphonenumber) {
 
@@ -125,6 +167,8 @@
 				   });
 
 				})
+				
+				
 		</script>
 	</head>
 	<body>
@@ -138,8 +182,13 @@
 				<form id="joinForm" method="post" action="join" onsubmit="return checkJoin()">
 					<div class="input-group mb-3">
 					  	<input id="mid" name="mid" type="text" class="form-control" placeholder="아이디"/>
+					  	<div class="input-group-append">
+		    			<input onclick="checkMid()" type="button" class="btn btn-danger" value="중복체크"/>
+			  		</div>
 					</div>
+
 					<p id="idError" style="color: red;"></p>
+					
 					
 					<div class="input-group mb-3">
 						<input id="mname" name="mname" type="text" class="form-control" placeholder="이름">
@@ -149,7 +198,11 @@
 					<div class="input-group mb-3">
 						<input id="mpassword" name="mpassword" type="password" class="form-control" placeholder="비밀번호">
 					</div>
-					<p id="passwordError" style="color: red;"></p>
+					<div class="input-group mb-3">
+						<input id="mpassword2" name="mpassword2" type="password" class="form-control" placeholder="비밀번호확인">
+					</div>
+					<p id="mpasswordError" style="color:red;"></p>
+					
 					
 					<div class="input-group mb-3">
 					<input type="text" name="mphonenumber" id="mphonenumber"  maxlength="13" class="form-control" placeholder="전화번호"/>					
@@ -157,7 +210,7 @@
 					<p id="phonenumberError" style="color: red;"></p>
 					
 					<input id="mlevel" name="mlevel" type="hidden" value="1"/>
-					<input id="joinButton" type="submit" class="btn btn-danger" value="회원가입"  style="width:80pt; height:40pt;"/>
+					<input id="joinButton" type="submit" class="btn btn-primary" value="회원가입"  style="width:80pt; height:40pt;" disabled = "disabled"/>
 					<button id="BackHomeButton" class="btn btn-secondary" type="button" onclick="location.href='logout'"  style="width:80pt; height:40pt;">취소</button>
 				</form>
 			</div>
