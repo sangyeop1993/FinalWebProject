@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>reset</title>
+<title>YOU YES</title>
 <script src="<%=application.getContextPath()%>/resources/js/jquery-3.4.1.min.js" ></script>
 <link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
@@ -98,18 +98,62 @@
 
 <script type="text/javascript">
 	var menuArray = [0,0,0,0,0,0,0,0,0,0,0];
+	var menuNameArray = ["허니콤보","뿌링클","황금올리브","황금올리브 순살","갈비천왕","감자튀김","치즈볼","소떡소떡","콜라","사이다","맥주"];
+	var menuPriceArray = ["19000","20000","18000","20000","20000","4000","5000","2500","2000","2000","4000"];
+	
 	var i = 0;
+	var html1 = "";
+	var tp = 0;
 	function countUp(param) {
-		menuArray[param] += 1;
-		console.log(menuArray);
+		if(menuArray[param] == 0) {
+			menuArray[param]++;
+			html1 = html1 + "<li>";
+			html1 = html1 + menuNameArray[param];
+			html1 = html1 + menuArray[param];
+			html1 = html1 + "        " + menuPriceArray[param] * menuArray[param];
+			html1 = html1 + "</li>";
+		} else {
+			menuArray[param]++;
+			html1 = "";
+			for(var j=0; j<11;j++) {
+				if(menuArray[j] != 0) {
+					html1 = html1 + "<li>";
+					html1 = html1 + menuNameArray[j];
+					html1 = html1 + menuArray[j];
+					html1 = html1 + "        " + menuPriceArray[j] * menuArray[j];
+					html1 = html1 + "</li>";
+				}
+			}
+		}
+		menuPriceArray[param] *= 1;
+		tp = tp + menuPriceArray[param];
+		$(".item_count" + param).html(menuArray[param]);
+		$(".selecItem").html(html1);
+		$("#totalPrice").html("총"+tp+"won");
+	}
+	function countDown(param) {
+		if(menuArray[param] > 0){
+			menuArray[param]--;
+			html1 = "";
+			for(var j=0; j<11;j++) {
+				if(menuArray[j] != 0) {
+					html1 = html1 + "<li>";
+					html1 = html1 + menuNameArray[j];
+					html1 = html1 + menuArray[j];
+					html1 = html1 + "        " + menuPriceArray[j] * menuArray[j];
+					html1 = html1 + "</li>";
+				}
+			}
+			
+			menuPriceArray[param] *= 1;
+			tp = tp - menuPriceArray[param];
+		}
+		$(".item_count" + param).html(menuArray[param]);
+		$(".selecItem").html(html1);
+		$("#totalPrice").html("총"+tp+"won");
 	}
 	function send() {
 		location.href="finalOrder?arr="+menuArray;
-		
-	}
-	function countDown() {
-		value = value - 1;
-		$(".item_count").html(value);
 	}
 </script>
 
@@ -142,34 +186,52 @@
 	</ul>
 	<div class="tab-content" id="myTabContent">
 		<div class="tab-pane fade show active" id="menu_all" role="tabpanel" aria-labelledby="menu_all-tab">
-		    A
+			A
 		</div>
 		<div class="tab-pane fade" id="menu_chicken" role="tabpanel" aria-labelledby="menu_chicken-tab">
 		    <div class="cards">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">허니콤보</h5>
-                        <p>19000won</p>
-						<button class="btn btn-primary" onClick="countDown(0)">-</button><span class="item_count">0</span>
+                        <h5 class="card-title">${menus.get(0).menuName}</h5>
+                        <p>${menus.get(0).menuPrice}</p>
+						<button class="btn btn-primary" onClick="countDown(0)">-</button><span class="item_count0">0</span>
 						<button class="btn btn-primary" onClick="countUp(0)">+</button>
                     </div>
                 </div>
                 
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">뿌링클</h5>
-                        <p>20000won</p>
-						<button class="btn btn-primary" onClick="countDown(1)">-</button><span class="item_count">0</span>
+                        <h5 class="card-title">${menus.get(1).menuName}</h5>
+                        <p>${menus.get(1).menuPrice}</p>
+						<button class="btn btn-primary" onClick="countDown(1)">-</button><span class="item_count1">0</span>
 						<button class="btn btn-primary" onClick="countUp(1)">+</button>
                     </div>
                 </div>
                 
                 <div class="card cend" style="width: 18rem;">
                     <div class="card-body">	
-                        <h5 class="card-title">황금올리브</h5>
-                        <p>18000won</p>
-						<button class="btn btn-primary" onClick="countDown(2)">-</button><span class="item_count">0</span>
+                        <h5 class="card-title">${menus.get(2).menuName}</h5>
+                        <p>${menus.get(2).menuPrice}</p>
+						<button class="btn btn-primary" onClick="countDown(2)">-</button><span class="item_count2">0</span>
 						<button class="btn btn-primary" onClick="countUp(2)">+</button>
+                    </div>
+                </div>
+                
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">	
+                        <h5 class="card-title">${menus.get(3).menuName}</h5>
+                        <p>${menus.get(3).menuPrice}</p>
+						<button class="btn btn-primary" onClick="countDown(3)">-</button><span class="item_count3">0</span>
+						<button class="btn btn-primary" onClick="countUp(3)">+</button>
+                    </div>
+                </div>
+                
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">	
+                        <h5 class="card-title">${menus.get(4).menuName}</h5>
+                        <p>${menus.get(4).menuPrice}</p>
+						<button class="btn btn-primary" onClick="countDown(4)">-</button><span class="item_count4">0</span>
+						<button class="btn btn-primary" onClick="countUp(4)">+</button>
                     </div>
                 </div>
 			</div>
@@ -184,13 +246,13 @@
 	</div>
 	<div id="menuWrap" >
 		<div id="cart">
-		
-		<img src="<%=application.getContextPath()%>/resources/images/shoppingcarticon.png" width="60px"/> 
-		<h5>장바구니</h5>
+			<img src="<%=application.getContextPath()%>/resources/images/shoppingcarticon.png" width="60px"/> 
+			<h5>장바구니</h5>
 		</div>
 		<div id="menus">
-		    <div class="selecItem">
-		    </div>
+		    <ol class="selecItem">
+		    </ol>
+		    <div id="totalPrice"></div>
 		    <button onclick="send()" class="btn btn-danger">구매하기</button>
 		</div>
 	</div>
