@@ -30,4 +30,9 @@ public class MemberDao {
 		return member;
 	}
 
+	public int delete(String mid) {
+		int rows = sqlSessionTemplate.delete("member.deleteMember",mid);
+		return rows;
+	}
+
 }

@@ -24,4 +24,12 @@ public class MainController {
 		model.addAttribute("member_model", sess.getAttribute("member"));
 		return "/main";
 	}
+	
+	@RequestMapping("/deleteMember")
+	public String deleteMember(HttpSession sess, String mid) {
+		sess.removeAttribute("member");
+		sess.removeAttribute("loginResult");
+		service.deleteMember(mid);
+		return "redirect:/";
+	}
 }

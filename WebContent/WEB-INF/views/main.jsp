@@ -140,7 +140,8 @@
 							DRONE: ${droen.dname}</p>
 						</div>
 					</div>
-					<button id="logoutButton" class="btn btn-danger" type="button" onclick="location.href='logout'">로그아웃</button>
+				<button id="logoutButton" class="btn btn-danger" type="button" onclick="location.href='logout'">로그아웃</button>
+				<a href="deleteMember?mid=${member.mid}" class="btn btn-secondary">회원탈퇴</a>
 				</div>
 				<div id="orderListBox" class="contents"></div>
 				<div id="TemperatureBox" class="contents"></div>

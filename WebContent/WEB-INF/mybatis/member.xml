@@ -13,4 +13,9 @@
 		insert into members(mid, mname, mpassword, mphonenumber, mlevel)
 		values (#{mid}, #{mname}, #{mpassword}, #{mphonenumber}, #{mlevel})
 	</insert>
+	
+	<delete id="deleteMember" parameterType="string">
+		delete from members
+		where mid=#{mid}
+	</delete>
 </mapper>

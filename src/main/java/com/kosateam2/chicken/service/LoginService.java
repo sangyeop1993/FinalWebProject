@@ -31,4 +31,9 @@ public class LoginService {
 			return false;
 		}
 	}
+
+	public void deleteMember(String mid) {
+		memberDao.delete(mid);
+		
+	}
 }
