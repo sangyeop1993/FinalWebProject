@@ -102,14 +102,10 @@
 					var pwd2=$("#mpassword2").val();
 					if(pwd1 != "" && pwd2 != ""){
 						if(pwd1 == pwd2){ 
-							$("#alert-success").show();
-							$("#alert-danger").hide(); 
 							$("#joinButton").removeAttr("disabled"); 
 							$("#mpasswordError").text("*비밀번호가 일치합니다.");
 							$("#mpasswordError").css("color","green");
 						}else{ 
-								$("#alert-success").hide(); 
-								$("#alert-danger").show();
 								$("#joinButton").attr("disabled", "disabled");
 								$("#mpasswordError").text("*비밀번호가 일치하지 않습니다.");
 								$("#mpasswordError").css("color","red");
@@ -210,8 +206,8 @@
 					<p id="phonenumberError" style="color: red;"></p>
 					
 					<input id="mlevel" name="mlevel" type="hidden" value="1"/>
-					<input id="joinButton" type="submit" class="btn btn-primary" value="회원가입"  style="width:80pt; height:40pt;" disabled = "disabled"/>
-					<button id="BackHomeButton" class="btn btn-secondary" type="button" onclick="location.href='logout'"  style="width:80pt; height:40pt;">취소</button>
+					<input id="joinButton" type="submit" class="btn btn-primary" value="회원가입"  style="width:80pt; height:35pt;" disabled = "disabled"/>
+					<button id="BackHomeButton" class="btn btn-secondary" type="button" onclick="location.href='logout'"  style="width:80pt; height:35pt;">취소</button>
 				</form>
 			</div>
 			<div class="marginDiv"></div>
