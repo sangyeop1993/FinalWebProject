@@ -25,4 +25,9 @@ public class MemberDao {
 		return rows;
 	}
 
+	public ChickenMember selectMember(String mid) {
+		ChickenMember member = sqlSessionTemplate.selectOne("member.selectMember",mid);
+		return member;
+	}
+
 }

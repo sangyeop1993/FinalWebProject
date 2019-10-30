@@ -22,4 +22,13 @@ public class LoginService {
 	public void join(ChickenMember member) {
 		memberDao.insert(member);
 	}
+
+	public boolean checkMid(String mid) {
+		ChickenMember member = memberDao.selectMember(mid);
+		if(member==null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }
