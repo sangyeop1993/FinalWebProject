@@ -119,8 +119,8 @@
 	<body>
 		<header>
 			<div id="header">
-				<div id="logoBox">
-					<img src="<%=application.getContextPath()%>/resources/images/Chicken_logo.PNG">
+				<div id="logoBox" style="padding-left: 900px; padding-top: 15px;">
+					<img src="<%=application.getContextPath()%>/resources/images/Chicken_logo.PNG" >
 				</div>
 				<div id="headCenter">
 				</div>

@@ -26,7 +26,11 @@ public class LoginController {
 	public String login(String mid, String mpassword, HttpSession session) {
 		String loginResult;
 		ChickenMember member = service.logincheck(mid, mpassword);
-		if(member.getMid().equals(mid)) {
+		if(member==null) {
+			loginResult="fail";
+		} else if(!member.getMpassword().equals(mpassword)) {
+			loginResult="fail";
+		} else if(member.getMid().equals(mid)) {
 			loginResult="success";
 			session.setAttribute("member", member);
 		} else {
