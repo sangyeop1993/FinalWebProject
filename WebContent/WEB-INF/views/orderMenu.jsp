@@ -100,36 +100,18 @@
 	
 	var menuArray = [0,0,0,0,0,0,0,0,0,0,0];
 	var i = 0;
-<<<<<<< HEAD
-//	function countUp(param) {
-//		i++;
-//		$(".selecItem").html("<li>${menus.get(2).menuName}" + i + "</li>" + "${menus.get(2).menuPrice}원");
-//		$(".item_count").html(i);
-//	}
-=======
 	function countUp(param) {
 		menuArray[param] += 1;
-		
 		console.log(menuArray);
 	}
 	
 	function send() {
-				location.href="finalOrder?arr="+JSON.stringify(menuArray);
+		location.href="finalOrder?arr="+JSON.stringify(menuArray);
 	}
->>>>>>> branch 'master' of https://github.com/sangyeop1993/FinalWebProject
-
-<<<<<<< HEAD
-	function countDown(param) {
-		i--;
-		$(".selecItem").html("<li>${menus.get(2).menuName}" + i + "</li>" + "${menus.get(2).menuPrice}원");
-		$(".item_count").html(i);
-=======
 	function countDown() {
 		value = value - 1;
 		$(".item_count").html(value);
->>>>>>> branch 'master' of https://github.com/sangyeop1993/FinalWebProject
 	}
-	
 	function countUp(param) {
 		menuArray[i] = param;
 		i = i+1;
