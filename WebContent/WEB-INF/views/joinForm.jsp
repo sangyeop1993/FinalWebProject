@@ -199,7 +199,7 @@
 						<input id="mpassword" name="mpassword" type="password" class="form-control" placeholder="비밀번호">
 					</div>
 					<div class="input-group mb-3">
-						<input id="mpassword2" name="mpassword" type="password" class="form-control" placeholder="비밀번호확인">
+						<input id="mpassword2" name="mpassword2" type="password" class="form-control" placeholder="비밀번호확인">
 					</div>
 					<p id="mpasswordError" style="color:red;"></p>
 					

@@ -145,7 +145,7 @@
 					</c:if>
 					<input type="checkbox" id="idSaveCheck"> 아이디 저장
 					<div class="loginButton" style="margin-top:0px;">
-						<input id="loginButton1" type="submit" class="btn btn-danger" value="로그인" style="width:80pt; height:40pt;"/>
+						<input id="loginButton1" type="submit" class="btn btn-danger" value="로그인" style="width:80pt; height:40pt; background-color: ;"/>
 						<button id="loginButton2" type="button" onclick="location.href='join'" class="btn btn-danger" style="width:80pt; height:40pt;">회원가입</button>
 					</div>
 				</form>
