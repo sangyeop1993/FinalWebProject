@@ -210,7 +210,7 @@
 					<p id="phonenumberError" style="color: red;"></p>
 					
 					<input id="mlevel" name="mlevel" type="hidden" value="1"/>
-					<input id="joinButton" type="submit" class="btn btn-danger" value="회원가입"  style="width:80pt; height:40pt;" disabled = "disabled"/>
+					<input id="joinButton" type="submit" class="btn btn-primary" value="회원가입"  style="width:80pt; height:40pt;" disabled = "disabled"/>
 					<button id="BackHomeButton" class="btn btn-secondary" type="button" onclick="location.href='logout'"  style="width:80pt; height:40pt;">취소</button>
 				</form>
 			</div>
