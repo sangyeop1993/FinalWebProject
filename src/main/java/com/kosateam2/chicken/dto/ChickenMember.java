@@ -8,6 +8,7 @@ public class ChickenMember {
 	private int mlevel;
 	private String lname;
 	private float discount;
+	
 	public String getMid() {
 		return mid;
 	}
