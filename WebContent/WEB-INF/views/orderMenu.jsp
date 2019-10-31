@@ -94,6 +94,11 @@
     h5 {
  	 font-size: 35px;
 	}
+	.nav-tabs .nav-link {
+		border: none;
+		border-radius: 0;
+		
+	}
 </style>
 
 <script type="text/javascript">

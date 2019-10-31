@@ -42,6 +42,8 @@
 			}
 			#joinButton , #BackHomeButton{
 			     font-size:16pt;
+			     width:80pt;
+			     height:35pt;"
 			}
 			
 			.marginDiv {
@@ -56,36 +58,45 @@
 		</style>
 		<script type="text/javascript">
 			function checkJoin() {
-				var result = true;
-				if($("#mid").val() == ""){
-					$("#idError").text("아이디를 입력해주세요.");
-					result = false;
+				if(checkMidResult) {
+					var result = true;
+					if($("#mid").val() == ""){
+						$("#idError").text("아이디를 입력해주세요.");
+						result = false;
+					}
+					if($("#mname").val() == ""){
+						$("#nameError").text("이름을 입력해주세요.");
+						result = false;
+					}
+					if($("#mpassword").val() == ""){
+						$("#mpasswordError").text("비밀번호를 입력해주세요.");
+						result = false;
+					}
+					if($("#mphonenumber").val() == ""){
+						$("#phonenumberError").text("전화번호를 입력해주세요.");
+						result = false;
+					}
+					return result;
+				} else {
+					alert("중복 체크를 하셔야 합니다.");
+					return false;
 				}
-				if($("#mname").val() == ""){
-					$("#nameError").text("이름을 입력해주세요.");
-					result = false;
-				}
-				if($("#mpassword").val() == ""){
-					$("#mpasswordError").text("비밀번호를 입력해주세요.");
-					result = false;
-				}
-				if($("#mphonenumber").val() == ""){
-					$("#phonenumberError").text("전화번호를 입력해주세요.");
-					result = false;
-				}
-				return result;
 			}
 			
+			
+			var checkMidResult = false;
 			function checkMid(){
 				$.ajax({
 					url: "checkMid",
 					data: {mid:$("#mid").val()},
 					success: function(data){
 						if(data.result){
+							checkMidResult = true;
 							$("#idError").text("*사용할 수 있는 아이디 입니다.");
 							$("#idError").css("color","green");
-							$("#joinButton").removeAttr("disabled"); 
+							//$("#joinButton").removeAttr("disabled"); 
 						} else {
+							checkMidResult = false;
 							$("#idError").text("*사용할 수 없는 아이디 입니다.");
 							$("#idError").css("color","red");	
 						}
@@ -113,33 +124,6 @@
 					}
 				});
 			});
-			
-			function inputPhoneNumber(mphonenumber) {
-
-			    var number = mphonenumber.value.replace(/[^0-9]/g, "");
-			    var phone = "";
-
-			    if(number.length < 4) {
-			        return number;
-			    } else if(number.length < 7) {
-			        phone += number.substr(0, 3);
-			        phone += "-";
-			        phone += number.substr(3);
-			    } else if(number.length < 11) {
-			        phone += number.substr(0, 3);
-			        phone += "-";
-			        phone += number.substr(3, 3);
-			        phone += "-";
-			        phone += number.substr(6);
-			    } else {
-			        phone += number.substr(0, 3);
-			        phone += "-";
-			        phone += number.substr(3, 4);
-			        phone += "-";
-			        phone += number.substr(7);
-			    }
-			    mphonenumber.value = phone;
-			}
 			
 			$(document).ready(function () {
 				   $(function () {
@@ -206,8 +190,9 @@
 					<p id="phonenumberError" style="color: red;"></p>
 					
 					<input id="mlevel" name="mlevel" type="hidden" value="1"/>
-					<input id="joinButton" type="submit" class="btn btn-primary" value="회원가입"  style="width:80pt; height:35pt;" disabled = "disabled"/>
-					<button id="BackHomeButton" class="btn btn-secondary" type="button" onclick="location.href='logout'"  style="width:80pt; height:35pt;">취소</button>
+					
+					<input id="joinButton" type="submit" class="btn btn-primary" value="회원가입"  />			
+					<button id="BackHomeButton" class="btn btn-secondary" type="button" onclick="location.href='logout'" >취소</button>
 				</form>
 			</div>
 			<div class="marginDiv"></div>
