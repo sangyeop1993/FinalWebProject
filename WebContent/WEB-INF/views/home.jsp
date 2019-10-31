@@ -122,6 +122,7 @@
 	    }
 	    return unescape(cookieValue);
 	}
+	
 </script>
 </head>
 <body>
@@ -146,12 +147,12 @@
 					<input type="checkbox" id="idSaveCheck"> 아이디 저장
 					<div class="loginButton" style="margin-top:0px;">
 						<input id="loginButton1" type="submit" class="btn btn-success" value="로그인" style="width:80pt; height:35pt;"/>
-						<button id="loginButton2" type="button" onclick="location.href='join'" class="btn btn-primary" style="width:80pt; height:35pt;" >회원가입</button>
+						<button id="loginButton2" type="button" onclick="location.href='join'" class="btn btn-primary" style="width:80pt; height:35pt;">회원가입</button>
 					</div>
 				</form>
 			</div>
 		</c:if>
-		<c:if test="${loginResult == 'success'}">
+		<c:if test="${loginResult == 'success'}" >
 			<div id="logoutDiv" style="padding-top: 100px;">
 				<a href="order" id="orderPage"><img src="<%=application.getContextPath()%>/resources/images/order.png" width=200/></a>
 				<a href="main" id="mainPage"><img src="<%=application.getContextPath()%>/resources/images/ordercheck.png" width=200/></a>
