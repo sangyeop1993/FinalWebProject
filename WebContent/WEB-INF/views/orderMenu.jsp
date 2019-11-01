@@ -236,11 +236,66 @@
                 </div>
 			</div>
 		</div>
+		
 		<div class="tab-pane fade" id="menu_side" role="tabpanel" aria-labelledby="menu_side-tab">
-		    C
+		    <div class="cards">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">${menus.get(5).menuName}</h5>
+                        <p>${menus.get(5).menuPrice}</p>
+						<button class="btn btn-primary" onClick="countDown(5)">-</button><span class="item_count0">0</span>
+						<button class="btn btn-primary" onClick="countUp(5)">+</button>
+                    </div>
+                </div>
+                
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">${menus.get(6).menuName}</h5>
+                        <p>${menus.get(6).menuPrice}</p>
+						<button class="btn btn-primary" onClick="countDown(6)">-</button><span class="item_count1">0</span>
+						<button class="btn btn-primary" onClick="countUp(6)">+</button>
+                    </div>
+                </div>
+                
+                <div class="card cend" style="width: 18rem;">
+                    <div class="card-body">	
+                        <h5 class="card-title">${menus.get(7).menuName}</h5>
+                        <p>${menus.get(7).menuPrice}</p>
+						<button class="btn btn-primary" onClick="countDown(7)">-</button><span class="item_count2">0</span>
+						<button class="btn btn-primary" onClick="countUp(7)">+</button>
+                    </div>
+                </div>
+			</div>
         </div>
 		<div class="tab-pane fade" id="menu_drink" role="tabpanel" aria-labelledby="menu_drink-tab">
-		    D
+		    <div class="cards">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">${menus.get(8).menuName}</h5>
+                        <p>${menus.get(8).menuPrice}</p>
+						<button class="btn btn-primary" onClick="countDown(8)">-</button><span class="item_count0">0</span>
+						<button class="btn btn-primary" onClick="countUp(8)">+</button>
+                    </div>
+                </div>
+                
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">${menus.get(9).menuName}</h5>
+                        <p>${menus.get(9).menuPrice}</p>
+						<button class="btn btn-primary" onClick="countDown(9)">-</button><span class="item_count1">0</span>
+						<button class="btn btn-primary" onClick="countUp(9)">+</button>
+                    </div>
+                </div>
+                
+                <div class="card cend" style="width: 18rem;">
+                    <div class="card-body">	
+                        <h5 class="card-title">${menus.get(10).menuName}</h5>
+                        <p>${menus.get(10).menuPrice}</p>
+						<button class="btn btn-primary" onClick="countDown(10)">-</button><span class="item_count2">0</span>
+						<button class="btn btn-primary" onClick="countUp(10)">+</button>
+                    </div>
+                </div>
+			</div>
         </div>
 	</div>
 	</div>

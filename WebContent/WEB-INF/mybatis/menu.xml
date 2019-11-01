@@ -6,4 +6,12 @@
 		select menuid, menuname, menuprice, menuweight from menus
 	</select>
 	
+	<select id="getOid" resultType="int">
+		select OID_NO.nextval from dual
+	</select>
+	
+	<insert id="insertNowMenu" parameterType="com.kosateam2.chicken.dto.ItemMember">
+		insert into itemmenus(oid, menuid, amount)
+		values(#{oid}, #{menuId}, #{amount})
+	</insert>
 </mapper>

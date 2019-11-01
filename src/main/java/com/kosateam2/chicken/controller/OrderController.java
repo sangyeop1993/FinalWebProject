@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kosateam2.chicken.dto.ChickenMember;
 import com.kosateam2.chicken.dto.ChickenMenu;
+import com.kosateam2.chicken.dto.ItemMember;
 import com.kosateam2.chicken.service.MenuService;
 
 @Controller
@@ -39,7 +40,7 @@ public class OrderController {
 		int S = 0;
 		for(int i=0;i<array.length;i+=1) {
 			if(!array[i].equals("0")) {
-				String[] strarr = {list.get(i).getMenuName(), list.get(i).getMenuPrice()+"", array[i]};
+				String[] strarr = {list.get(i).getMenuName(), list.get(i).getMenuPrice()+"", array[i], i+""};
 				S += list.get(i).getMenuPrice()*Integer.parseInt(array[i]);
 				selectedList.add(strarr);
 			}
@@ -52,5 +53,22 @@ public class OrderController {
 		sess.setAttribute("discountCost", S_1);
 		sess.setAttribute("finalCost", S_2);
 		return "/finalOrder";
+	}
+	
+	@RequestMapping("/payment")
+	public String payment(HttpSession sess) {
+		ArrayList<String[]> selectedList = (ArrayList<String[]>) sess.getAttribute("selectedMenu");
+		int orderId = service.getOid();
+		ArrayList<ItemMember> itemList = new ArrayList<>();
+		
+		for(int i=0;i<selectedList.size();i+=1) {
+			ItemMember itemMember = new ItemMember();
+			itemMember.setOid(orderId);
+			itemMember.setMenuId(Integer.parseInt(selectedList.get(i)[3]));
+			itemMember.setAmount(Integer.parseInt(selectedList.get(i)[2]));
+			itemList.add(itemMember);
+		}
+		service.nowMenu(itemList);
+		return "/main";
 	}
 }
