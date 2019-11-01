@@ -10,8 +10,11 @@
 		<link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 		<style>
+		@import url('https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean');
+	
 			* {
 				box-sizing: border-box;
+				font-family: 'Jua', sans-serif;
 			}
 		    body {
 		    	display:flex;
@@ -70,23 +73,26 @@
 		    	display: flex;
 		    	margin-top:20px;
 		    	margin-bottom: 0px;
+		    	margin-left:20px;
 		    	padding:0px;
 		    }
 		    
-		    #userImage {
-		    	margin: 10px;
-		    }
-		    
 		    #userTextBox {
-		    	margin-top: 10px;
-		    	margin-right: 10px;
-		    	margin-left: 10px;
-		    	
-		    }
-		    
-		    #logoutButton {
-		    }
-		    
+     			font-size:13pt;
+     			line-height:1.9em; 
+     			margin-top: 0px; 
+     			margin-left:10px;
+     		}
+     		#userPng{
+     			margin-bottom: 0px;
+     			margin-left:0px;
+     			margin-right: 5px;
+     		}
+     		
+     		 #deleteButton, #logoutButton{
+     			font-size:14pt;
+     		}
+
 		    #mapBox {
 		  		margin-left: 10px;
 				margin-right: 10px;
@@ -103,6 +109,7 @@
 		    	border: 4px solid white;
 		    	height: 170px;
 		    }
+
 		    footer {
 		    	height: 50px;
 		        line-height: 50px;
@@ -129,21 +136,39 @@
 		</header>
 		<div id="center">
 			<div id="contentBox" class="sideBar">
-				<div id="userBox" class="contents">
-					<div id="userMiniBox">
+				<div id="userBox" class="contents" >
+					<div id="userMiniBox" style="margin-left: 10px">
 							<p>
-							<img id="userPng" src="<%=application.getContextPath()%>/resources/images/user_icon.png" width=80px; hight=80px; style="margin-bottom: 0px;"/>
+							<img id="userPng" src="<%=application.getContextPath()%>/resources/images/user_icon.png" width=90px;  />
 							</p>
-						<div id="userTextBox" >
+						<div id="userTextBox" style=" ">
 							<p>NAME: ${member.mname} <br/>
 							LEVEL: ${member.lname} <br/>
 							DRONE: ${droen.dname}</p>
 						</div>
 					</div>
-				<button id="logoutButton" class="btn btn-danger" type="button" onclick="location.href='logout'">로그아웃</button>
-				<a href="deleteMember?mid=${member.mid}" class="btn btn-secondary">회원탈퇴</a>
+					<div style="text-align: center;">
+				<button id="logoutButton" class="btn btn-danger" type="button" onclick="location.href='logout'" style="margin-right: 15px; width:80pt;">로그아웃</button>
+				<a href="deleteMember?mid=${member.mid}" id="deleteButton" class="btn btn-secondary" style="width:80pt;">회원탈퇴</a>
+				
 				</div>
-				<div id="orderListBox" class="contents"></div>
+				</div>
+				
+				<div id="orderListBox" class="contents">
+					<ul class="nav nav-tabs" id="myTab" role="tablist">
+					  <li class="nav-item">
+					    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">현재주문</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">과거주문</a>
+					  </li>
+					</ul>
+				<div class="tab-content" id="myTabContent">
+				  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">현재주문</div>
+				  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">과거주문</div>
+				</div>
+				</div>
+				
 				<div id="TemperatureBox" class="contents"></div>
 			</div>
 			<div id="mapBox">
