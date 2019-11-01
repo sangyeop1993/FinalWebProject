@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>reset</title>
 		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/jquery-3.4.1.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
@@ -115,6 +115,15 @@
 		        line-height: 50px;
 		        text-align: center;
 		    }
+		    #logoBox {
+				width: 100%;
+				height: 80px;
+		    }
+		    #logoBox img {
+		    	margin: 26px auto 0;
+		    	display: block;
+		    	
+		    }
 		</style>
 		<script type="text/javascript">
 			function test(param) {
@@ -125,13 +134,12 @@
 		</script>
 	</head>
 	<body>
-		<header>
-			<div id="header">
-				<div id="logoBox" style="padding-left: 900px; padding-top: 15px;">
-					<img src="<%=application.getContextPath()%>/resources/images/Chicken_logo.PNG" >
-				</div>
-				<div id="headCenter">
-				</div>
+		<div style="width:1903px; margin:0 auto;">
+		<header id="header">
+			<div id="logoBox">
+				<a href="<%=application.getContextPath()%>/"><img src="<%=application.getContextPath()%>/resources/images/Chicken_logo.PNG" ></a>
+			</div>
+			<div id="headCenter">
 			</div>
 		</header>
 		<div id="center">
@@ -142,9 +150,11 @@
 							<img id="userPng" src="<%=application.getContextPath()%>/resources/images/user_icon.png" width=90px;  />
 							</p>
 						<div id="userTextBox" style=" ">
-							<p>NAME: ${member.mname} <br/>
-							LEVEL: ${member.lname} <br/>
-							DRONE: ${droen.dname}</p>
+							<p>
+								NAME: ${member.mname} <br/>
+								LEVEL: ${member.lname} <br/>
+								DRONE: ${droen.dname}
+							</p>
 						</div>
 					</div>
 					<div style="text-align: center;">
@@ -169,7 +179,10 @@
 				</div>
 				</div>
 				
-				<div id="TemperatureBox" class="contents"></div>
+				<div id="TemperatureBox" class="contents">
+				<p style="margin-top: 0; margin-bottom: 0;">NAME: ${member.mname} </p>
+					<img id="tempericon" src="<%=application.getContextPath()%>/resources/images/Chicken_tempicon.png" width=200px; style=" margin-left: 20px;"  />
+				</div>
 			</div>
 			<div id="mapBox">
 				
@@ -182,6 +195,6 @@
 		<footer>
 			<div id="footer">&copy;copyright 2019 . <a href="https://github.com/sangyeop1993/FinalWebProject" target="_blank">치킨날다</a></div>
 		</footer>
-		
+		</div>
 	</body>
 </html>

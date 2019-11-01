@@ -69,8 +69,10 @@ public class LoginController {
 	}
 	
 	@PostMapping("/join")
-	public String join(ChickenMember member) {
+	public String join(ChickenMember member, HttpSession session) {
 		service.join(member);
+		session.setAttribute("loginResult", "success");
+		session.setAttribute("member", member);
 		return "redirect:/";
 	}
 }
