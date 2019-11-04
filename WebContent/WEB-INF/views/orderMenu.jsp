@@ -314,6 +314,7 @@
 		    </ol>
 		    <div id="totalPrice"></div>
 		    <button onclick="send()" class="btn btn-danger">구매하기</button>
+		    
 		</div>
 	</div>
 </div>
