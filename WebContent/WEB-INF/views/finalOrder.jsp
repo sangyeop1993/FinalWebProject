@@ -245,7 +245,7 @@
 			    marker.setPosition(latlng);
 			    
 			    latlng.getLat();
-			    latlng.getLng());
+			    latlng.getLng();
 			    
 			});
 		</script>
