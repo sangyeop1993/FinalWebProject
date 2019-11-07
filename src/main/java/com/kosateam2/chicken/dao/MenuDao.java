@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.kosateam2.chicken.dto.ChickenMenu;
+import com.kosateam2.chicken.dto.Drone;
 import com.kosateam2.chicken.dto.ItemMember;
 
 @Component
@@ -30,6 +31,11 @@ public class MenuDao {
 		for(int i=0;i<itemList.size();i+=1) {
 			sqlSessionTemplate.insert("menu.insertNowMenu", itemList.get(i));
 		}
+	}
+
+	public int selectDrone() {
+		List<Drone> droneList = sqlSessionTemplate.selectList("menu.selectDrone");
+		return droneList.get(0).getDid();
 	}
 
 }

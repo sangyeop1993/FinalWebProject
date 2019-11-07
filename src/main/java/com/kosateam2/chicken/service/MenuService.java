@@ -26,6 +26,10 @@ public class MenuService {
 	public void nowMenu(ArrayList<ItemMember> itemList) {
 		menuDao.insert(itemList);
 	}
+	public int getDid() {
+		int droneId = menuDao.selectDrone();
+		return droneId;
+	}
 	
 
 }

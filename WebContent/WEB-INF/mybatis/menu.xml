@@ -14,4 +14,8 @@
 		insert into itemmenus(oid, menuid, amount)
 		values(#{oid}, #{menuId}, #{amount})
 	</insert>
+	
+	<select id="selectDrone" resultType="com.kosateam2.chicken.dto.Drone">
+		select did, dname, dstatus from drones where dstatus='0'
+	</select>
 </mapper>
