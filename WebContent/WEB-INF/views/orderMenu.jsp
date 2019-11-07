@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>YOU YES</title>
+<title>주문하기</title>
 <script src="<%=application.getContextPath()%>/resources/js/jquery-3.4.1.min.js" ></script>
 <link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
@@ -17,18 +17,33 @@
 	font-family: 'Jua', sans-serif;
 	
 	}
-	body{
 	
+	body{
+		background-color: rgb(253, 189, 51);
 	}
 			
 	#logoBox{
-	background-color: rgb(253, 189, 51);
-	padding-bottom: 10px;
+		background-color: rgb(253, 189, 51);
+		padding-left: 900px;
+		padding-top: 25px;
+		padding-bottom: 25px;
+	}
+	#menu_drink{
+		text-align: center;
+		padding-left: 50px;
+	}
+	#menu_side{
+		text-align: center;
+		padding-left: 50px;
+	}
+	#sidebox{
+		padding-right: 600px;
 	}
 	
 	#wrap {
 		display: flex;
 		box-sizing: border-box;
+		height: 100vh; 
 	}
 	
 	#innerWrap {
@@ -39,25 +54,30 @@
 		flex-direction: column;
 		flex-grow: 1;
 		background-color: rgb(253, 189, 51);
-		
 	}
-	#menuWrap {
 	
+	#menuWrap {
+		position: relative;
+		right: 0;
+		height: 100%;
 		padding-top:20px;
-		width: 300px;
+		width: 303px;
 		text-align: center;
 		background-color:#ffffff;
 	}
+	
 	#myTab {
 	border-top:3px solid #ffffff; 
 	border-bottom: 3px solid #ffffff;
 	} 
+	
 	#innerWrap ul li {
 		width: 400px;
 		margin: 0px;
 		height: 80px;
 		line-height: 80px;
 	}
+	
 	ul li a {
 		text-align: center;
 		height: 80px;
@@ -65,23 +85,20 @@
 	
 	#myTabContent {
 		flex-grow: 1;
-		height: 80px;
-		background-color: rgb(253, 189, 51);
-		
 	}
-	#myTabContent div {
-		height: 80px;
-	}
+	
     #myTabContent .cards {
         margin: 0 auto;
         display: flex;
         width: 90%; 
         height: 80px;
     }
+    
     #myTabContent .card {
         margin: 0 auto;
         height: 80px;
     }
+    
     #myTabContent .cend {
    		 height: 80px;
     }
@@ -91,13 +108,31 @@
     	justify-content: center;
     	align-items:center;
     }
+    
     h5 {
  	 font-size: 35px;
 	}
+	
 	.nav-tabs .nav-link {
 		border: none;
 		border-radius: 0;
-		
+	}
+	li{
+	font-size: 25px;
+	}
+	
+	a {
+		font-size: 28px;
+		color: #ffffff;
+	}
+	
+	a:hover {
+		color: red !important;
+	}
+	
+	.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+	    color: red;
+	    background-color: #fff;
 	}
 </style>
 
@@ -166,7 +201,7 @@
 <body>
 	<header>
 		<div id="header">
-			<div id="logoBox" style="padding-left: 900px; padding-top: 25px;">
+			<div id="logoBox" >
 				<img src="<%=application.getContextPath()%>/resources/images/Chicken_logo.PNG" >
 			</div>
 			<div id="headCenter">
@@ -190,51 +225,60 @@
 		</li>
 	</ul>
 	<div class="tab-content" id="myTabContent">
+	
 		<div class="tab-pane fade show active" id="menu_all" role="tabpanel" aria-labelledby="menu_all-tab">
-			A
+			전체내용불러오기
 		</div>
+		
 		<div class="tab-pane fade" id="menu_chicken" role="tabpanel" aria-labelledby="menu_chicken-tab">
 		    <div class="cards">
-                <div class="card" style="width: 18rem;">
+                <div style="width: 350px;">
+                <div>
                     <div class="card-body">
-                        <h5 class="card-title">${menus.get(0).menuName}</h5>
-                        <p>${menus.get(0).menuPrice}</p>
+                        <img src="<%=application.getContextPath()%>/resources/images/chicken01.png" width="350px"/> 
+                        <p>
 						<button class="btn btn-primary" onClick="countDown(0)">-</button><span class="item_count0">0</span>
 						<button class="btn btn-primary" onClick="countUp(0)">+</button>
+						<p>
                     </div>
                 </div>
                 
-                <div class="card" style="width: 18rem;">
+                <div style="width: 350px;">
                     <div class="card-body">
-                        <h5 class="card-title">${menus.get(1).menuName}</h5>
-                        <p>${menus.get(1).menuPrice}</p>
+                         <img src="<%=application.getContextPath()%>/resources/images/chicken02.png" width="350px"/> 
+                         <P>
 						<button class="btn btn-primary" onClick="countDown(1)">-</button><span class="item_count1">0</span>
 						<button class="btn btn-primary" onClick="countUp(1)">+</button>
+						</P>
                     </div>
                 </div>
                 
-                <div class="card cend" style="width: 18rem;">
-                    <div class="card-body">	
-                        <h5 class="card-title">${menus.get(2).menuName}</h5>
-                        <p>${menus.get(2).menuPrice}</p>
+                <div style="width: 350px;">
+                    <div class="card-body">
+                         <img src="<%=application.getContextPath()%>/resources/images/chicken03.png" width="350px"/> 
+                         <p>
 						<button class="btn btn-primary" onClick="countDown(2)">-</button><span class="item_count2">0</span>
 						<button class="btn btn-primary" onClick="countUp(2)">+</button>
+						</p>
                     </div>
                 </div>
+                </div>
                 
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">	
-                        <h5 class="card-title">${menus.get(3).menuName}</h5>
-                        <p>${menus.get(3).menuPrice}</p>
+                
+                
+                <div style="width: 350px;">
+                    <div class="card-body">
+                         <img src="<%=application.getContextPath()%>/resources/images/chicken04.png" width="350px"/> 
+                         
 						<button class="btn btn-primary" onClick="countDown(3)">-</button><span class="item_count3">0</span>
 						<button class="btn btn-primary" onClick="countUp(3)">+</button>
+						
                     </div>
                 </div>
                 
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">	
-                        <h5 class="card-title">${menus.get(4).menuName}</h5>
-                        <p>${menus.get(4).menuPrice}</p>
+                <div style="width: 350px;">
+                    <div class="card-body">
+                         <img src="<%=application.getContextPath()%>/resources/images/chicken05.png" width="350px"/> 
 						<button class="btn btn-primary" onClick="countDown(4)">-</button><span class="item_count4">0</span>
 						<button class="btn btn-primary" onClick="countUp(4)">+</button>
                     </div>
@@ -242,31 +286,29 @@
 			</div>
 		</div>
 		
+		
 		<div class="tab-pane fade" id="menu_side" role="tabpanel" aria-labelledby="menu_side-tab">
-		    <div class="cards">
-                <div class="card" style="width: 18rem;">
+		    <div class="cards" id="sidebox" >
+                  <div style="width: 350px;">
                     <div class="card-body">
-                        <h5 class="card-title">${menus.get(5).menuName}</h5>
-                        <p>${menus.get(5).menuPrice}</p>
-						<button class="btn btn-primary" onClick="countDown(5)">-</button><span class="item_count0">0</span>
+                         <img src="<%=application.getContextPath()%>/resources/images/side01.png" width="350px"/> 
+						<button class="btn btn-primary" onClick="countDown(5)">-</button><span class="item_count5">0</span>
 						<button class="btn btn-primary" onClick="countUp(5)">+</button>
                     </div>
                 </div>
                 
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">${menus.get(6).menuName}</h5>
-                        <p>${menus.get(6).menuPrice}</p>
-						<button class="btn btn-primary" onClick="countDown(6)">-</button><span class="item_count1">0</span>
+               <div style="width: 350px;">
+                    <div class="card-body" >
+                         <img src="<%=application.getContextPath()%>/resources/images/side02.png" width="350px"/> 
+						<button class="btn btn-primary" onClick="countDown(6)">-</button><span class="item_count6">0</span>
 						<button class="btn btn-primary" onClick="countUp(6)">+</button>
                     </div>
                 </div>
                 
-                <div class="card cend" style="width: 18rem;">
-                    <div class="card-body">	
-                        <h5 class="card-title">${menus.get(7).menuName}</h5>
-                        <p>${menus.get(7).menuPrice}</p>
-						<button class="btn btn-primary" onClick="countDown(7)">-</button><span class="item_count2">0</span>
+                <div style="width: 350px;">
+                    <div class="card-body">
+                         <img src="<%=application.getContextPath()%>/resources/images/side03.png" width="350px"/> 
+						<button class="btn btn-primary" onClick="countDown(7)">-</button><span class="item_count7">0</span>
 						<button class="btn btn-primary" onClick="countUp(7)">+</button>
                     </div>
                 </div>
@@ -274,29 +316,26 @@
         </div>
 		<div class="tab-pane fade" id="menu_drink" role="tabpanel" aria-labelledby="menu_drink-tab">
 		    <div class="cards">
-                <div class="card" style="width: 18rem;">
+               <div style="width: 350px;">
                     <div class="card-body">
-                        <h5 class="card-title">${menus.get(8).menuName}</h5>
-                        <p>${menus.get(8).menuPrice}</p>
-						<button class="btn btn-primary" onClick="countDown(8)">-</button><span class="item_count0">0</span>
+                         <img src="<%=application.getContextPath()%>/resources/images/beverage01.png" width="350px"/> 
+						<button class="btn btn-primary" onClick="countDown(8)">-</button><span class="item_count8">0</span>
 						<button class="btn btn-primary" onClick="countUp(8)">+</button>
                     </div>
                 </div>
                 
-                <div class="card" style="width: 18rem;">
+                 <div style="width: 350px;">
                     <div class="card-body">
-                        <h5 class="card-title">${menus.get(9).menuName}</h5>
-                        <p>${menus.get(9).menuPrice}</p>
-						<button class="btn btn-primary" onClick="countDown(9)">-</button><span class="item_count1">0</span>
+                         <img src="<%=application.getContextPath()%>/resources/images/beverage02.png" width="350px"/> 
+						<button class="btn btn-primary" onClick="countDown(9)">-</button><span class="item_count9">0</span>
 						<button class="btn btn-primary" onClick="countUp(9)">+</button>
                     </div>
                 </div>
                 
-                <div class="card cend" style="width: 18rem;">
-                    <div class="card-body">	
-                        <h5 class="card-title">${menus.get(10).menuName}</h5>
-                        <p>${menus.get(10).menuPrice}</p>
-						<button class="btn btn-primary" onClick="countDown(10)">-</button><span class="item_count2">0</span>
+                 <div style="width: 350px;">
+                    <div class="card-body">
+                         <img src="<%=application.getContextPath()%>/resources/images/beverage03.png" width="350px"/> 
+						<button class="btn btn-primary" onClick="countDown(10)">-</button><span class="item_count10">0</span>
 						<button class="btn btn-primary" onClick="countUp(10)">+</button>
                     </div>
                 </div>
@@ -312,7 +351,7 @@
 		<div id="menus">
 		    <ol class="selecItem">
 		    </ol>
-		    <div id="totalPrice"></div>
+		    <div id="totalPrice" style="font-size: 20px;"></div>
 		    <button onclick="send()" class="btn btn-danger">구매하기</button>
 		    
 		</div>

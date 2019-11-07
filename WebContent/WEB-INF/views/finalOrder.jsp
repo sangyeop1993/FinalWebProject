@@ -217,7 +217,7 @@
 		<footer>
 			<div id="footer">&copy;copyright 2019 . <a href="https://github.com/sangyeop1993/FinalWebProject" target="_blank">치킨날다</a></div>
 		</footer>
-		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5dbef000bc6fdf3e65208abbf5860cbe"></script>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dad7fb57c07b01439820b31881802e7a"></script>
 		<script type="text/javascript">
 			var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 			var options = { //지도를 생성할 때 필요한 기본 옵션
