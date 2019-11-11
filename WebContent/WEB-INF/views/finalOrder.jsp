@@ -13,8 +13,11 @@
 		<link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 		<style>
+			@import url('https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean');
+	
 			* {
 				box-sizing: border-box;
+				font-family: 'Jua', sans-serif;
 			}
 			
 		    body {
@@ -36,6 +39,7 @@
 		    	width: 150px;
 		    	margin: 10px;
 		    	margin-top: 30px;
+		    	margin-left:30px;
 		    }
 		    
 		    #headCenter {
@@ -45,6 +49,7 @@
 		    #userInfoLine {
 		    	display: flex;
 		    	height: 50px;
+		    	font-size: 20px;
 		    }
 		    
 		    #userInfoLineLeftBox {

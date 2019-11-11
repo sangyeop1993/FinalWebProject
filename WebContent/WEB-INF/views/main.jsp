@@ -24,7 +24,8 @@
 		    }
 		    
 		    header {
-		    	height: 100px;
+		    	height: 80px;
+		    	
 		    }
 		    
 		    #center, #lower {
@@ -36,6 +37,11 @@
 		    #header {
 		    	display: flex;
 		    }
+		    
+		    
+			element.style {
+			    margin-top: 14px;
+			}
 		    
 		    #logoBox {
 		    	width: 150px;
@@ -68,7 +74,9 @@
 		    	height: 200px;
 		    	padding: 7px;
 		    }
-		    
+		    #orderListBox{
+		    	padding : 0px;
+		    }
 		    #userMiniBox {
 		    	display: flex;
 		    	margin-top:20px;
@@ -121,9 +129,35 @@
 		    }
 		    #logoBox img {
 		    	margin: 26px auto 0;
-		    	display: block;
-		    	
+		    	display: block;	
 		    }
+		    #noworder-tab, #oldorder-tab{
+		  		width: 133px;
+		  		border-radius: 0px;
+		  						border-bottom: 3px solid #ffffff;
+		  		
+		    }
+		    
+			#orderListBox a {
+				font-size: 22px;
+				color: #fff;
+				text-align: center;
+
+			}
+			
+			#orderListBox a:hover {
+				color: red !important;
+	
+			}
+			
+		    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+			    color: red !important;
+			    background-color: #fff;
+			  	border-color: #fff; 
+  			
+			}
+			
+		    
 		</style>
 		<script type="text/javascript">
 			function test(param) {
@@ -137,7 +171,7 @@
 		<div style="width:1903px; margin:0 auto;">
 		<header id="header">
 			<div id="logoBox">
-				<a href="<%=application.getContextPath()%>/"><img src="<%=application.getContextPath()%>/resources/images/Chicken_logo.PNG" ></a>
+				<a href="<%=application.getContextPath()%>/"><img src="<%=application.getContextPath()%>/resources/images/Chicken_logo.PNG" style="margin-top: 20px;"></a>
 			</div>
 			<div id="headCenter">
 			</div>
@@ -167,15 +201,15 @@
 				<div id="orderListBox" class="contents">
 					<ul class="nav nav-tabs" id="myTab" role="tablist">
 					  <li class="nav-item">
-					    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">현재주문</a>
+					    <a class="nav-link active" id="noworder-tab" data-toggle="tab" href="#NowOrder-box" role="tab" aria-controls="home" aria-selected="true">현재주문</a>
 					  </li>
 					  <li class="nav-item">
-					    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">과거주문</a>
+					    <a class="nav-link" id="oldorder-tab" data-toggle="tab" href="#OldOrder-box" role="tab" aria-controls="profile" aria-selected="false">과거주문</a>
 					  </li>
 					</ul>
 				<div class="tab-content" id="myTabContent">
-				  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">현재주문</div>
-				  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">과거주문</div>
+				  <div class="tab-pane fade show active" id="NowOrder-box" role="tabpanel" aria-labelledby="noworder-tab">현재주문</div>
+				  <div class="tab-pane fade" id="OldOrder-box" role="tabpanel" aria-labelledby="oldorder-tab">과거주문</div>
 				</div>
 				</div>
 				
