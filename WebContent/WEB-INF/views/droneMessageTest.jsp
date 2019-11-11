@@ -16,7 +16,6 @@
 	</body>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dad7fb57c07b01439820b31881802e7a"></script>
 	<script type="text/javascript">
-	
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 	var options = { //지도를 생성할 때 필요한 기본 옵션
 		center: new kakao.maps.LatLng(37.495046, 127.1223785), //지도의 중심좌표.
@@ -41,9 +40,9 @@
 	var marker = null;
 
 	// MQTT Broker와 연결하기
-	client = new Paho.MQTT.Client("192.168.2.6", 61614, "clientId");
+	client = new Paho.MQTT.Client(location.hostname, 61622, "clientId");
 	// Message를  수신했을 때 자동으로 실행(콜백) 되는 함수
-	
+
 	client.onMessageArrived = function(message) {
 		var JSONString = message.payloadString;
 		var obj = JSON.parse(JSONString);
@@ -69,9 +68,6 @@
 			map.setCenter(markerPosition);
 		}
 	}
-	
-	client.connect({onSuccess:onConnect});
-	
 	// 연결이 완료되었을 때 자동으로 실행(콜백) 되는 함수
 	function onConnect() {
 	  client.subscribe("/drone/fc/pub");
