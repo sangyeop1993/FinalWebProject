@@ -20,4 +20,9 @@ public class HomeController {
 		model.addAttribute("member", member);
 		return "selectMenu";
 	}
+	
+	@RequestMapping("/test")
+	public String test() {
+		return "droneMessageTest";
+	}
 }
