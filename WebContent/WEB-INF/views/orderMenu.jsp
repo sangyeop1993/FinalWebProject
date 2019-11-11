@@ -135,7 +135,6 @@
 		$(".item_count" + param).html(menuArray[param]);
 		$(".selecItem").html(html1);
 		$("#totalPrice").html("총"+tp+"won");
-		alert(menuArray);
 	}
 	function countDown(param) {
 		if(menuArray[param] > 0){
@@ -258,7 +257,7 @@
 		    <ol class="selecItem">
 		    </ol>
 		    <div id="totalPrice"></div>
-		    <button onclick="send()" class="btn btn-danger">구매하기</button>
+		    <button onclick="send()" class="btn btn-danger">배달 주문하기</button>
 		</div>
 	</div>
 </div>

@@ -201,7 +201,6 @@
 							</div>
 						</div>
 					</div>
-					
 				</div>
 				<hr/>
 				<div style="display: flex; margin: 10px;">
@@ -209,6 +208,12 @@
 					<div id="finalOrderCost" style="margin-left: 100px;">${finalCost}원</div>
 				</div>
 			</div>
+			<form action="payment">
+				<input name=""  type="hidden">
+				<input name=""  type="hidden">
+				<input name=""  type="hidden">
+				<button class="btn btn-primary">${finalCost}원 결제하기</button>
+			</form>
 		</div>
 		<footer>
 			<div id="footer">&copy;copyright 2019 . <a href="https://github.com/sangyeop1993/FinalWebProject" target="_blank">치킨날다</a></div>
