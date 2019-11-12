@@ -62,7 +62,7 @@ public class OrderController {
 	}
 	
 	@RequestMapping("/payment")
-	public String payment(HttpSession sess) {
+	public String payment(HttpSession sess, String nowLat, String nowLng) {
 		ArrayList<String[]> selectedList = (ArrayList<String[]>) sess.getAttribute("selectedMenu");
 		int orderId = service.getOid();
 		ArrayList<ItemMember> itemList = new ArrayList<>();
@@ -73,14 +73,21 @@ public class OrderController {
 		order.setMid(member.getMid());
 		order.setDid(droneId);
 		order.setPrice(0);
-		order.setLat(0);
-		order.setLng(0);
-		
+		order.setLat(Double.parseDouble(nowLat));
+		order.setLng(Double.parseDouble(nowLng));
 		order.setOstatus(0);
+		
+		service.nowOrder(order);
+		
 		for(int i=0;i<selectedList.size();i+=1) {
 			ItemMember itemMember = new ItemMember();
 			itemMember.setOid(orderId);
-			itemMember.setMenuId(Integer.parseInt(selectedList.get(i)[3]));
+			int menuId_1 = Integer.parseInt(selectedList.get(i)[3]);
+			int menuId;
+			if(menuId_1<=4) menuId = menuId_1+1001;
+			else if(menuId_1<=7) menuId = menuId_1+1996;
+			else menuId = menuId_1+2993;
+			itemMember.setMenuId(menuId);
 			itemMember.setAmount(Integer.parseInt(selectedList.get(i)[2]));
 			itemList.add(itemMember);
 		}

@@ -40,6 +40,7 @@ public class DroneService {
     
     public void mqttConnect() {
         try {
+        	logger.debug("###############################연결됐다########################");
             if(mqttClient != null && mqttClient.isConnected()) {
                 mqttClient.disconnect();
                 mqttClient.close();
@@ -67,11 +68,14 @@ public class DroneService {
 				JSONObject obj = new JSONObject(json);
 				
 				if(obj.getString("msgid").equals("MISSION_UPLOAD")) {
+					int missionId = droneDao.getMissionId();
 					JSONArray points = obj.getJSONArray("items");
 					ArrayList<DroneMission> droneMissionList = new ArrayList<>();
+					
 					for(int i=0;i<points.length();i+=1) {
 						DroneMission mission = new DroneMission();
 						JSONObject obj_points = points.getJSONObject(i);
+						mission.setMissionid(missionId);
 						mission.setSeq(String.valueOf(obj_points.getInt("seq")));
 						mission.setCommand(String.valueOf(obj_points.getInt("command")));
 						mission.setParam1(String.valueOf(obj_points.getInt("param1")));

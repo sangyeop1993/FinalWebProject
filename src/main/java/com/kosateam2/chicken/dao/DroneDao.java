@@ -15,10 +15,14 @@ public class DroneDao {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	public void insert(ArrayList<DroneMission> droneMissionList) {
-		sqlSessionTemplate.delete("drone.delete");
 		for(int i=0;i<droneMissionList.size();i+=1) {
 			sqlSessionTemplate.insert("drone.insert", droneMissionList.get(i));
 		}
+	}
+
+	public int getMissionId() {
+		int missionId = sqlSessionTemplate.selectOne("drone.getMissionId");
+		return missionId;
 	}
 
 }

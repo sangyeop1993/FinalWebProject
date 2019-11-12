@@ -216,16 +216,11 @@
 					<div id="finalOrderCost" style="margin-left: 100px;">${finalCost}원</div>
 				</div>
 			</div>
-<<<<<<< HEAD
-			<form action="payment">
-				<input name=""  type="hidden">
-				<input name=""  type="hidden">
-				<input name=""  type="hidden">
+			<form method="post" name="payment_form" action="payment">
+				<input name="nowLat" value="" type="hidden">
+				<input name="nowLng" value="" type="hidden">
 				<button class="btn btn-primary">${finalCost}원 결제하기</button>
 			</form>
-=======
-			<a href="payment" class="btn btn-primary">결제하기!</a>
->>>>>>> branch 'master' of https://github.com/sangyeop1993/FinalWebProject
 		</div>
 		<footer>
 			<div id="footer">&copy;copyright 2019 . <a href="https://github.com/sangyeop1993/FinalWebProject" target="_blank">치킨날다</a></div>
@@ -257,9 +252,11 @@
 			    // 마커 위치를 클릭한 위치로 옮깁니다
 			    marker.setPosition(latlng);
 			    
-			    latlng.getLat();
-			    latlng.getLng();
+			    var nowLat = latlng.getLat();
+			    var nowLng = latlng.getLng();
 			    
+			    document.payment_form.nowLat.value=nowLat;
+			    document.payment_form.nowLng.value=nowLng;
 			});
 		</script>
 	</body>

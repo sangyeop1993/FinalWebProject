@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="drone">
-	<delete id="delete">
-		delete from dronemissions
-	</delete>
+	
 	<insert id="insert" parameterType="com.kosateam2.chicken.dto.DroneMission">
+		<selectKey order="BEFORE" keyProperty="missionid">
+			select MISSIONID_NO.nextval from dual
+		</selectKey>
 		insert into dronemissions
-		values (#{seq}, #{command}, #{param1}, #{param2}, #{param3}, #{param4}, #{x}, #{y}, #{z})
+		values (#{missionid}, #{seq}, #{command}, #{param1}, #{param2}, #{param3}, #{param4}, #{x}, #{y}, #{z})
 	</insert>
 </mapper>

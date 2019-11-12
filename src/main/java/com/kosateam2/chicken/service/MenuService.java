@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kosateam2.chicken.dao.MenuDao;
 import com.kosateam2.chicken.dto.ChickenMenu;
 import com.kosateam2.chicken.dto.ItemMember;
+import com.kosateam2.chicken.dto.Order;
 
 @Service
 public class MenuService {
@@ -23,8 +24,11 @@ public class MenuService {
 		int orderId = menuDao.getOid();
 		return orderId;
 	}
+	public void nowOrder(Order order) {
+		menuDao.insertOrder(order);
+	}
 	public void nowMenu(ArrayList<ItemMember> itemList) {
-		menuDao.insert(itemList);
+		menuDao.insertItems(itemList);
 	}
 	public int getDid() {
 		int droneId = menuDao.selectDrone();
