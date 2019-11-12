@@ -5,10 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kosateam2.chicken.dto.ChickenMember;
+import com.kosateam2.chicken.service.DroneService;
 
 @Controller
 public class HomeController {
-	
+
 	@RequestMapping("/")
 	public String home() {
 		return "home";
@@ -19,5 +20,10 @@ public class HomeController {
 	public String selectMenu(ChickenMember member, Model model) {
 		model.addAttribute("member", member);
 		return "selectMenu";
+	}
+	
+	@RequestMapping("/test")
+	public String test() {
+		return "droneMessageTest";
 	}
 }

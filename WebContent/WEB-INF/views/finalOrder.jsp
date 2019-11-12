@@ -13,8 +13,11 @@
 		<link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 		<style>
+			@import url('https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean');
+	
 			* {
 				box-sizing: border-box;
+				font-family: 'Jua', sans-serif;
 			}
 			
 		    body {
@@ -36,6 +39,7 @@
 		    	width: 150px;
 		    	margin: 10px;
 		    	margin-top: 30px;
+		    	margin-left:30px;
 		    }
 		    
 		    #headCenter {
@@ -45,6 +49,7 @@
 		    #userInfoLine {
 		    	display: flex;
 		    	height: 50px;
+		    	font-size: 20px;
 		    }
 		    
 		    #userInfoLineLeftBox {
@@ -112,6 +117,7 @@
 				}
 			}
 		</script>
+		
 	</head>
 	<body>
 		<header>
@@ -156,15 +162,17 @@
 					<hr/>
 				</div>
 				<div class="elementContent">
-					<div id="shopName" style="display: flex;">
+					<div id="shopName" style="width: 600px;">
 						<div style="margin: 10px;">배달 매장</div>
 						<div style="margin: 10px;">치킨날다</div>
 					</div>
-					<div id="orderMessage" style="display: flex;">
+					<div id="orderMessage" style="width: 1000px;">
 						<div style="margin: 10px;">주문요청사항</div>
 						<input type="text" class="form-control" style="margin: 10px;"/>
 					</div>
+					<div id="map" style="width:1000px; height:600px; margin: 10px;"></div>
 				</div>
+				
 			</div>
 			<div class="centerElements">
 				<div class="elementTitle">
@@ -208,15 +216,51 @@
 					<div id="finalOrderCost" style="margin-left: 100px;">${finalCost}원</div>
 				</div>
 			</div>
+<<<<<<< HEAD
 			<form action="payment">
 				<input name=""  type="hidden">
 				<input name=""  type="hidden">
 				<input name=""  type="hidden">
 				<button class="btn btn-primary">${finalCost}원 결제하기</button>
 			</form>
+=======
+			<a href="payment" class="btn btn-primary">결제하기!</a>
+>>>>>>> branch 'master' of https://github.com/sangyeop1993/FinalWebProject
 		</div>
 		<footer>
 			<div id="footer">&copy;copyright 2019 . <a href="https://github.com/sangyeop1993/FinalWebProject" target="_blank">치킨날다</a></div>
 		</footer>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dad7fb57c07b01439820b31881802e7a"></script>
+		<script type="text/javascript">
+			var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+			var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(37.495046, 127.1223785), //지도의 중심좌표.
+				level: 3 //지도의 레벨(확대, 축소 정도)
+			};
+			var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+			
+			// 지도를 클릭한 위치에 표출할 마커입니다
+			var marker = new kakao.maps.Marker({ 
+			    // 지도 중심좌표에 마커를 생성합니다 
+			    position: map.getCenter() 
+			}); 
+			// 지도에 마커를 표시합니다
+			marker.setMap(map);
+
+			// 지도에 클릭 이벤트를 등록합니다
+			// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+			kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
+			    
+			    // 클릭한 위도, 경도 정보를 가져옵니다 
+			    var latlng = mouseEvent.latLng; 
+			    
+			    // 마커 위치를 클릭한 위치로 옮깁니다
+			    marker.setPosition(latlng);
+			    
+			    latlng.getLat();
+			    latlng.getLng();
+			    
+			});
+		</script>
 	</body>
 </html>

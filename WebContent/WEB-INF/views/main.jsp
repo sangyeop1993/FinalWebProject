@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>reset</title>
 		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/jquery-3.4.1.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
@@ -24,7 +24,8 @@
 		    }
 		    
 		    header {
-		    	height: 100px;
+		    	height: 80px;
+		    	
 		    }
 		    
 		    #center, #lower {
@@ -36,6 +37,11 @@
 		    #header {
 		    	display: flex;
 		    }
+		    
+		    
+			element.style {
+			    margin-top: 14px;
+			}
 		    
 		    #logoBox {
 		    	width: 150px;
@@ -68,7 +74,9 @@
 		    	height: 200px;
 		    	padding: 7px;
 		    }
-		    
+		    #orderListBox{
+		    	padding : 0px;
+		    }
 		    #userMiniBox {
 		    	display: flex;
 		    	margin-top:20px;
@@ -115,6 +123,41 @@
 		        line-height: 50px;
 		        text-align: center;
 		    }
+		    #logoBox {
+				width: 100%;
+				height: 80px;
+		    }
+		    #logoBox img {
+		    	margin: 26px auto 0;
+		    	display: block;	
+		    }
+		    #noworder-tab, #oldorder-tab{
+		  		width: 133px;
+		  		border-radius: 0px;
+		  						border-bottom: 3px solid #ffffff;
+		  		
+		    }
+		    
+			#orderListBox a {
+				font-size: 22px;
+				color: #fff;
+				text-align: center;
+
+			}
+			
+			#orderListBox a:hover {
+				color: red !important;
+	
+			}
+			
+		    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+			    color: red !important;
+			    background-color: #fff;
+			  	border-color: #fff; 
+  			
+			}
+			
+		    
 		</style>
 		<script type="text/javascript">
 			function test(param) {
@@ -125,13 +168,12 @@
 		</script>
 	</head>
 	<body>
-		<header>
-			<div id="header">
-				<div id="logoBox" style="padding-left: 900px; padding-top: 15px;">
-					<img src="<%=application.getContextPath()%>/resources/images/Chicken_logo.PNG" >
-				</div>
-				<div id="headCenter">
-				</div>
+		<div style="width:1903px; margin:0 auto;">
+		<header id="header">
+			<div id="logoBox">
+				<a href="<%=application.getContextPath()%>/"><img src="<%=application.getContextPath()%>/resources/images/Chicken_logo.PNG" style="margin-top: 20px;"></a>
+			</div>
+			<div id="headCenter">
 			</div>
 		</header>
 		<div id="center">
@@ -142,9 +184,11 @@
 							<img id="userPng" src="<%=application.getContextPath()%>/resources/images/user_icon.png" width=90px;  />
 							</p>
 						<div id="userTextBox" style=" ">
-							<p>NAME: ${member.mname} <br/>
-							LEVEL: ${member.lname} <br/>
-							DRONE: ${droen.dname}</p>
+							<p>
+								NAME: ${member.mname} <br/>
+								LEVEL: ${member.lname} <br/>
+								DRONE: ${droen.dname}
+							</p>
 						</div>
 					</div>
 					<div style="text-align: center;">
@@ -157,19 +201,22 @@
 				<div id="orderListBox" class="contents">
 					<ul class="nav nav-tabs" id="myTab" role="tablist">
 					  <li class="nav-item">
-					    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">현재주문</a>
+					    <a class="nav-link active" id="noworder-tab" data-toggle="tab" href="#NowOrder-box" role="tab" aria-controls="home" aria-selected="true">현재주문</a>
 					  </li>
 					  <li class="nav-item">
-					    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">과거주문</a>
+					    <a class="nav-link" id="oldorder-tab" data-toggle="tab" href="#OldOrder-box" role="tab" aria-controls="profile" aria-selected="false">과거주문</a>
 					  </li>
 					</ul>
 				<div class="tab-content" id="myTabContent">
-				  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">현재주문</div>
-				  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">과거주문</div>
+				  <div class="tab-pane fade show active" id="NowOrder-box" role="tabpanel" aria-labelledby="noworder-tab">현재주문</div>
+				  <div class="tab-pane fade" id="OldOrder-box" role="tabpanel" aria-labelledby="oldorder-tab">과거주문</div>
 				</div>
 				</div>
 				
-				<div id="TemperatureBox" class="contents"></div>
+				<div id="TemperatureBox" class="contents">
+				<p style="margin-top: 0; margin-bottom: 0;">NAME: ${member.mname} </p>
+					<img id="tempericon" src="<%=application.getContextPath()%>/resources/images/Chicken_tempicon.png" width=200px; style=" margin-left: 20px;"  />
+				</div>
 			</div>
 			<div id="mapBox">
 				
@@ -182,6 +229,6 @@
 		<footer>
 			<div id="footer">&copy;copyright 2019 . <a href="https://github.com/sangyeop1993/FinalWebProject" target="_blank">치킨날다</a></div>
 		</footer>
-		
+		</div>
 	</body>
 </html>
