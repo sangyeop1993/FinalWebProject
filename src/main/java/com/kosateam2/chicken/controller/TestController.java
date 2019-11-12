@@ -10,5 +10,10 @@ public class TestController {
 	public String main() {	
 		return "test1";
 	}
+	
+	@RequestMapping("/requestList")
+	public String requestList() {
+		return "requestList";
+	}
 
 }
