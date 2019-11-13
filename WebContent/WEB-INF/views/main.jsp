@@ -165,6 +165,11 @@
 				console.log("${member_model.mname}");
 				console.log("${member_model.mid}");
 			}
+			
+			var mapBoxStatus = true;
+			function changeMapBox() {
+				mapBoxStatus = !mapBoxStatus;
+			}
 		</script>
 	</head>
 	<body>
@@ -219,7 +224,11 @@
 				</div>
 			</div>
 			<div id="mapBox">
-				
+				<div id="map" style="width:1000px; height:600px; margin: 10px;"></div>
+				<!-- 
+				<div class="tab-pane fade show active" id="nowCamera" role="tabpanel" aria-labelledby="noworder-tab">영상</div>
+				<div class="tab-pane fade" id="nowMap" role="tabpanel" aria-labelledby="oldorder-tab">지도</div>
+				 -->
 			</div>
 			<div id="loggerBox" class="sideBar"></div>
 		</div>
@@ -230,5 +239,39 @@
 			<div id="footer">&copy;copyright 2019 . <a href="https://github.com/sangyeop1993/FinalWebProject" target="_blank">치킨날다</a></div>
 		</footer>
 		</div>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dad7fb57c07b01439820b31881802e7a"></script>
+		<script type="text/javascript">
+			//---------------------------------------------------------------------------- MQTT연결
+			
+			
+			//---------------------------------------------------------------------------- 카카오 지도
+			var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+			var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(37.495046, 127.1223785), //지도의 중심좌표.
+				level: 3 //지도의 레벨(확대, 축소 정도)
+			};
+			var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+			
+			map.setDraggable(draggable); //지도 이동 불가
+			
+			// 선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
+			var linePath = [
+			    new kakao.maps.LatLng(33.452344169439975, 126.56878163224233),
+			    new kakao.maps.LatLng(33.452739313807456, 126.5709308145358),
+			    new kakao.maps.LatLng(33.45178067090639, 126.5726886938753) 
+			];
+
+			// 지도에 표시할 선을 생성합니다
+			var polyline = new kakao.maps.Polyline({
+			    path: linePath, // 선을 구성하는 좌표배열 입니다
+			    strokeWeight: 5, // 선의 두께 입니다
+			    strokeColor: '#FFAE00', // 선의 색깔입니다
+			    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+			    strokeStyle: 'solid' // 선의 스타일입니다
+			});
+
+			// 지도에 선을 표시합니다 
+			polyline.setMap(map); 
+		</script>
 	</body>
 </html>

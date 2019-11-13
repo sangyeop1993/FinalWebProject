@@ -19,10 +19,4 @@ public class DroneDao {
 			sqlSessionTemplate.insert("drone.insert", droneMissionList.get(i));
 		}
 	}
-
-	public int getMissionId() {
-		int missionId = sqlSessionTemplate.selectOne("drone.getMissionId");
-		return missionId;
-	}
-
 }

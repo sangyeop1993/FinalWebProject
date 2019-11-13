@@ -118,6 +118,7 @@
 					$("#paymentButton").html("${finalCost}원 공짜로 결제하기");
 				}
 			}
+			
 		</script>
 		
 	</head>
