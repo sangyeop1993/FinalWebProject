@@ -110,10 +110,12 @@
 				if($("#selectCoupon").val()=="0"){
 					$("#couponCost").html("0원");
 					$("#finalOrderCost").html("${finalCost}원");
+					$("#paymentButton").html("${finalCost}원 결제하기");
 				}
 				if($("#selectCoupon").val()=="1"){
 					$("#couponCost").html("-${finalCost}원");
 					$("#finalOrderCost").html("0원");
+					$("#paymentButton").html("${finalCost}원 공짜로 결제하기");
 				}
 			}
 		</script>
@@ -171,6 +173,7 @@
 						<input type="text" class="form-control" style="margin: 10px;"/>
 					</div>
 					<div id="map" style="width:1000px; height:600px; margin: 10px;"></div>
+					<div id="pointError" style="color: red;"></div>
 				</div>
 				
 			</div>
@@ -219,7 +222,7 @@
 			<form method="post" name="payment_form" action="payment">
 				<input name="nowLat" value="" type="hidden">
 				<input name="nowLng" value="" type="hidden">
-				<button class="btn btn-primary">${finalCost}원 결제하기</button>
+				<button id="paymentButton" class="btn btn-primary">${finalCost}원 결제하기</button>
 			</form>
 		</div>
 		<footer>
@@ -255,8 +258,17 @@
 			    var nowLat = latlng.getLat();
 			    var nowLng = latlng.getLng();
 			    
-			    document.payment_form.nowLat.value=nowLat;
-			    document.payment_form.nowLng.value=nowLng;
+			    if(Math.abs(nowLat-37.495046)<=0.01 && Math.abs(nowLng-127.1223785)<=0.01) {
+			    	$("#pointError").html("");
+			    	document.payment_form.nowLat.value=nowLat;
+				    document.payment_form.nowLng.value=nowLng;
+				    $("#paymentButton").removeAttr("disabled");
+			    } else {
+			    	$("#pointError").html("*배달불가 지역입니다*");
+			    	document.payment_form.nowLat.value=null;
+				    document.payment_form.nowLng.value=null;
+				    $("#paymentButton").attr("disabled", "disabled");
+			    }
 			});
 		</script>
 	</body>
