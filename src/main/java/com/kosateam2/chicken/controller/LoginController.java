@@ -40,6 +40,9 @@ public class LoginController {
 			loginResult="fail";
 		}
 		session.setAttribute("loginResult", loginResult);
+		if(member.getLname().equals("ADMIN")) {
+			return "/admin";
+		}
 		return "redirect:/";
 	}
 	
