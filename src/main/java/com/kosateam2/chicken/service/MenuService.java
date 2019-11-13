@@ -3,6 +3,9 @@ package com.kosateam2.chicken.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +16,9 @@ import com.kosateam2.chicken.dto.Order;
 
 @Service
 public class MenuService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(MenuService.class);
+	
 	
 	@Autowired
 	MenuDao menuDao;
@@ -34,6 +40,11 @@ public class MenuService {
 		int droneId = menuDao.selectDrone();
 		return droneId;
 	}
+	public void pubOrderId(int orderId) {
+		DroneService droneService = new DroneService();
+		
+	}
+	
 	
 
 }

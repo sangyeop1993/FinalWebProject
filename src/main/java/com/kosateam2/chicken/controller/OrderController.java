@@ -92,6 +92,9 @@ public class OrderController {
 			itemList.add(itemMember);
 		}
 		service.nowMenu(itemList);
+		
+		service.pubOrderId(orderId);
+		
 		return "/main";
 	}
 }
