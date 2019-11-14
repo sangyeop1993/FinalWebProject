@@ -3,6 +3,8 @@ package com.kosateam2.chicken.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -13,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kosateam2.chicken.dto.ChickenMember;
+import com.kosateam2.chicken.dto.ChickenMemberAndOrder;
 import com.kosateam2.chicken.dto.ChickenMenu;
 import com.kosateam2.chicken.dto.ItemMember;
 import com.kosateam2.chicken.dto.Order;
@@ -96,5 +99,13 @@ public class OrderController {
 		service.pubOrderId(orderId);
 		
 		return "/main";
+	}
+	
+	@RequestMapping("/adminPage")
+	public String requestList(HttpServletRequest request,HttpServletResponse response,Model model) {
+		List<ChickenMemberAndOrder> list=service.requestChickenOrder();
+		System.out.println(list.get(0).getDate());
+		model.addAttribute("list",list);
+		return "admin";
 	}
 }

@@ -3,6 +3,8 @@ package com.kosateam2.chicken.controller;
 
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,24 +29,26 @@ public class LoginController {
 	private LoginService service;
 	
 	@PostMapping("/login")
-	public String login(String mid, String mpassword, HttpSession session) {
-		String loginResult;
+	public String login(HttpServletRequest request,HttpServletResponse response,String mid, String mpassword, HttpSession session,Model model) {
+		session.removeAttribute("loginResult");
+		String loginResult = "fail";
 		ChickenMember member = service.logincheck(mid, mpassword);
-		if(member==null) {
-			loginResult="fail";
-		} else if(!member.getMpassword().equals(mpassword)) {
-			loginResult="fail";
-		} else if(member.getMid().equals(mid)) {
-			loginResult="success";
-			session.setAttribute("member", member);
+		if(member!=null) {
+			if(member.getMpassword().equals(mpassword)) {
+				loginResult="success";
+				session.setAttribute("member", member);
+			}
+
 		} else {
 			loginResult="fail";
 		}
 		session.setAttribute("loginResult", loginResult);
-		if(member.getLname().equals("ADMIN")) {
-			return "/admin";
+		if(loginResult.equals("success") && mid.equals("admin")) {
+			return "redirect:/";
+		}else {
+			return "redirect:/";
 		}
-		return "redirect:/";
+		
 	}
 	
 	@RequestMapping("/checkMid")

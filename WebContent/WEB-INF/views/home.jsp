@@ -5,13 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Log in content</title>
 <script src="<%=application.getContextPath()%>/resources/js/jquery-3.4.1.min.js" ></script>
 <link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 <style>
 	@import url('https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean');
-	
 			* {
 				box-sizing: border-box;
 				font-family: 'Jua', sans-serif;
@@ -21,7 +21,7 @@
     	display:flex;
     	flex-direction: column;
         background-color: rgb(253, 189, 51);
-        height: 100vh;
+        /*height: 100vh;*/
     }
     #wrap {
     	flex-grow: 1;
@@ -49,8 +49,8 @@
     }
     
     footer {
-    	height: 50px;
-        line-height: 50px;
+    	height: 40px;
+        line-height: 30px;
         text-align: center;
     }
    
@@ -129,7 +129,7 @@
 	<div id="wrap">
 		<c:if test="${loginResult != 'success'}">
 			<div id="imageDiv">
-				<img id="mainimage" src="<%=application.getContextPath()%>/resources/images/chicken.PNG" width = 320/>
+				<img id="mainimage" src="<%=application.getContextPath()%>/resources/images/chicken.PNG" width = 200px;/>
 			</div>
 		    <div id="content-box">
 				<form id="loginForm" method="post" action="login" onsubmit="return btnLogin()">
@@ -153,10 +153,10 @@
 			</div>
 		</c:if>
 		<c:if test="${loginResult == 'success'}" >
-			<div id="logoutDiv" style="padding-top: 100px;">
-				<a href="order" id="orderPage"><img src="<%=application.getContextPath()%>/resources/images/order.png" width=200/></a>
-				<a href="main" id="mainPage"><img src="<%=application.getContextPath()%>/resources/images/ordercheck.png" width=200/></a>
-				<a href="logout" id="logoutButton"><img src="<%=application.getContextPath()%>/resources/images/logout.png" width=200/></a>
+			<div id="logoutDiv" style="padding-top: 70px;">
+				<div style="padding-bottom: 15px;"><a href="order" id="orderPage" ><img src="<%=application.getContextPath()%>/resources/images/order.png" width="120px" height="160px"/></a></div>
+				<div style="padding-bottom: 40px;"><a href="main" id="mainPage"style="padding-bottom: 10px;"><img src="<%=application.getContextPath()%>/resources/images/ordercheck.png" width="120px" height="160px"/></a></div>
+				<div style="padding-bottom: 15px;"><a href="logout" id="logoutButton" class="btn btn-danger" style="width:120px;">로그아웃</a></div>
 			</div>
 		</c:if>
 	</div>

@@ -8,6 +8,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Insert title here</title>
 		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/jquery-3.4.1.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
@@ -26,20 +27,16 @@
 		        background-color: rgb(253, 189, 51);
 		        height: 100vh;
 		    }
-		    
-		    header {
-		    	height: 100px;
-		    }
-		    
 		    #header {
-		    	display: flex;
+			    height: 50px;
+			  	display: flex;
 		    }
-		    
 		    #logoBox {
 		    	width: 150px;
 		    	margin: 10px;
-		    	margin-top: 30px;
-		    	margin-left:30px;
+		    	margin-top: 10px;
+		    	margin-left:10px;
+		    	text-align: center;
 		    }
 		    
 		    #headCenter {
@@ -48,7 +45,7 @@
 		    
 		    #userInfoLine {
 		    	display: flex;
-		    	height: 50px;
+		    	height: 30px;
 		    	font-size: 20px;
 		    }
 		    
@@ -63,15 +60,14 @@
 		    #center {
 		    	height: 4000px;
 		    	background-color: white;
-		    	margin: 30px;
-		    	margin-bottom: 0px;
-		    	overflow: auto;
 		    	text-align: center;
+		    	margin:10px;
+		    	
 		    }
 		    
 		    .centerElements {
-		    	width: 1200px;
-		    	margin: 20px;
+		    	width: 100%;
+		    	padding:10px;
 		    }
 		    
 		    #costSum {
@@ -136,11 +132,11 @@
 				<div class="userLine" style="margin-right: 40px;">${member.mname}님 환영합니다</div>
 			</div>
 		</header>
+		
 		<div id="center">
 			<div class="centerElements">
 				<div class="elementTitle">
-					<p class="elementnName">주문 제품</p>
-					<hr/>
+					<p class="elementnName">★주문 제품★</p>
 				</div>
 				<div class="elementContent">
 					<ul class="list-group list-group-flush">
@@ -160,30 +156,32 @@
 			</div>
 			<div class="centerElements">
 				<div class="elementTitle">
-					<p class="elementnName">배달지</p>
+					<p class="elementnName">★배달지★</p>
 					<hr/>
 				</div>
 				<div class="elementContent">
-					<div id="shopName" style="width: 600px;">
-						<div style="margin: 10px;">배달 매장</div>
-						<div style="margin: 10px;">치킨날다</div>
+					<div id="shopName" style="width:100%;">
+						<div style="margin: 10px;">배달매장 - 치킨날다</div>
+
 					</div>
-					<div id="orderMessage" style="width: 1000px;">
-						<div style="margin: 10px;">주문요청사항</div>
-						<input type="text" class="form-control" style="margin: 10px;"/>
+					<div id="orderMessage" style="width:100%;">
+						<div style="margin: 10px;">★주문요청사항★</div>
+						<div class="form-group">
+						<input type="text" class="form-control"/>
+						</div>
 					</div>
-					<div id="map" style="width:1000px; height:600px; margin: 10px;"></div>
+					<div id="map" style="width:100%; height:300px; "></div>
 					<div id="pointError" style="color: red;"></div>
 				</div>
 				
 			</div>
-			<div class="centerElements">
+			<div class="centerElements" >
 				<div class="elementTitle">
 					<p class="elementnName">결제정보</p>
 					<hr/>
 				</div>
 				<div class="elementContent" style="display: flex;">
-					<div id="costNames" style="margin: 10px; margin-right: 100px;">
+					<div id="costNames" style="margin: 10px; width:100px;">
 						<div>주문금액</div>
 						<br/>
 						<div>회원할인</div>
@@ -191,7 +189,7 @@
 						<div>쿠폰할인</div>
 						
 					</div>
-					<div id="costNumbers" style="margin: 10px; margin-left: 100px;">
+					<div id="costNumbers" style="margin: 10px; ">
 						<div>
 							${orderCost}원
 						</div>
@@ -214,12 +212,12 @@
 					</div>
 				</div>
 				<hr/>
-				<div style="display: flex; margin: 10px;">
-					<div style="margin-right: 100px;">총 주문 금액</div>
-					<div id="finalOrderCost" style="margin-left: 100px;">${finalCost}원</div>
+				<div style="display: flex;">
+					<div style="">총 주문 금액</div>
+					<div id="finalOrderCost">${finalCost}원</div>
 				</div>
 			</div>
-			<form method="post" name="payment_form" action="payment">
+			<form method="post" name="payment_form" action="payment" style>
 				<input name="nowLat" value="" type="hidden">
 				<input name="nowLng" value="" type="hidden">
 				<button id="paymentButton" class="btn btn-primary">${finalCost}원 결제하기</button>
