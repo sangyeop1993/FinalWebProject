@@ -249,9 +249,10 @@
 				level: 3 //지도의 레벨(확대, 축소 정도)
 			};
 			var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-			
+			// 선을 만드는 변수
+			var linePath = [];
 			//map.setDraggable(draggable); //지도 이동 불가
-			
+			var polyline;
 			
 			//---------------------------------------------------------------------------- MQTT연결
 			client = new Paho.MQTT.Client(location.hostname, 61622, "clientId"+new Date().getTime());
@@ -260,14 +261,27 @@
 				var JSONString = message.payloadString;
 				var obj = JSON.parse(JSONString);
 				if(obj.msgid=="MISSION_UPLOAD") {
+					if(linePath.lenght!=0) {
+						linePath = [];
+					}
 					var objArr = obj.items;
 					for(var i=0;i<objArr.length;i++){
-						 = new kakao.maps.LatLng(objArr[i].x, objArr[i].y);
-						console.log(objArr[i].x);
-						console.log(objArr[i].y);
+						linePath.push(new kakao.maps.LatLng(objArr[i].x, objArr[i].y));
 					}
+					console.log(linePath);
+					// 지도에 표시할 선을 생성합니다
+					polyline = new kakao.maps.Polyline({
+					    path: linePath, // 선을 구성하는 좌표배열 입니다
+					    strokeWeight: 5, // 선의 두께 입니다
+					    strokeColor: '#FF0000', // 선의 색깔입니다
+					    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+					    strokeStyle: 'solid' // 선의 스타일입니다
+					});
+
+					// 지도에 선을 표시합니다 
+					polyline.setMap(map);
+					client.close();
 				}
-				
 			}
 			
 			client.connect({onSuccess:onConnect});
@@ -278,25 +292,8 @@
 			  client.subscribe("/drone/fc/sub");
 			}
 			//-----------------------------------------------------------------------------
+
 			
-			// 선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
-			var linePath = [
-			    new kakao.maps.LatLng(37.495046, 127.1223785),
-			    new kakao.maps.LatLng(37.505046, 127.1323785),
-			    new kakao.maps.LatLng(37.485046, 127.1123785) 
-			];
-
-			// 지도에 표시할 선을 생성합니다
-			var polyline = new kakao.maps.Polyline({
-			    path: linePath, // 선을 구성하는 좌표배열 입니다
-			    strokeWeight: 5, // 선의 두께 입니다
-			    strokeColor: '#FF0000', // 선의 색깔입니다
-			    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-			    strokeStyle: 'solid' // 선의 스타일입니다
-			});
-
-			// 지도에 선을 표시합니다 
-			polyline.setMap(map); 
 		</script>
 	</body>
 </html>
