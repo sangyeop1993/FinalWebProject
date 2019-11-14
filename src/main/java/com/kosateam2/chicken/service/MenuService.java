@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kosateam2.chicken.dao.MenuDao;
+import com.kosateam2.chicken.dto.ChickenMemberAndOrder;
 import com.kosateam2.chicken.dto.ChickenMenu;
 import com.kosateam2.chicken.dto.ItemMember;
 import com.kosateam2.chicken.dto.Order;
@@ -59,4 +60,10 @@ public class MenuService {
 			client.publish(pubTopic, json.getBytes(), 0, false);
 		} catch (Exception e) {}
 	}
+	
+	public List<ChickenMemberAndOrder> requestChickenOrder() {
+		List<ChickenMemberAndOrder>list= menuDao.selectOrder();
+		return list;
+	}
+	
 }

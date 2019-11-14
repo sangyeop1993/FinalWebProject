@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.kosateam2.chicken.dto.ChickenMemberAndOrder;
 import com.kosateam2.chicken.dto.ChickenMenu;
 import com.kosateam2.chicken.dto.Drone;
 import com.kosateam2.chicken.dto.ItemMember;
@@ -42,6 +43,10 @@ public class MenuDao {
 	public int selectDrone() {
 		List<Drone> droneList = sqlSessionTemplate.selectList("menu.selectDrone");
 		return droneList.get(0).getDid();
+	}
+	public List<ChickenMemberAndOrder> selectOrder() {
+		List<ChickenMemberAndOrder> list=sqlSessionTemplate.selectList("order.selectOrderList");
+		return list;
 	}
 
 }

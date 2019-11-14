@@ -16,7 +16,7 @@
 	</insert>
 	<insert id="insertNowOrder" parameterType="com.kosateam2.chicken.dto.Order">
 		insert into orders(oid, mid, did, price, lat, lng, datetime, ostatus)
-		values(#{oid}, #{mid}, #{did}, #{price}, #{lat}, #{lng}, null, #{ostatus})
+		values(#{oid}, #{mid}, #{did}, #{price}, #{lat}, #{lng}, sysdate, #{ostatus})
 	</insert>
 	<select id="selectDrone" resultType="com.kosateam2.chicken.dto.Drone">
 		select did, dname, dstatus from drones where dstatus='0'
