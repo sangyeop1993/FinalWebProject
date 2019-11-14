@@ -7,6 +7,7 @@
 		<meta charset="UTF-8">
 		<title>reset</title>
 		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/paho-mqtt-min.js"></script>
 		<link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 		<style>
@@ -241,9 +242,6 @@
 		</div>
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dad7fb57c07b01439820b31881802e7a"></script>
 		<script type="text/javascript">
-			//---------------------------------------------------------------------------- MQTT연결
-			
-			
 			//---------------------------------------------------------------------------- 카카오 지도
 			var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 			var options = { //지도를 생성할 때 필요한 기본 옵션
@@ -252,20 +250,47 @@
 			};
 			var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 			
-			map.setDraggable(draggable); //지도 이동 불가
+			//map.setDraggable(draggable); //지도 이동 불가
+			
+			
+			//---------------------------------------------------------------------------- MQTT연결
+			client = new Paho.MQTT.Client(location.hostname, 61622, "clientId"+new Date().getTime());
+			// Message를  수신했을 때 자동으로 실행(콜백) 되는 함수
+			client.onMessageArrived = function(message) {
+				var JSONString = message.payloadString;
+				var obj = JSON.parse(JSONString);
+				if(obj.msgid=="MISSION_UPLOAD") {
+					var objArr = obj.items;
+					for(var i=0;i<objArr.length;i++){
+						 = new kakao.maps.LatLng(objArr[i].x, objArr[i].y);
+						console.log(objArr[i].x);
+						console.log(objArr[i].y);
+					}
+				}
+				
+			}
+			
+			client.connect({onSuccess:onConnect});
+			
+			// 연결이 완료되었을 때 자동으로 실행(콜백) 되는 함수
+			function onConnect() {
+				console.log("##연결 되었다")
+			  client.subscribe("/drone/fc/sub");
+			}
+			//-----------------------------------------------------------------------------
 			
 			// 선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
 			var linePath = [
-			    new kakao.maps.LatLng(33.452344169439975, 126.56878163224233),
-			    new kakao.maps.LatLng(33.452739313807456, 126.5709308145358),
-			    new kakao.maps.LatLng(33.45178067090639, 126.5726886938753) 
+			    new kakao.maps.LatLng(37.495046, 127.1223785),
+			    new kakao.maps.LatLng(37.505046, 127.1323785),
+			    new kakao.maps.LatLng(37.485046, 127.1123785) 
 			];
 
 			// 지도에 표시할 선을 생성합니다
 			var polyline = new kakao.maps.Polyline({
 			    path: linePath, // 선을 구성하는 좌표배열 입니다
 			    strokeWeight: 5, // 선의 두께 입니다
-			    strokeColor: '#FFAE00', // 선의 색깔입니다
+			    strokeColor: '#FF0000', // 선의 색깔입니다
 			    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
 			    strokeStyle: 'solid' // 선의 스타일입니다
 			});
