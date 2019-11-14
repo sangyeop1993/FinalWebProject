@@ -7,6 +7,7 @@
 		<meta charset="UTF-8">
 		<title>reset</title>
 		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/paho-mqtt-min.js"></script>
 		<link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 		<style>
@@ -165,6 +166,11 @@
 				console.log("${member_model.mname}");
 				console.log("${member_model.mid}");
 			}
+			
+			var mapBoxStatus = true;
+			function changeMapBox() {
+				mapBoxStatus = !mapBoxStatus;
+			}
 		</script>
 	</head>
 	<body>
@@ -219,7 +225,11 @@
 				</div>
 			</div>
 			<div id="mapBox">
-				
+				<div id="map" style="width:1000px; height:600px; margin: 10px;"></div>
+				<!-- 
+				<div class="tab-pane fade show active" id="nowCamera" role="tabpanel" aria-labelledby="noworder-tab">영상</div>
+				<div class="tab-pane fade" id="nowMap" role="tabpanel" aria-labelledby="oldorder-tab">지도</div>
+				 -->
 			</div>
 			<div id="loggerBox" class="sideBar"></div>
 		</div>
@@ -230,5 +240,60 @@
 			<div id="footer">&copy;copyright 2019 . <a href="https://github.com/sangyeop1993/FinalWebProject" target="_blank">치킨날다</a></div>
 		</footer>
 		</div>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dad7fb57c07b01439820b31881802e7a"></script>
+		<script type="text/javascript">
+			//---------------------------------------------------------------------------- 카카오 지도
+			var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+			var options = { //지도를 생성할 때 필요한 기본 옵션
+				center: new kakao.maps.LatLng(37.495046, 127.1223785), //지도의 중심좌표.
+				level: 3 //지도의 레벨(확대, 축소 정도)
+			};
+			var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+			// 선을 만드는 변수
+			var linePath = [];
+			//map.setDraggable(draggable); //지도 이동 불가
+			var polyline;
+			
+			//---------------------------------------------------------------------------- MQTT연결
+			client = new Paho.MQTT.Client(location.hostname, 61622, "clientId"+new Date().getTime());
+			// Message를  수신했을 때 자동으로 실행(콜백) 되는 함수
+			client.onMessageArrived = function(message) {
+				var JSONString = message.payloadString;
+				var obj = JSON.parse(JSONString);
+				if(obj.msgid=="MISSION_UPLOAD") {
+					if(linePath.lenght!=0) {
+						linePath = [];
+					}
+					var objArr = obj.items;
+					for(var i=0;i<objArr.length;i++){
+						linePath.push(new kakao.maps.LatLng(objArr[i].x, objArr[i].y));
+					}
+					console.log(linePath);
+					// 지도에 표시할 선을 생성합니다
+					polyline = new kakao.maps.Polyline({
+					    path: linePath, // 선을 구성하는 좌표배열 입니다
+					    strokeWeight: 5, // 선의 두께 입니다
+					    strokeColor: '#FF0000', // 선의 색깔입니다
+					    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+					    strokeStyle: 'solid' // 선의 스타일입니다
+					});
+
+					// 지도에 선을 표시합니다 
+					polyline.setMap(map);
+					client.close();
+				}
+			}
+			
+			client.connect({onSuccess:onConnect});
+			
+			// 연결이 완료되었을 때 자동으로 실행(콜백) 되는 함수
+			function onConnect() {
+				console.log("##연결 되었다")
+			  client.subscribe("/drone/fc/sub");
+			}
+			//-----------------------------------------------------------------------------
+
+			
+		</script>
 	</body>
 </html>

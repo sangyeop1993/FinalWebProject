@@ -2,7 +2,7 @@ package com.kosateam2.chicken.dto;
 
 public class DroneMission {
 	
-	private int missionid;
+	private int oid;
 	private String seq;
 	private String command;
 	private String param1;
@@ -14,11 +14,11 @@ public class DroneMission {
 	private String z;
 	
 	
-	public int getMissionid() {
-		return missionid;
+	public int getOid() {
+		return oid;
 	}
-	public void setMissionid(int missionid) {
-		this.missionid = missionid;
+	public void setOid(int oid) {
+		this.oid = oid;
 	}
 	public String getSeq() {
 		return seq;

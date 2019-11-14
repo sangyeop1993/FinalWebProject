@@ -67,37 +67,43 @@ public class OrderController {
 	@RequestMapping("/payment")
 	public String payment(HttpSession sess, String nowLat, String nowLng) {
 		ArrayList<String[]> selectedList = (ArrayList<String[]>) sess.getAttribute("selectedMenu");
-		int orderId = service.getOid();
-		ArrayList<ItemMember> itemList = new ArrayList<>();
-		int droneId = service.getDid();
-		ChickenMember member = (ChickenMember)sess.getAttribute("member");
-		Order order = new Order();
-		order.setOid(orderId);
-		order.setMid(member.getMid());
-		order.setDid(droneId);
-		order.setPrice(0);
-		order.setLat(Double.parseDouble(nowLat));
-		order.setLng(Double.parseDouble(nowLng));
-		order.setOstatus(0);
-		
-		service.nowOrder(order);
-		
-		for(int i=0;i<selectedList.size();i+=1) {
-			ItemMember itemMember = new ItemMember();
-			itemMember.setOid(orderId);
-			int menuId_1 = Integer.parseInt(selectedList.get(i)[3]);
-			int menuId;
-			if(menuId_1<=4) menuId = menuId_1+1001;
-			else if(menuId_1<=7) menuId = menuId_1+1996;
-			else menuId = menuId_1+2993;
-			itemMember.setMenuId(menuId);
-			itemMember.setAmount(Integer.parseInt(selectedList.get(i)[2]));
-			itemList.add(itemMember);
+		int orderId;
+		if(sess.getAttribute("orderId")==null) {
+			orderId = service.getOid();
+			sess.setAttribute("orderId", orderId);
+			ArrayList<ItemMember> itemList = new ArrayList<>();
+			int droneId = service.getDid();
+			ChickenMember member = (ChickenMember)sess.getAttribute("member");
+			Order order = new Order();
+			order.setOid(orderId);
+			order.setMid(member.getMid());
+			order.setDid(droneId);
+			order.setPrice(0);
+			order.setLat(Double.parseDouble(nowLat));
+			order.setLng(Double.parseDouble(nowLng));
+			order.setOstatus(0);
+			
+			service.nowOrder(order);
+			
+			for(int i=0;i<selectedList.size();i+=1) {
+				ItemMember itemMember = new ItemMember();
+				itemMember.setOid(orderId);
+				int menuId_1 = Integer.parseInt(selectedList.get(i)[3]);
+				int menuId;
+				if(menuId_1<=4) menuId = menuId_1+1001;
+				else if(menuId_1<=7) menuId = menuId_1+1996;
+				else menuId = menuId_1+2993;
+				itemMember.setMenuId(menuId);
+				itemMember.setAmount(Integer.parseInt(selectedList.get(i)[2]));
+				itemList.add(itemMember);
+			}
+			service.nowMenu(itemList);
+			service.pubOrderId(orderId);
+		} else {
+			orderId = (int)sess.getAttribute("orderId");
 		}
-		service.nowMenu(itemList);
-		
-		service.pubOrderId(orderId);
-		
+		logger.debug("######################"+orderId+"##############");
+		//service.checkMission()  orderId로 찾아와야함
 		return "/main";
 	}
 	
