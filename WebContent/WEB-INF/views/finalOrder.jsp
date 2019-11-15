@@ -11,6 +11,7 @@
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Insert title here</title>
 		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/paho-mqtt-min.js"></script>
 		<link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 		<style>
@@ -218,7 +219,7 @@
 					<div id="finalOrderCost">${finalCost}원</div>
 				</div>
 			</div>
-			<form method="post" name="payment_form" action="payment" style>
+			<form method="post" name="payment_form" action="payment">
 				<input name="nowLat" value="" type="hidden">
 				<input name="nowLng" value="" type="hidden">
 				<button id="paymentButton" class="btn btn-primary">${finalCost}원 결제하기</button>
@@ -246,6 +247,8 @@
 
 			// 지도에 클릭 이벤트를 등록합니다
 			// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+			var nowLat = 37.495046;
+			var nowLng = 127.1223785;
 			kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
 			    
 			    // 클릭한 위도, 경도 정보를 가져옵니다 
@@ -254,8 +257,8 @@
 			    // 마커 위치를 클릭한 위치로 옮깁니다
 			    marker.setPosition(latlng);
 			    
-			    var nowLat = latlng.getLat();
-			    var nowLng = latlng.getLng();
+			    nowLat = latlng.getLat();
+			    nowLng = latlng.getLng();
 			    
 			    if(Math.abs(nowLat-37.495046)<=0.01 && Math.abs(nowLng-127.1223785)<=0.01) {
 			    	$("#pointError").html("");

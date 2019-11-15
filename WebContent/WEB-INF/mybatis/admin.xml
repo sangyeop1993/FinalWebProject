@@ -6,6 +6,7 @@
 		from orders o, members m, levels l
 		where o.mid=m.mid and m.mlevel=l.mlevel
 		and ostatus in (0,1)
+		order by datetime desc
 	</select>
 	
 	<select id="selectOneById"  parameterType="int" resultType="com.kosateam2.chicken.dto.ChickenMemberAndOrder">

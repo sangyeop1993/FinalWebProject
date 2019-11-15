@@ -21,11 +21,11 @@ public class AdminController {
 	AdminService service;
 	
 	
-	@RequestMapping("/admin")
+	@RequestMapping("/requestList")
 	public String admin(Model model) {
 		List<ChickenMemberAndOrder> list =service.orderList(); 
 		model.addAttribute("list",list);
-		return "admin";
+		return "requestList";
 	}
 	
 	@RequestMapping("/detailOrder")
