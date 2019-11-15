@@ -29,20 +29,11 @@
 
       //메세지를 수신했을때 자동으로 실행(콜백)되는 함수
       function onMessageArrived(message) {
-    	  //$("#divRecieve").append(message.payloadString + "<br/>");
-          //$("#divRecieve").append(location.hostname + "<br/>");
-     	  location.reload();
+    	  location.reload();
+     	  
          
       }
-   });
-   /*
-   function sendMessage(){
-      var data = "웹 송신: "+ $("#inputData").val();
-      var message = new Paho.MQTT.Message(data);
-        message.destinationName ="aaa";
-        client.send(message);
-   }
-   */
+   });  
    
 </script>
 
@@ -67,7 +58,7 @@
 					<td>${orderChicken.mname}</td>
 					<td>${orderChicken.mphonenumber}</td>
 					<td>${orderChicken.price}</td>
-					<td><a href="">상세보기</a></td>
+					<td><a href="detailOrder?oid=${orderChicken.oid}">상세보기</a></td>
 				</tr>
 			</c:forEach>
 		</table>
