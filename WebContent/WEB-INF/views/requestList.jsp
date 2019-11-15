@@ -29,9 +29,9 @@
 
       //메세지를 수신했을때 자동으로 실행(콜백)되는 함수
       function onMessageArrived(message) {
-    	  location.reload();
-     	  
-         
+    	  var json=JSON.parse(message);
+    	  console.log(json);
+    	  
       }
    });  
    
@@ -52,13 +52,16 @@
 			</tr>
 			<c:forEach var="orderChicken" items="${list}">
 				<tr>
-					<td>${orderChicken.oid}</td>
-					<td><fmt:formatDate value="${orderChicken.date}" pattern="yyyy.MM.dd"/></td>
-					<td><fmt:formatDate value="${orderChicken.date}" pattern="HH:mm"/></td>
-					<td>${orderChicken.mname}</td>
-					<td>${orderChicken.mphonenumber}</td>
-					<td>${orderChicken.price}</td>
-					<td><a href="detailOrder?oid=${orderChicken.oid}">상세보기</a></td>
+					<td>${order.oid}</td>
+				<td><fmt:formatDate value="${order.date}" pattern="yyyy.MM.dd"/></td>
+				<td><fmt:formatDate value="${order.date}" pattern="HH:mm"/></td>
+				<td>${order.mname}</td>
+				<td>${order.mphonenumber}</td>
+				<td>${order.lname}</td>
+				<td>${order.price}</td>
+				<c:if test="${order.ostatus == 0 }"><td><a href="commitOrder?oid=${order.oid}&ostatus=${order.ostatus}">요청 수락</a></td></c:if>
+				<c:if test="${order.ostatus == 1 }"><td><a href="commitOrder?oid=${order.oid}&ostatus=${order.ostatus}">배달 요청</a></td></c:if>
+				<td><a href="detailOrder?oid=${order.oid}">상세보기</a></td>
 				</tr>
 			</c:forEach>
 		</table>
