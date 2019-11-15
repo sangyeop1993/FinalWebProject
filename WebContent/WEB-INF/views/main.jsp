@@ -279,10 +279,6 @@
 				level: 3 //지도의 레벨(확대, 축소 정도)
 			};
 			var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-			var imageSrc = '<%=application.getContextPath()%>/resources/images/DronePoint.png', // 마커이미지의 주소입니다    
-		    imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
-		    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-		    
 			var marker;
 			// 선을 만드는 변수
 			var linePath = [];
@@ -321,32 +317,35 @@
 			client.onMessageArrived = function(message) {
 				var JSONString = message.payloadString;
 				var obj = JSON.parse(JSONString);
-				if(obj.msgid=="MISSION_UPLOAD" && linePath.length==0) {
-					var objArr = obj.items;
-					for(var i=0;i<objArr.length;i++){
-						linePath.push(new kakao.maps.LatLng(objArr[i].x, objArr[i].y));
-					}
-					
-					var jsonLine = JSON.stringify(linePath);
-					setCookie("missionArray", objArr, 7);
-					
-					console.log(linePath);
+				if(obj.msgid=="MISSION_UPLOAD") {
+					console.log("좌표 받았는데?");
+					if(linePath.length==0){
+						var objArr = obj.items;
+						for(var i=0;i<objArr.length;i++){
+							linePath.push(new kakao.maps.LatLng(objArr[i].x, objArr[i].y));
+						}
 						
-					// 지도에 표시할 선을 생성합니다
-					polyline = new kakao.maps.Polyline({
-					    path: linePath, // 선을 구성하는 좌표배열 입니다
-					    strokeWeight: 5, // 선의 두께 입니다
-					    strokeColor: '#FF0000', // 선의 색깔입니다
-					    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-					    strokeStyle: 'solid' // 선의 스타일입니다
-					});
-					
-					//마지막 미션번호 구하기
-		          	var missionArr = obj.items;
-		            lastMission = missionArr[missionArr.length - 1].seq;
-					setCookie("lastMissionNum", lastMission, 7);
-					// 지도에 선을 표시합니다 
-					polyline.setMap(map);
+						var jsonLine = JSON.stringify(linePath);
+						setCookie("missionArray", jsonLine, 7);
+						
+						console.log(linePath);
+							
+						// 지도에 표시할 선을 생성합니다
+						polyline = new kakao.maps.Polyline({
+						    path: linePath, // 선을 구성하는 좌표배열 입니다
+						    strokeWeight: 5, // 선의 두께 입니다
+						    strokeColor: '#FF0000', // 선의 색깔입니다
+						    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+						    strokeStyle: 'solid' // 선의 스타일입니다
+						});
+						
+						//마지막 미션번호 구하기
+			          	var missionArr = obj.items;
+			            lastMission = missionArr[missionArr.length - 1].seq;
+						setCookie("lastMissionNum", lastMission, 7);
+						// 지도에 선을 표시합니다 
+						polyline.setMap(map);
+					}
 				}
 				
 				//---------------------------------------
@@ -371,8 +370,7 @@
 	    				marker.setPosition(markerPosition);
 	    			} else {
 	    				marker = new kakao.maps.Marker({
-	    				    position: markerPosition,
-	    				    image: markerImage
+	    				    position: markerPosition
 	    				});
 	    			}
 	    			
