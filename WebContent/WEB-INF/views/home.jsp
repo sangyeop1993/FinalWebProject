@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Log in content</title>
+<title>치킨날다</title>
 <script src="<%=application.getContextPath()%>/resources/js/jquery-3.4.1.min.js" ></script>
 <link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
@@ -153,10 +153,10 @@
 			</div>
 		</c:if>
 		<c:if test="${loginResult == 'success'}" >
-			<div id="logoutDiv" style="padding-top: 70px;">
-				<div style="padding-bottom: 15px;"><a href="order" id="orderPage" ><img src="<%=application.getContextPath()%>/resources/images/order.png" width="120px" height="160px"/></a></div>
-				<div style="padding-bottom: 40px;"><a href="main" id="mainPage"style="padding-bottom: 10px;"><img src="<%=application.getContextPath()%>/resources/images/ordercheck.png" width="120px" height="160px"/></a></div>
-				<div style="padding-bottom: 15px;"><a href="logout" id="logoutButton" class="btn btn-danger" style="width:120px;">로그아웃</a></div>
+			<div id="logoutDiv" style="padding-top: 120px;">
+				<div style="padding-bottom: 15px;"><a href="order" id="orderPage" ><img src="<%=application.getContextPath()%>/resources/images/order1.png" style="width: 350px;"/></a></div>
+				<div style="padding-bottom: 15px;"><a href="main" id="mainPage"style="padding-bottom: 10px;"><img src="<%=application.getContextPath()%>/resources/images/ordercheck1.png" style="width: 350px;" /></a></div>
+				<div style="padding-bottom: 40px;"><a href="main" id="mainPage"style="padding-bottom: 10px;"><img src="<%=application.getContextPath()%>/resources/images/logoutcheck.png" style="width: 350px;" /></a></div>
 			</div>
 		</c:if>
 	</div>

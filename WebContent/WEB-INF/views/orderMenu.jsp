@@ -55,11 +55,11 @@
 				}
 				#all-tab, #chicken-tab, #side-tab, #drink-tab{
 				    height: 54px;
-				    width: 90px;
+				    width: 103.4px;
 				    padding-top: 15px;
 				}
 				a {
-				    font-size: 20px;
+				    font-size: 21px;
 				    color: #ffffff;
 				    text-align: center;
 				}
@@ -83,7 +83,9 @@
 				/*메뉴틀 css*/
 				#all-box, #chicken-box, #side-box, #drink-box{
    					padding-top: 30px;
+   					padding-bottom: 30px;
 				}
+				
 				/*표 css*/
 				td{
 					padding : 65px;
@@ -93,13 +95,14 @@
 					
 					margin:10px;
 					background-color: #ffffff;	
-					border-radius: 30px;
+					border-radius: 20px;
 					padding-bottom: 10px;
 				} 
 				#shopping-log{
 					font-size: 25px;
 					line-height: 80px;  
-					text-align: center;
+					text-align: center;	
+   					margin-bottom: 0px;
 				}
 				#selec-manue{
 					 font-size: 15px;
@@ -112,10 +115,9 @@
 						
 				}
 				#selec_button{
-				
 				width: 120px;
    				height: 40px;
-			
+   				font-size: 18px;
 				}
 				
 			</style>
@@ -202,7 +204,7 @@
 			<div id="orderListBox" class="contents">
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item">
-						<a class="nav-link active" id="all-tab" data-toggle="tab" href="#all-box" role="tab" aria-controls="home" aria-selected="true">추천</a>
+						<a class="nav-link active" id="all-tab" data-toggle="tab" href="#all-box" role="tab" aria-controls="home" aria-selected="true">★추천★</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" id="chicken-tab" data-toggle="tab" href="#chicken-box" role="tab" aria-controls="profile" aria-selected="false">치킨</a>
@@ -220,7 +222,7 @@
 								<img src="<%=application.getContextPath()%>/resources/images/chicken03.png" width="300px"/> 
 		                    <div style="text-align: center;">
 								<button type="button" class="btn btn-danger" onClick="countDown(2)">-</button>
-								<span class="item_count2" style="margin-left: 10px; margin-right: 10px">0</span>
+								<span class="item_count2" style="margin-left: 10px; margin-right: 10px; font-size:23px; ">0</span>
 								<button type="button" class="btn btn-danger" onClick="countUp(2)">+</button>
 							</div>
 							</div>
@@ -229,7 +231,7 @@
 								<img src="<%=application.getContextPath()%>/resources/images/chicken05.png" width="300px"/> 
 		                    <div style="text-align: center;">
 								<button type="button" class="btn btn-danger" onClick="countDown(4)">-</button>
-								<span class="item_count4" style="margin-left: 10px; margin-right: 10px">0</span>
+								<span class="item_count4" style="margin-left: 10px; margin-right: 10px; font-size:23px;">0</span>
 								<button type="button" class="btn btn-danger" onClick="countUp(4)">+</button>
 							</div>
 							</div>
@@ -238,7 +240,7 @@
 								<img src="<%=application.getContextPath()%>/resources/images/chicken02.png" width="300px"/> 
 		                    <div style="text-align: center;">
 								<button type="button" class="btn btn-danger" onClick="countDown(1)">-</button>
-								<span class="item_count1" style="margin-left: 10px; margin-right: 10px">0</span>
+								<span class="item_count1" style="margin-left: 10px; margin-right: 10px; font-size:23px;">0</span>
 								<button type="button" class="btn btn-danger" onClick="countUp(1)">+</button>
 							</div>
 							</div>
@@ -247,7 +249,7 @@
 								<img src="<%=application.getContextPath()%>/resources/images/side01.png" width="300px"/> 
 		                    <div style="text-align: center;">
 								<button type="button" class="btn btn-danger" onClick="countDown(5)">-</button>
-								<span class="item_count5" style="margin-left: 10px; margin-right: 10px">0</span>
+								<span class="item_count5"style="margin-left: 10px; margin-right: 10px; font-size:23px;">0</span>
 								<button type="button" class="btn btn-danger" onClick="countUp(5)">+</button>
 							</div>
 							</div>
@@ -256,7 +258,7 @@
 								<img src="<%=application.getContextPath()%>/resources/images/side03.png" width="300px"/> 
 		                    <div style="text-align: center;">
 								<button type="button" class="btn btn-danger" onClick="countDown(7)">-</button>
-								<span class="item_count7" style="margin-left: 10px; margin-right: 10px">0</span>
+								<span class="item_count7" style="margin-left: 10px; margin-right: 10px; font-size:23px;">0</span>
 								<button type="button" class="btn btn-danger" onClick="countUp(7)">+</button>
 							</div>
 							</div>
@@ -265,7 +267,7 @@
 								<img src="<%=application.getContextPath()%>/resources/images/beverage03.png" width="300px"/> 
 		                    <div style="text-align: center;">
 								<button type="button" class="btn btn-danger" onClick="countDown(10)">-</button>
-								<span class="item_count10" style="margin-left: 10px; margin-right: 10px">0</span>
+								<span class="item_count10" style="margin-left: 10px; margin-right: 10px; font-size:23px;">0</span>
 								<button type="button" class="btn btn-danger" onClick="countUp(10)">+</button>
 							</div>
 							</div>
@@ -278,7 +280,7 @@
 								<img src="<%=application.getContextPath()%>/resources/images/chicken01.png" width="300px"/> 
 		                    <div style="text-align: center;">
 								<button type="button" class="btn btn-danger" onClick="countDown(0)">-</button>
-								<span class="item_count0" style="margin-left: 10px; margin-right: 10px">0</span>
+								<span class="item_count0" style="margin-left: 10px; margin-right: 10px; font-size:23px;">0</span>
 								<button type="button" class="btn btn-danger" onClick="countUp(0)">+</button>
 							</div>
 							</div>
@@ -287,7 +289,7 @@
 								<img src="<%=application.getContextPath()%>/resources/images/chicken02.png" width="300px"/> 
 		                    <div style="text-align: center;">
 								<button type="button" class="btn btn-danger" onClick="countDown(1)">-</button>
-								<span class="item_count1" style="margin-left: 10px; margin-right: 10px">0</span>
+								<span class="item_count1" style="margin-left: 10px; margin-right: 10px; font-size:23px;">0</span>
 								<button type="button" class="btn btn-danger" onClick="countUp(1)">+</button>
 							</div>
 							</div>
@@ -296,7 +298,7 @@
 								<img src="<%=application.getContextPath()%>/resources/images/chicken03.png" width="300px"/> 
 		                    <div style="text-align: center;">
 								<button type="button" class="btn btn-danger" onClick="countDown(2)">-</button>
-								<span class="item_count2" style="margin-left: 10px; margin-right: 10px">0</span>
+								<span class="item_count2" style="margin-left: 10px; margin-right: 10px; font-size:23px;">0</span>
 								<button type="button" class="btn btn-danger" onClick="countUp(2)">+</button>
 							</div>
 							</div>
@@ -306,7 +308,7 @@
 								<img src="<%=application.getContextPath()%>/resources/images/chicken04.png" width="300px"/> 
 		                    <div style="text-align: center;">
 								<button type="button" class="btn btn-danger" onClick="countDown(3)">-</button>
-								<span class="item_count3" style="margin-left: 10px; margin-right: 10px">0</span>
+								<span class="item_count3" style="margin-left: 10px; margin-right: 10px; font-size:23px;">0</span>
 								<button type="button" class="btn btn-danger" onClick="countUp(3)">+</button>
 							</div>
 							</div>
@@ -315,7 +317,7 @@
 								<img src="<%=application.getContextPath()%>/resources/images/chicken05.png" width="300px"/> 
 		                    <div style="text-align: center;">
 								<button type="button" class="btn btn-danger" onClick="countDown(4)">-</button>
-								<span class="item_count4" style="margin-left: 10px; margin-right: 10px">0</span>
+								<span class="item_count4" style="margin-left: 10px; margin-right: 10px; font-size:23px;">0</span>
 								<button type="button" class="btn btn-danger" onClick="countUp(4)">+</button>
 							</div>
 							</div>
@@ -329,7 +331,7 @@
 								<img src="<%=application.getContextPath()%>/resources/images/side01.png" width="300px"/> 
 		                    <div style="text-align: center;">
 								<button type="button" class="btn btn-danger" onClick="countDown(5)">-</button>
-								<span class="item_count5" style="margin-left: 10px; margin-right: 10px">0</span>
+								<span class="item_count5" style="margin-left: 10px; margin-right: 10px; font-size:23px;">0</span>
 								<button type="button" class="btn btn-danger" onClick="countUp(5)">+</button>
 							</div>
 							</div>
@@ -338,7 +340,7 @@
 								<img src="<%=application.getContextPath()%>/resources/images/side02.png" width="300px"/> 
 		                    <div style="text-align: center;">
 								<button type="button" class="btn btn-danger" onClick="countDown(6)">-</button>
-								<span class="item_count6" style="margin-left: 10px; margin-right: 10px">0</span>
+								<span class="item_count6" style="margin-left: 10px; margin-right: 10px; font-size:23px;">0</span>
 								<button type="button" class="btn btn-danger" onClick="countUp(6)">+</button>
 							</div>
 							</div>
@@ -347,7 +349,7 @@
 								<img src="<%=application.getContextPath()%>/resources/images/side03.png" width="300px"/> 
 		                    <div style="text-align: center;">
 								<button type="button" class="btn btn-danger" onClick="countDown(7)">-</button>
-								<span class="item_count7" style="margin-left: 10px; margin-right: 10px">0</span>
+								<span class="item_count7" style="margin-left: 10px; margin-right: 10px; font-size:23px;">0</span>
 								<button type="button" class="btn btn-danger" onClick="countUp(7)">+</button>
 							</div>
 							</div>
@@ -361,7 +363,7 @@
 								<img src="<%=application.getContextPath()%>/resources/images/beverage01.png" width="300px"/> 
 		                    <div style="text-align: center;">
 								<button type="button" class="btn btn-danger" onClick="countDown(8)">-</button>
-								<span class="item_count8" style="margin-left: 10px; margin-right: 10px">0</span>
+								<span class="item_count8" style="margin-left: 10px; margin-right: 10px; font-size:23px;">0</span>
 								<button type="button" class="btn btn-danger" onClick="countUp(8)">+</button>
 							</div>
 							</div>
@@ -370,16 +372,16 @@
 								<img src="<%=application.getContextPath()%>/resources/images/beverage02.png" width="300px"/> 
 		                    <div style="text-align: center;">
 								<button type="button" class="btn btn-danger" onClick="countDown(9)">-</button>
-								<span class="item_count9" style="margin-left: 10px; margin-right: 10px">0</span>
-								<button type="button" class="btn btn-danger" onClick="countUp(9)">+</button>
+								<span class="item_count9" style="margin-left: 10px; margin-right: 10px; font-size:23px;">0</span>
+								<button type="button" class="btn btn-danger" onClick="countUp(9)" >+</button>
 							</div>
 							</div>
 						
 								 <div style="text-align: center;">
 								<img src="<%=application.getContextPath()%>/resources/images/beverage03.png" width="300px"/> 
-		                    <div style="text-align: center;">
+		                    <div style="text-align: center;" >
 								<button type="button" class="btn btn-danger" onClick="countDown(10)">-</button>
-								<span class="item_count10" style="margin-left: 10px; margin-right: 10px">0</span>
+								<span class="item_count10" style="margin-left: 10px; margin-right: 10px; font-size:23px;">0</span>
 								<button type="button" class="btn btn-danger" onClick="countUp(10)">+</button>
 							</div>
 							</div>

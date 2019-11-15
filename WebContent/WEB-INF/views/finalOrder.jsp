@@ -8,7 +8,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Insert title here</title>
 		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/jquery-3.4.1.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
@@ -20,6 +20,16 @@
 				box-sizing: border-box;
 				font-family: 'Jua', sans-serif;
 			}
+			p{
+				font-size: 30px;
+				color: #DF0101;
+				text-align: center;
+			}
+			hr{
+				margin: 0px;
+				margin-top: 10px;
+				background-color: #D8D8D8;
+			}
 			
 		    body {
 		    	display:flex;
@@ -27,32 +37,20 @@
 		        background-color: rgb(253, 189, 51);
 		        height: 100vh;
 		    }
+		    
 		    #header {
-			    height: 50px;
+			    margin : 10px;
+			    margin-bottom: 0px;
 			  	display: flex;
-		    }
-		    #logoBox {
-		    	width: 150px;
-		    	margin: 10px;
-		    	margin-top: 10px;
-		    	margin-left:10px;
-		    	text-align: center;
+			  	text-align: left;
 		    }
 		    
-		    #headCenter {
-		    	flex-grow: 1;
-		    }
-		    
-		    #userInfoLine {
-		    	display: flex;
-		    	height: 30px;
-		    	font-size: 20px;
-		    }
-		    
-		    #userInfoLineLeftBox {
-		    	flex-grow: 1;
-		    }
-		    
+		    #member_info{
+		    	padding-left: 60px;
+		    	padding-top: 20px;
+		    	padding-right: 0px;
+		    }    
+		        
 		    .userLine {
 		    	margin-right: 5px;	
 		    }
@@ -64,10 +62,10 @@
 		    	margin:10px;
 		    	
 		    }
-		    
 		    .centerElements {
 		    	width: 100%;
-		    	padding:10px;
+		    	padding:20px;
+   	 			padding-bottom: 0px;	
 		    }
 		    
 		    #costSum {
@@ -81,10 +79,13 @@
 		    .elementContent {
 		    	text-align: left;
 		   	}
+		   	.elementnName{
+		   		margin-bottom: 0px;	
+		   	}
 		    
 		    footer {
 		    	height: 50px;
-		        line-height: 50px;
+		        line-height: 45px;
 		        text-align: center;
 		    }
 		    
@@ -121,67 +122,53 @@
 	<body>
 		<header>
 			<div id="header">
-				<div id="logoBox" class="sideHeader">
-					<img src="<%=application.getContextPath()%>/resources/images/Chicken_logo.PNG">
-				</div>
-				<div id="headCenter">
-				</div>
-			</div>
-			<div id="userInfoLine">
-				<div id="userInfoLineLeftBox"></div>
-				<div class="userLine" style="color: red;">${member.lname}</div>
-				<div class="userLine" style="margin-right: 40px;">${member.mname}님 환영합니다</div>
-			</div>
+					<img src="<%=application.getContextPath()%>/resources/images/Chicken_logo.PNG" width="130px" height="50px"/>
+					<div id="member_info" style="color:red; display: flex;">${member.lname}&nbsp; <div style="color:black;">${member.mname}님 환영합니다</div>
+				</div>	
 		</header>
 		
-		<div id="center">
+		<div id="center" style="margin-bottom: 0px;">
 			<div class="centerElements">
 				<div class="elementTitle">
-					<p class="elementnName">★주문 제품★</p>
+					<p class="elementnName">★주문 제품★ <hr/></p>
 				</div>
-				<div class="elementContent">
-					<ul class="list-group list-group-flush">
+				<div class="elementContent" style="text-align: center;">
 						<%for(int i=0;i<costArr.length;i+=1){ %>
-							<li class="list-group-item">
-								<div class="menuContent"><%=arr.get(i)[0]%><br/><%=arr.get(i)[1]%>원</div>
-								<div class="menuCount"><%=arr.get(i)[2]%></div>
-								<div class="menuCount"><%=costArr[i]%>원</div>
-							</li>
+						<div class="ordermenu_list"><%=arr.get(i)[0]%> &nbsp; <%=arr.get(i)[1]%>원 &nbsp; <%=arr.get(i)[2]%>개 &nbsp; <%=costArr[i]%>원</div>
 						<%}%>
-					</ul>
-					<hr/>
 					<div id="costSum">
-						${orderCost}원
+					<hr/>
+						<p style="font-size: 20px; color:black; padding-top:10px">총합계금액 ${orderCost} 원<p>
 					</div>
 				</div>
 			</div>
-			<div class="centerElements">
-				<div class="elementTitle">
+					
+			<div class="centerElements" style="padding-top: 0px;">
 					<p class="elementnName">★배달지★</p>
 					<hr/>
-				</div>
 				<div class="elementContent">
 					<div id="shopName" style="width:100%;">
-						<div style="margin: 10px;">배달매장 - 치킨날다</div>
-
+						<div style="margin: 10px; text-align: center; font-size: 20px;">배달매장 - 치킨날다</div>
 					</div>
+					
 					<div id="orderMessage" style="width:100%;">
-						<div style="margin: 10px;">★주문요청사항★</div>
+						<div style="margin: 10px; text-align: center; font-size: 16px;"">-주문요청사항-</div>
 						<div class="form-group">
 						<input type="text" class="form-control"/>
 						</div>
 					</div>
 					<div id="map" style="width:100%; height:300px; "></div>
 					<div id="pointError" style="color: red;"></div>
+					<div id="my_marker"style="margin: 10px; text-align: center; font-size: 16px; color: #DF0101;">현재 주문 위치를 지정해 주세요.</div>
 				</div>
 				
 			</div>
 			<div class="centerElements" >
 				<div class="elementTitle">
-					<p class="elementnName">결제정보</p>
+					<p class="elementnName">★결제정보★</p>
 					<hr/>
 				</div>
-				<div class="elementContent" style="display: flex;">
+				<div class="elementContent" style="display: flex; height: 140px;">
 					<div id="costNames" style="margin: 10px; width:100px;">
 						<div>주문금액</div>
 						<br/>
@@ -214,14 +201,13 @@
 				</div>
 				<hr/>
 				<div style="display: flex;">
-					<div style="">총 주문 금액</div>
-					<div id="finalOrderCost">${finalCost}원</div>
+					<div style= "text-align: center;  font-size: 20px; color:black; padding-top:20px; padding-left:90px;">총 주문 금액 ${finalCost}원</div>
 				</div>
 			</div>
-			<form method="post" name="payment_form" action="payment" style>
+			<form method="post" name="payment_form" action="payment" style="height: 60px; padding-top:10px; padding-bottom: 10px;">
 				<input name="nowLat" value="" type="hidden">
 				<input name="nowLng" value="" type="hidden">
-				<button id="paymentButton" class="btn btn-primary">${finalCost}원 결제하기</button>
+				<button id="paymentButton" class="btn btn-primary" >${finalCost}원 결제하기</button>
 			</form>
 		</div>
 		<footer>
@@ -247,7 +233,7 @@
 			// 지도에 클릭 이벤트를 등록합니다
 			// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
 			kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
-			    
+			    $("#my_marker").html("");
 			    // 클릭한 위도, 경도 정보를 가져옵니다 
 			    var latlng = mouseEvent.latLng; 
 			    
@@ -269,6 +255,31 @@
 				    $("#paymentButton").attr("disabled", "disabled");
 			    }
 			});
+			
+			var circle = new kakao.maps.Circle({
+				center: new kakao.maps.LatLng(37.495046, 127.1223785), // 원의 중심좌표 입니다 
+			    radius: 5000, // 미터 단위의 원의 반지름입니다 
+			    strokeWeight: 1, // 선의 두께입니다 
+			    strokeColor: '#0080FF', // 선의 색깔입니다
+			    strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+			    strokeStyle: 'line', // 선의 스타일 입니다
+			    fillColor: '#0080FF', // 채우기 색깔입니다
+			    fillOpacity: 0.15  // 채우기 불투명도 입니다   
+			}); 
+
+			// 지도에 원을 표시합니다 
+			circle.setMap(map); 
+			
+			// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+			var mapTypeControl = new kakao.maps.MapTypeControl();
+
+			// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+			// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+			map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+			// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+			var zoomControl = new kakao.maps.ZoomControl();
+			map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 		</script>
 	</body>
 </html>
