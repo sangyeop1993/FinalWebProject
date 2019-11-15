@@ -1,5 +1,8 @@
 package com.kosateam2.chicken.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kosateam2.chicken.dto.ChickenMemberAndOrder;
 import com.kosateam2.chicken.dto.ItemMenusAndMenus;
+import com.kosateam2.chicken.dto.Order;
 import com.kosateam2.chicken.service.AdminService;
 
 @Controller
@@ -35,5 +39,22 @@ public class AdminController {
 		model.addAttribute("member",member);
 		model.addAttribute("itemList",itemList);
 		return "detailPage";
+	}
+	
+	@RequestMapping("/returnList")
+	public String returnList() {
+		return "redirect:/requestList";
+	}
+	
+	@RequestMapping("/commitOrder")
+	public String commitOrder(Order order) throws ParseException {
+		
+		boolean result=service.updateOrderStatus(order);
+		if(order.getOstatus()==1) {
+			service.sendMqtt(order);
+		}
+		
+		
+		return "redirect:/requestList";
 	}
 }

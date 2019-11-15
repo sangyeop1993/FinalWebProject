@@ -19,6 +19,15 @@ public class ChickenMemberAndOrder {
 	private double lat;
 	private double lng;
 	private Date datetime;
+	
+	
+	
+	public Date getDatetime() {
+		return datetime;
+	}
+	public void setDatetime(Date datetime) {
+		this.datetime = datetime;
+	}
 	private int ostatus;
 	public String getMid() {
 		return mid;
@@ -92,12 +101,8 @@ public class ChickenMemberAndOrder {
 	public void setLng(double lng) {
 		this.lng = lng;
 	}
-	public Date getDate() {
-		return datetime;
-	}
-	public void setDate(Date date) {
-		this.datetime = date;
-	}
+	
+	
 	public int getOstatus() {
 		return ostatus;
 	}

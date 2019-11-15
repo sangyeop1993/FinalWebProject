@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.kosateam2.chicken.dto.ChickenMemberAndOrder;
 import com.kosateam2.chicken.dto.ItemMenusAndMenus;
+import com.kosateam2.chicken.dto.Order;
 
 
 @Component
@@ -30,5 +31,14 @@ public class AdminDao {
 		List<ItemMenusAndMenus> list=sqlSessionTemplate.selectList("admin.selectOrderItemList",oid);
 		return list;
 	}
+
+	public boolean updateOrderState(Order order) {
+		int result=sqlSessionTemplate.update("admin.updateOrderState",order);
+		if(result>0)
+			return true;
+		return false;
+	}
+
+	
 
 }

@@ -15,7 +15,7 @@
 <p>전화번호: ${member.mphonenumber}</p>
 <p>드론아이디: ${member.did}</p>
 <p>결재 금액: ${member.price}</p>
-<!-- <p>${member.date}</p> -->
+<p>${member.datetime}</p>
 <p>진행상태: ${member.ostatus}</p>
 <p>등급: ${member.lname}</p>
 <p>위도: ${member.lat}</p>
@@ -49,6 +49,8 @@
 	</c:forEach>
 	</tbody>
 </table>
+<br/>
+<a href="returnList">닫기</a>
 
 </body>
 </html>

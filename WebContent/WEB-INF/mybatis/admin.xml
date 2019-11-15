@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="admin">
 	<select id="selectOrderList" resultType="com.kosateam2.chicken.dto.ChickenMemberAndOrder">
-		select oid, m.mid as mid, mname, mphonenumber, did, price, datetime, ostatus, lname
+		select oid, m.mid as mid, mname, mphonenumber, did, price, datetime, ostatus, lname, lat, lng
 		from orders o, members m, levels l
 		where o.mid=m.mid and m.mlevel=l.mlevel
 		and ostatus in (0,1)
@@ -24,5 +24,11 @@
 		and oid= #{oid}
 	
 	</select>
+	
+	<update id="updateOrderState" parameterType="com.kosateam2.chicken.dto.Order">
+		update orders
+		set ostatus= #{ostatus} + 1
+		where oid=#{oid}
+	</update>
 
 </mapper>
