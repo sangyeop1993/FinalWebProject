@@ -4,7 +4,9 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="shortcut icon" type="image⁄png" href="${pageContext.request.contextPath}/resources/images/chickenIcon.png">
+		<title>회원가입</title>
 		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/jquery-3.4.1.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
@@ -18,11 +20,12 @@
 		    	display:flex;
 		    	flex-direction: column;
 		        background-color: rgb(253, 189, 51);
-		        height: 100vh;
+		        height: 100%;
 		    }
 		    
 		    #wrapper {
-		    	flex-grow: 1;
+		    	/*flex-grow: 1;*/
+		    	height: 100%;
 		    }
 		    
 		    #content-box {
@@ -33,7 +36,7 @@
 		    
 		    #wrapper {
 				display: flex;
-				padding-top: 100px;
+				padding-top: 50px;
 			}
 					    
 		    #joinFormBox {
@@ -54,6 +57,17 @@
 		    	height: 50px;
 		        line-height: 50px;
 		        text-align: center;
+		        padding-top:20px;
+		    }
+		    #mname, #mpassword, #mpassword2, #mphonenumber{
+		    	margin-left:20px;
+		    	margin-right: 20px;
+		    }
+		    #mid{
+		    	margin-left:20px;
+		    }
+		    #check_mid{
+		    	margin-right: 20px;
 		    }
 		</style>
 		<script type="text/javascript">
@@ -157,28 +171,28 @@
 			</div>
 			<div id="joinFormBox">
 			<p>
-			<img id="mainimage" src="<%=application.getContextPath()%>/resources/images/chicken.PNG" width = 320/>
+			<img id="mainimage" src="<%=application.getContextPath()%>/resources/images/chicken.PNG" width = 180/>
 			</p>
 				<form id="joinForm" method="post" action="join" onsubmit="return checkJoin()">
 					<div class="input-group mb-3">
 					  	<input id="mid" name="mid" type="text" class="form-control" placeholder="아이디"/>
-					  	<div class="input-group-append">
-		    			<input onclick="checkMid()" type="button" class="btn btn-danger" value="중복체크"/>
+					  	<div class="input-group-append" style="margin: 0px; padding-bottom: 8px;">
+		    			<input id="check_mid" onclick="checkMid()" type="button" class="btn btn-danger" value="중복체크"/>
 			  		</div>
 					</div>
 
 					<p id="idError" style="color: red;"></p>
 					
 					
-					<div class="input-group mb-3">
+					<div class="input-group mb-3" style="margin: 0px; padding-bottom: 8px;">
 						<input id="mname" name="mname" type="text" class="form-control" placeholder="이름">
 					</div>
 					<p id="nameError" style="color: red;"></p>
 					
-					<div class="input-group mb-3">
+					<div class="input-group mb-3" style="margin: 0px; padding-bottom: 8px;">
 						<input id="mpassword" name="mpassword" type="password" class="form-control" placeholder="비밀번호">
 					</div>
-					<div class="input-group mb-3">
+					<div class="input-group mb-3" style="margin: 0px; padding-bottom: 8px;">
 						<input id="mpassword2" name="mpassword2" type="password" class="form-control" placeholder="비밀번호확인">
 					</div>
 					<p id="mpasswordError" style="color:red;"></p>
@@ -191,14 +205,16 @@
 					
 					<input id="mlevel" name="mlevel" type="hidden" value="1"/>
 					
+					<div style="padding-top:30px">
 					<input id="joinButton" type="submit" class="btn btn-primary" value="회원가입"  />			
 					<button id="BackHomeButton" class="btn btn-secondary" type="button" onclick="location.href='logout'" >취소</button>
+					</div>
 				</form>
 			</div>
 			<div class="marginDiv"></div>
 		</div>
 		<footer>
-			<div id="footer">&copy;copyright 2019 . <a href="https://github.com/sangyeop1993/FinalWebProject" target="_blank">치킨날다</a></div>
+			<div id="footer" >&copy;copyright 2019 . <a href="https://github.com/sangyeop1993/FinalWebProject" target="_blank">치킨날다</a></div>
 		</footer>
 	</body>
 </html>
