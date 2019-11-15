@@ -351,8 +351,8 @@
 				//---------------------------------------
 				//Drone이 미션을 완료하면 드론이 도착했는지를 묻는 알림창을 표시하기
 	            if(obj.msgid=="MISSION_CURRENT") {
-	               console.log("now mission: " +obj.seq);
-	               console.log("lastMission: " + lastMission);
+	               //console.log("now mission: " +obj.seq);
+	               //console.log("lastMission: " + lastMission);
 	               if(obj.seq == lastMission) {
 	                  alert("드론이 도착했습니까?");
 	                  lastMission++;

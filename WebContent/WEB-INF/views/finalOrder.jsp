@@ -245,8 +245,7 @@
 			    
 			    nowLat = latlng.getLat();
 			    nowLng = latlng.getLng();
-			    2*Math.cos(37.545293)*Math.PI*6371/360;
-			    if(Math.abs(nowLat-37.495046)<=0.01 && Math.abs(nowLng-127.1223785)<=0.01) {
+			    if(Math.pow(88.9*(nowLng-127.117972),2)+Math.pow(111*(nowLat-37.545293),2)<=25) {
 			    	$("#pointError").html("");
 			    	document.payment_form.nowLat.value=nowLat;
 				    document.payment_form.nowLng.value=nowLng;
@@ -260,7 +259,7 @@
 			});
 			
 			var circle = new kakao.maps.Circle({
-	            center: new kakao.maps.LatLng(37.495046, 127.1223785), // 원의 중심좌표 입니다 
+	            center: new kakao.maps.LatLng(37.545293, 127.117972), // 원의 중심좌표 입니다 
 	             radius: 5000, // 미터 단위의 원의 반지름입니다 
 	             strokeWeight: 1, // 선의 두께입니다 
 	             strokeColor: '#0080FF', // 선의 색깔입니다
