@@ -260,7 +260,7 @@
                var nowLat = obj.currLat;
                var nowLng = obj.currLng;
                // 마커가 표시될 위치입니다 
-               var markerPosition  = new kakao.maps.LatLng(nowLat, nowLng); 
+               var markerPosition  = new kakao.maps.LatLng(nowLat, nowLng);
 
                if(marker != null) {
                   marker.setMap(null);
