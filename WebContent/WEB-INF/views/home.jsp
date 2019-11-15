@@ -156,7 +156,7 @@
 			<div id="logoutDiv" style="padding-top: 120px;">
 				<div style="padding-bottom: 15px;"><a href="order" id="orderPage" ><img src="<%=application.getContextPath()%>/resources/images/order1.png" style="width: 350px;"/></a></div>
 				<div style="padding-bottom: 15px;"><a href="main" id="mainPage"style="padding-bottom: 10px;"><img src="<%=application.getContextPath()%>/resources/images/ordercheck1.png" style="width: 350px;" /></a></div>
-				<div style="padding-bottom: 40px;"><a href="main" id="mainPage"style="padding-bottom: 10px;"><img src="<%=application.getContextPath()%>/resources/images/logoutcheck.png" style="width: 350px;" /></a></div>
+				<div style="padding-bottom: 40px;"><a href="logout" id="logoutButton" style="padding-bottom: 10px;"><img src="<%=application.getContextPath()%>/resources/images/logoutcheck.png" style="width: 350px;" /></a></div>
 			</div>
 		</c:if>
 	</div>
