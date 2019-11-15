@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" type="image⁄png" href="${pageContext.request.contextPath}/resources/images/chickenIcon.png">
 <title>치킨날다</title>
 <script src="<%=application.getContextPath()%>/resources/js/jquery-3.4.1.min.js" ></script>
 <link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
@@ -156,7 +157,7 @@
 			<div id="logoutDiv" style="padding-top: 120px;">
 				<div style="padding-bottom: 15px;"><a href="order" id="orderPage" ><img src="<%=application.getContextPath()%>/resources/images/order1.png" style="width: 350px;"/></a></div>
 				<div style="padding-bottom: 15px;"><a href="main" id="mainPage"style="padding-bottom: 10px;"><img src="<%=application.getContextPath()%>/resources/images/ordercheck1.png" style="width: 350px;" /></a></div>
-				<div style="padding-bottom: 40px;"><a href="main" id="mainPage"style="padding-bottom: 10px;"><img src="<%=application.getContextPath()%>/resources/images/logoutcheck.png" style="width: 350px;" /></a></div>
+				<div style="padding-bottom: 40px;"><a href="logout" id="logoutButton" style="padding-bottom: 10px;"><img src="<%=application.getContextPath()%>/resources/images/logoutcheck.png" style="width: 350px;" /></a></div>
 			</div>
 		</c:if>
 	</div>
