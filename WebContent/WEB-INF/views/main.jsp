@@ -279,6 +279,11 @@
 				level: 3 //지도의 레벨(확대, 축소 정도)
 			};
 			var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+			var imageSrc = '<%=application.getContextPath()%>/resources/images/DronePoint.png', // 마커이미지의 주소입니다    
+		    imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+		    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+		    
+			var marker;
 			// 선을 만드는 변수
 			var linePath = [];
 			if(cookieArr != ""){
@@ -354,6 +359,26 @@
 	                  lastMission++;
 	               }
 	            }
+				
+	            if(obj.msgid=="GLOBAL_POSITION_INT"){
+	    			var nowLat = obj.currLat;
+	    			var nowLng = obj.currLng;
+	    			// 마커가 표시될 위치입니다 
+	    			var markerPosition  = new kakao.maps.LatLng(nowLat, nowLng); 
+
+	    			if(marker != null) {
+	    				marker.setMap(null);
+	    				marker.setPosition(markerPosition);
+	    			} else {
+	    				marker = new kakao.maps.Marker({
+	    				    position: markerPosition,
+	    				    image: markerImage
+	    				});
+	    			}
+	    			
+	    			marker.setMap(map);
+	    			map.setCenter(markerPosition);
+	    		}
 			}
 			
 			client.connect({onSuccess:onConnect});
