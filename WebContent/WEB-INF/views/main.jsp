@@ -171,6 +171,36 @@
 			function changeMapBox() {
 				mapBoxStatus = !mapBoxStatus;
 			}
+			
+			function setCookie(cookieName, value, exdays){
+			    var exdate = new Date();
+			    exdate.setDate(exdate.getDate() + exdays);
+			    var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
+			    document.cookie = cookieName + "=" + cookieValue;
+			}
+			 
+			function deleteCookie(cookieName){
+			    var expireDate = new Date();
+			    expireDate.setDate(expireDate.getDate() - 1);
+			    document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+			}
+			 
+			function getCookie(cookieName) {
+			    cookieName = cookieName + '=';
+			    var cookieData = document.cookie;
+			    var start = cookieData.indexOf(cookieName);
+			    var cookieValue = '';
+			    if(start != -1){
+			        start += cookieName.length;
+			        var end = cookieData.indexOf(';', start);
+			        if(end == -1)end = cookieData.length;
+			        cookieValue = cookieData.substring(start, end);
+			    }
+			    return unescape(cookieValue);
+			}
+			
+			var cookieArr = getCookie("missionArray");
+			
 		</script>
 	</head>
 	<body>
@@ -249,10 +279,41 @@
 				level: 3 //지도의 레벨(확대, 축소 정도)
 			};
 			var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+			var imageSrc = '<%=application.getContextPath()%>/resources/images/DronePoint.png', // 마커이미지의 주소입니다    
+		    imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+		    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+		    
+			var marker;
 			// 선을 만드는 변수
 			var linePath = [];
-			//map.setDraggable(draggable); //지도 이동 불가
+			if(cookieArr != ""){
+				var jsonCookieArray = JSON.parse(cookieArr);
+				for(var i=0;i<jsonCookieArray.length;i++){
+					linePath.push(new kakao.maps.LatLng(jsonCookieArray[i]["Ha"], jsonCookieArray[i]["Ga"]));
+				}
+				console.log(linePath);
+			}
+			
 			var polyline;
+			var lastMission;
+			
+			polyline = new kakao.maps.Polyline({
+			    path: linePath, // 선을 구성하는 좌표배열 입니다
+			    strokeWeight: 5, // 선의 두께 입니다
+			    strokeColor: '#FF0000', // 선의 색깔입니다
+			    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+			    strokeStyle: 'solid' // 선의 스타일입니다
+			});
+			
+			// 지도에 선을 표시합니다 
+			polyline.setMap(map);
+			
+			//map.setDraggable(draggable); //지도 이동 불가
+			
+			if(getCookie("lastMissionNum") != "") {
+				lastMission = getCookie("lastMissionNum");
+			}
+			
 			
 			//---------------------------------------------------------------------------- MQTT연결
 			client = new Paho.MQTT.Client(location.hostname, 61622, "clientId"+new Date().getTime());
@@ -260,15 +321,17 @@
 			client.onMessageArrived = function(message) {
 				var JSONString = message.payloadString;
 				var obj = JSON.parse(JSONString);
-				if(obj.msgid=="MISSION_UPLOAD") {
-					if(linePath.lenght!=0) {
-						linePath = [];
-					}
+				if(obj.msgid=="MISSION_UPLOAD" && linePath.length==0) {
 					var objArr = obj.items;
 					for(var i=0;i<objArr.length;i++){
 						linePath.push(new kakao.maps.LatLng(objArr[i].x, objArr[i].y));
 					}
+					
+					var jsonLine = JSON.stringify(linePath);
+					setCookie("missionArray", objArr, 7);
+					
 					console.log(linePath);
+						
 					// 지도에 표시할 선을 생성합니다
 					polyline = new kakao.maps.Polyline({
 					    path: linePath, // 선을 구성하는 좌표배열 입니다
@@ -277,11 +340,45 @@
 					    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
 					    strokeStyle: 'solid' // 선의 스타일입니다
 					});
-
+					
+					//마지막 미션번호 구하기
+		          	var missionArr = obj.items;
+		            lastMission = missionArr[missionArr.length - 1].seq;
+					setCookie("lastMissionNum", lastMission, 7);
 					// 지도에 선을 표시합니다 
 					polyline.setMap(map);
-					client.close();
 				}
+				
+				//---------------------------------------
+				//Drone이 미션을 완료하면 드론이 도착했는지를 묻는 알림창을 표시하기
+	            if(obj.msgid=="MISSION_CURRENT") {
+	               console.log("now mission: " +obj.seq);
+	               console.log("lastMission: " + lastMission);
+	               if(obj.seq == lastMission) {
+	                  alert("드론이 도착했습니까?");
+	                  lastMission++;
+	               }
+	            }
+				
+	            if(obj.msgid=="GLOBAL_POSITION_INT"){
+	    			var nowLat = obj.currLat;
+	    			var nowLng = obj.currLng;
+	    			// 마커가 표시될 위치입니다 
+	    			var markerPosition  = new kakao.maps.LatLng(nowLat, nowLng); 
+
+	    			if(marker != null) {
+	    				marker.setMap(null);
+	    				marker.setPosition(markerPosition);
+	    			} else {
+	    				marker = new kakao.maps.Marker({
+	    				    position: markerPosition,
+	    				    image: markerImage
+	    				});
+	    			}
+	    			
+	    			marker.setMap(map);
+	    			map.setCenter(markerPosition);
+	    		}
 			}
 			
 			client.connect({onSuccess:onConnect});
@@ -289,7 +386,7 @@
 			// 연결이 완료되었을 때 자동으로 실행(콜백) 되는 함수
 			function onConnect() {
 				console.log("##연결 되었다")
-			  client.subscribe("/drone/fc/sub");
+			    client.subscribe("/drone/fc/+");
 			}
 			//-----------------------------------------------------------------------------
 
