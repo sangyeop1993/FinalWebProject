@@ -11,15 +11,15 @@ public class ChickenMemberAndOrder {
 	private int mlevel;
 	private String lname;
 	private float discount;
+	
+	//order
+	private int oid;
 	private int did;
 	private int price;
 	private double lat;
 	private double lng;
 	private Date datetime;
 	private int ostatus;
-
-	//order
-	private int oid;
 	public String getMid() {
 		return mid;
 	}
@@ -104,5 +104,7 @@ public class ChickenMemberAndOrder {
 	public void setOstatus(int ostatus) {
 		this.ostatus = ostatus;
 	}
+
+	
 	
 }

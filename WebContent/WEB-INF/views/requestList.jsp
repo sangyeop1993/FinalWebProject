@@ -29,7 +29,7 @@
 
       //메세지를 수신했을때 자동으로 실행(콜백)되는 함수
       function onMessageArrived(message) {
-    	  $("#divRecieve").append(message.payloadString + "<br/>");
+    	  //$("#divRecieve").append(message.payloadString + "<br/>");
           //$("#divRecieve").append(location.hostname + "<br/>");
      	  location.reload();
          
