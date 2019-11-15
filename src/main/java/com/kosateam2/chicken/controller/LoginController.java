@@ -44,7 +44,7 @@ public class LoginController {
 		}
 		session.setAttribute("loginResult", loginResult);
 		if(loginResult.equals("success") && mid.equals("admin")) {
-			return "redirect:/admin";
+			return "redirect:/requestList";
 		}else {
 			return "redirect:/";
 		}

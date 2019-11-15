@@ -98,12 +98,11 @@ public class OrderController {
 				itemList.add(itemMember);
 			}
 			service.nowMenu(itemList);
-			service.pubOrderId(orderId);
+			service.pubOrderId(orderId, nowLat, nowLng);
 		} else {
 			orderId = (int)sess.getAttribute("orderId");
 		}
 		logger.debug("######################"+orderId+"##############");
-		//service.checkMission()  orderId로 찾아와야함
 		return "/main";
 	}
 	

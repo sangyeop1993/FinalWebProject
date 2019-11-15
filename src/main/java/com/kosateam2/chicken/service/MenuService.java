@@ -46,9 +46,12 @@ public class MenuService {
 		int droneId = menuDao.selectDrone();
 		return droneId;
 	}
-	public void pubOrderId(int orderId) {
+	public void pubOrderId(int orderId, String nowLat, String nowLng) {
 		JSONObject jsonObject = new JSONObject();
-	    jsonObject.put("orderId", orderId);    
+		jsonObject.put("msgid", "ORDER");
+	    jsonObject.put("orderId", orderId);
+	    jsonObject.put("Lat", nowLat);
+	    jsonObject.put("Lng", nowLng);
 	    String json = jsonObject.toString();
 		try {
 			if(client != null && client.isConnected()) {
