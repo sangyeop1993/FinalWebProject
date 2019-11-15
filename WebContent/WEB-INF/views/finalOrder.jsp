@@ -207,82 +207,81 @@
          <form method="post" name="payment_form" action="payment" style="height: 60px; padding-top:10px; padding-bottom: 10px;">
             <input name="nowLat" value="" type="hidden">
             <input name="nowLng" value="" type="hidden">
-            <button id="paymentButton" class="btn btn-primary" >${finalCost}원 결제하기</button>
+            <button id="paymentButton" class="btn btn-primary" disabled="disabled" >${finalCost}원 결제하기</button>
          </form>
       </div>
       <footer>
          <div id="footer">&copy;copyright 2019 . <a href="https://github.com/sangyeop1993/FinalWebProject" target="_blank">치킨날다</a></div>
       </footer>
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dad7fb57c07b01439820b31881802e7a"></script>
-		<script type="text/javascript">
-			var nowLat = 37.545293;
-			var nowLng = 127.117972;
-			var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-			var options = { //지도를 생성할 때 필요한 기본 옵션
-				center: new kakao.maps.LatLng(nowLat, nowLng), //지도의 중심좌표.
-				level: 3 //지도의 레벨(확대, 축소 정도)
-			};
-			var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-			
-			// 지도를 클릭한 위치에 표출할 마커입니다
-			var marker = new kakao.maps.Marker({ 
-			    // 지도 중심좌표에 마커를 생성합니다 
-			    position: map.getCenter() 
-			}); 
-			// 지도에 마커를 표시합니다
-			marker.setMap(map);
+      <script type="text/javascript">
+         var nowLat = 37.545293;
+         var nowLng = 127.117972;
+         var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+         var options = { //지도를 생성할 때 필요한 기본 옵션
+            center: new kakao.maps.LatLng(nowLat, nowLng), //지도의 중심좌표.
+            level: 3 //지도의 레벨(확대, 축소 정도)
+         };
+         var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+         
+         // 지도를 클릭한 위치에 표출할 마커입니다
+         var marker = new kakao.maps.Marker({ 
+             // 지도 중심좌표에 마커를 생성합니다 
+             position: map.getCenter() 
+         }); 
+         // 지도에 마커를 표시합니다
+         marker.setMap(map);
 
-			// 지도에 클릭 이벤트를 등록합니다
-			// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
-			
-			kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
-				$("#my_marker").html("");
-			    // 클릭한 위도, 경도 정보를 가져옵니다 
-			    var latlng = mouseEvent.latLng; 
-			    
-			    // 마커 위치를 클릭한 위치로 옮깁니다
-			    marker.setPosition(latlng);
-			    
-			    nowLat = latlng.getLat();
-			    nowLng = latlng.getLng();
-			    2*Math.cos(37.545293)*Math.PI*6371/360;
-			    if(Math.abs(nowLat-37.495046)<=0.01 && Math.abs(nowLng-127.1223785)<=0.01) {
-			    	$("#pointError").html("");
-			    	document.payment_form.nowLat.value=nowLat;
-				    document.payment_form.nowLng.value=nowLng;
-				    $("#paymentButton").removeAttr("disabled");
-			    } else {
-			    	$("#pointError").html("*배달불가 지역입니다*");
-			    	document.payment_form.nowLat.value=null;
-				    document.payment_form.nowLng.value=null;
-				    $("#paymentButton").attr("disabled", "disabled");
-			    }
-			});
-			
-			var circle = new kakao.maps.Circle({
-	            center: new kakao.maps.LatLng(37.495046, 127.1223785), // 원의 중심좌표 입니다 
-	             radius: 5000, // 미터 단위의 원의 반지름입니다 
-	             strokeWeight: 1, // 선의 두께입니다 
-	             strokeColor: '#0080FF', // 선의 색깔입니다
-	             strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-	             strokeStyle: 'line', // 선의 스타일 입니다
-	             fillColor: '#0080FF', // 채우기 색깔입니다
-	             fillOpacity: 0.15  // 채우기 불투명도 입니다   
-	         }); 
+         // 지도에 클릭 이벤트를 등록합니다
+         // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+         
+         kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
+            $("#my_marker").html("");
+             // 클릭한 위도, 경도 정보를 가져옵니다 
+             var latlng = mouseEvent.latLng; 
+             
+             // 마커 위치를 클릭한 위치로 옮깁니다
+             marker.setPosition(latlng);
+             
+             nowLat = latlng.getLat();
+             nowLng = latlng.getLng();
+             if(Math.pow(88.9*(nowLng-127.117972),2)+Math.pow(111*(nowLat-37.545293),2)<=25) {
+                $("#pointError").html("");
+                document.payment_form.nowLat.value=nowLat;
+                document.payment_form.nowLng.value=nowLng;
+                $("#paymentButton").removeAttr("disabled");
+             } else {
+                $("#pointError").html("*배달불가 지역입니다*");
+                document.payment_form.nowLat.value=null;
+                document.payment_form.nowLng.value=null;
+                $("#paymentButton").attr("disabled", "disabled");
+             }
+         });
+         
+         var circle = new kakao.maps.Circle({
+               center: new kakao.maps.LatLng(37.545293, 127.117972), // 원의 중심좌표 입니다 
+                radius: 5000, // 미터 단위의 원의 반지름입니다 
+                strokeWeight: 1, // 선의 두께입니다 
+                strokeColor: '#0080FF', // 선의 색깔입니다
+                strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+                strokeStyle: 'line', // 선의 스타일 입니다
+                fillColor: '#0080FF', // 채우기 색깔입니다
+                fillOpacity: 0.15  // 채우기 불투명도 입니다   
+            }); 
 
-	         // 지도에 원을 표시합니다 
-	         circle.setMap(map); 
-	         
-	         // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
-	         var mapTypeControl = new kakao.maps.MapTypeControl();
+            // 지도에 원을 표시합니다 
+            circle.setMap(map); 
+            
+            // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+            var mapTypeControl = new kakao.maps.MapTypeControl();
 
-	         // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-	         // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-	         map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+            // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+            // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+            map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 
-	         // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-	         var zoomControl = new kakao.maps.ZoomControl();
-	         map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-		</script>
-	</body>
+            // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+            var zoomControl = new kakao.maps.ZoomControl();
+            map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+      </script>
+   </body>
 </html>
