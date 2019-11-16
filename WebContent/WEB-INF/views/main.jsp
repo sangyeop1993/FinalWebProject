@@ -252,9 +252,7 @@
                 //console.log("lastMission: " + lastMission);
 				if(obj.seq == lastMission) {
 					deleteCookie("missionArray");
-					setTimeout(function() {
-						alert("드론이 도착했습니까?");
-                		}, 20000);
+					var check = confirm("드론이 도착했습니까?");
                     lastMission++;
                  }
               }

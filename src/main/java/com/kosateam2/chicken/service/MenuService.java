@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.kosateam2.chicken.dao.MenuDao;
 import com.kosateam2.chicken.dto.ChickenMemberAndOrder;
 import com.kosateam2.chicken.dto.ChickenMenu;
+import com.kosateam2.chicken.dto.Drone;
 import com.kosateam2.chicken.dto.ItemMember;
 import com.kosateam2.chicken.dto.Order;
 
@@ -42,9 +43,9 @@ public class MenuService {
 	public void nowMenu(ArrayList<ItemMember> itemList) {
 		menuDao.insertItems(itemList);
 	}
-	public int getDid() {
-		int droneId = menuDao.selectDrone();
-		return droneId;
+	public Drone getDid() {
+		Drone drone = menuDao.selectDrone();
+		return drone;
 	}
 	public void pubOrderId(int orderId, String nowLat, String nowLng) {
 		JSONObject jsonObject = new JSONObject();

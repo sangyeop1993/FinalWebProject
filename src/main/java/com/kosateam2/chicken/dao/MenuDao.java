@@ -40,9 +40,9 @@ public class MenuDao {
 	public void insertOrder(Order order) {
 		sqlSessionTemplate.insert("menu.insertNowOrder", order);
 	}
-	public int selectDrone() {
+	public Drone selectDrone() {
 		List<Drone> droneList = sqlSessionTemplate.selectList("menu.selectDrone");
-		return droneList.get(0).getDid();
+		return droneList.get(0);
 	}
 	public List<ChickenMemberAndOrder> selectOrder() {
 		List<ChickenMemberAndOrder> list=sqlSessionTemplate.selectList("order.selectOrderList");
