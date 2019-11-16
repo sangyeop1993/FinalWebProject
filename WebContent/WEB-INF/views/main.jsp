@@ -19,46 +19,68 @@
 				box-sizing: border-box;
 				font-family: 'Jua', sans-serif;
 			}
+			p{
+				margin-bottom: 0px;
+				font-size: 18px;
+			}
+			
 		    body {
-
 		    	flex-direction: column;
 		        background-color: rgb(253, 189, 51);
 		        height: 100vh;
-		    } 
-
-		    #logoBox img {
-		    	margin: 26px auto 0;
+		        width: 
 		    }
 		    
-		    .contents {
+		    #userBox {
 				margin-left: 10px;
 				margin-right: 10px;
 				margin-top: 10px;
-		    	border: 4px solid white;
-		    	height: 200px;
+		    	background-color:white;
+		    	border-radius: 8px;
+		    	height: 110px;
 		    	padding: 7px;
+		    	padding-top: 11px;
+		    	
 		    }
-		    #userMiniBox {
-		    	display: flex;
-		    	margin-top:20px;
-		    	margin-bottom: 0px;
-		    	margin-left:20px;
-		    	padding:0px;
+		    
+		    
+		    #logoBox{
+		    	text-align: center;
+				padding: 10px;
+				padding-bottom: 0px;
 		    }
-		    #userTextBox {
-     			font-size:13pt;
-     			line-height:1.9em; 
-     			margin-top: 0px; 
-     			margin-left:10px;
-     		}
-     		#userPng{
+
+		    #userPng{
      			margin-bottom: 0px;
      			margin-left:0px;
-     			margin-right: 5px;
+     			margin-right: 15px;
+     			padding-top:10px;
      		}
+     		
+		    #userMiniBox {   
+		    	display: flex;
+		    }
+	
      		 #deleteButton, #logoutButton{
-     			font-size:14pt;
+     			font-size:12pt;
+     			width:80pt;
+     			height: 30px;
+     			text-align: center;			
+			    padding-bottom: 12px;
+			    padding-top: 0px;
+			    border-top-width: 5px;
+			    marggin-left: 30px;	
      		}
+     		
+     		#TemperatureBox {
+				margin-left: 10px;
+				margin-right: 10px;
+				margin-top: 10px;
+		    	background-color:white;
+		    	border-radius: 8px;
+		    	height: 200px;
+		    	padding: 7px;
+		    } 
      		
 		    #mapBox {
 		  		margin-left: 10px;
@@ -66,7 +88,6 @@
 				margin-top: 10px;
 		    	margin: 10px;
 		    	height: 600px;
-		    	width: 1300px;
 		    	border: 4px solid white;
 		    }
 		    footer {
@@ -121,46 +142,35 @@
 	<body>
 		<header id="header">
 			<div id="logoBox">
-				<a href="<%=application.getContextPath()%>/"><img src="<%=application.getContextPath()%>/resources/images/Chicken_logo.PNG" style="margin-top: 20px;"></a>
-			</div>
-			<div id="headCenter">
+				<a href="<%=application.getContextPath()%>/"><img src="<%=application.getContextPath()%>/resources/images/Chicken_logo.PNG"/></a>
 			</div>
 		</header>
-		<div id="center">
+
 			
-				<div id="userBox" class="contents" >
+				<div id="userBox">
 					<div id="userMiniBox">
-							<p>
-							<img id="userPng" src="<%=application.getContextPath()%>/resources/images/user_icon.png" width=90px;  />
-							</p>
-						<div id="userTextBox" style=" ">
-							<p>
-								NAME: ${member.mname} <br/>
-								LEVEL: ${member.lname} <br/>
-								DRONE: ${droen.dname}
-							</p>
+							<p style="padding-left: 10px;"><img id="userPng" src="<%=application.getContextPath()%>/resources/images/user_icon.png" width=80px;/></p>
+						<div>		
+							<p>${member.lname} &nbsp ${member.mname}님 환영합니다.</p>
+							<p>DRONE: ${droen.dname}</p>
+							
+							<div style="padding-left: 0px; padding-top:5px; ">
+							<button id="logoutButton" class="btn btn-danger" type="button" onclick="location.href='logout'" >로그아웃</button>
+							<a href="deleteMember?mid=${member.mid}" id="deleteButton" class="btn btn-secondary" >회원탈퇴</a>	</div>
 						</div>
-					</div>
-					<div style="text-align: center;">
-				<button id="logoutButton" class="btn btn-danger" type="button" onclick="location.href='logout'" style="margin-right: 15px; width:80pt;">로그아웃</button>
-				<a href="deleteMember?mid=${member.mid}" id="deleteButton" class="btn btn-secondary" style="width:80pt;">회원탈퇴</a>		
-				</div>
+					</div>	
 				</div>
 
-				<div id="TemperatureBox" class="contents">
-				<p style="margin-top: 0; margin-bottom: 0;">NAME: ${member.mname} </p>
-					<img id="tempericon" src="<%=application.getContextPath()%>/resources/images/Chicken_tempicon.png" width=200px; style=" margin-left: 20px;"  />
+				<div id="TemperatureBox">
+						<img id="tempericon" src="<%=application.getContextPath()%>/resources/images/Chicken_tempicon.png" width=100px;/>
+						<p style="margin-top: 0; margin-bottom: 0;">NAME: ${member.mname} </p>
 				</div>
 
 			<div id="mapBox">
 				<div id="map" style="width:400px; height:300px; margin: 10px;"></div>
-				<!-- 
-				<div class="tab-pane fade show active" id="nowCamera" role="tabpanel" aria-labelledby="noworder-tab">영상</div>
-				<div class="tab-pane fade" id="nowMap" role="tabpanel" aria-labelledby="oldorder-tab">지도</div>
-				 -->
 			</div>
 			<div id="loggerBox" class="sideBar"></div>
-		</div>
+
 		<div id="lower">
 		<footer>
 			<div id="footer">&copy;copyright 2019 . <a href="https://github.com/sangyeop1993/FinalWebProject" target="_blank">치킨날다</a></div>

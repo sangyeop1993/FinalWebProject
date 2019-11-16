@@ -35,12 +35,12 @@
 			body {
              display:flex;
              flex-direction: column;
-              background-color: rgb(253, 189, 51);
-              height: 100vh;
+             background-color: rgb(253, 189, 51);
+             height: 100vh;
           }
           #header {
           	margin : 10px;
-            margin-bottom: 0px;
+            margin-bottom: 10px;
             display: flex;
             text-align: left;
           }
@@ -59,12 +59,12 @@
          	height: 4000px;
             background-color: white;
             text-align: center;
-            margin:10px; 
+            margin:10px;   
          }
          .centerElements {
          	width: 100%;
-            padding:20px;
-            padding-bottom: 0px;   
+            padding:20px;  
+            
          }
           
          #costSum {
@@ -83,7 +83,7 @@
          }
           
          footer {
-         	height: 50px;
+         	height: 70px;
             line-height: 45px;
             text-align: center;
          }
@@ -130,7 +130,7 @@
 		<div id="center" style="margin-bottom: 0px;">
          <div class="centerElements">
             <div class="elementTitle">
-               <p class="elementnName">★주문 제품★ <hr/></p>
+               <p class="elementnName">★주문 제품★</p> <hr/>
             </div>
             <div class="elementContent" style="text-align: center;">
                   <%for(int i=0;i<costArr.length;i+=1){ %>
@@ -201,13 +201,13 @@
             </div>
             <hr/>
             <div style="display: flex;">
-               <div style= "text-align: center;  font-size: 20px; color:black; padding-top:20px; padding-left:90px;">총 주문 금액 ${finalCost}원</div>
+               <div style= "text-align: center;  font-size: 20px; color:black; padding-top:20px; padding-left:80px;">총 주문 금액 ${finalCost}원</div>
             </div>
          </div>
-         <form method="post" name="payment_form" action="payment" style="height: 60px; padding-top:10px; padding-bottom: 10px;">
+         <form method="post" name="payment_form" action="payment" style="height: 80px; padding-top:10px;">
             <input name="nowLat" value="" type="hidden">
             <input name="nowLng" value="" type="hidden">
-            <button id="paymentButton" class="btn btn-primary" disabled="disabled" >${finalCost}원 결제하기</button>
+            <button id="paymentButton" class="btn btn-primary" disabled="disabled" style="width: 150px; height: 45px;">${finalCost}원 결제하기</button>
          </form>
       </div>
       <footer>
