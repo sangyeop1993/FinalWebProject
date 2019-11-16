@@ -109,7 +109,7 @@ public class OrderController {
 	@RequestMapping("/adminPage")
 	public String requestList(HttpServletRequest request,HttpServletResponse response,Model model) {
 		List<ChickenMemberAndOrder> list=service.requestChickenOrder();
-		System.out.println(list.get(0).getDate());
+		System.out.println(list.get(0).getDatetime());
 		model.addAttribute("list",list);
 		return "admin";
 	}

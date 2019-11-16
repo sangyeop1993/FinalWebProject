@@ -15,7 +15,7 @@
 		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/paho-mqtt-min.js"></script>
 		<script type="text/javascript">
    $(function(){
-      client = new Paho.MQTT.Client(location.hostname, 61622, "clientId");
+      client = new Paho.MQTT.Client("106.253.56.124", 61622, "clientId");
       client.onMessageArrived = onMessageArrived;
       client.connect({
          onSuccess : onConnect
@@ -30,10 +30,10 @@
       //메세지를 수신했을때 자동으로 실행(콜백)되는 함수
 		function onMessageArrived(message) {
     	  	var json=JSON.parse(message);
-    	  	console.log(json);
     	  	location.reload(true);
 		}
    });  
+   
    
 </script>
 
@@ -50,21 +50,23 @@
 				<th>가격</th>
 				<th>상세 보기</th>
 			</tr>
-			<c:forEach var="orderChicken" items="${list}">
+			<c:forEach var="order" items="${list}">
 				<tr>
 					<td>${order.oid}</td>
-				<td><fmt:formatDate value="${order.date}" pattern="yyyy.MM.dd"/></td>
-				<td><fmt:formatDate value="${order.date}" pattern="HH:mm"/></td>
+				<td><fmt:formatDate value="${order.datetime}" pattern="yyyy.MM.dd"/></td>
+				<td><fmt:formatDate value="${order.datetime}" pattern="HH:mm"/></td>
 				<td>${order.mname}</td>
 				<td>${order.mphonenumber}</td>
 				<td>${order.lname}</td>
 				<td>${order.price}</td>
-				<c:if test="${order.ostatus == 0 }"><td><a href="commitOrder?oid=${order.oid}&ostatus=${order.ostatus}">요청 수락</a></td></c:if>
-				<c:if test="${order.ostatus == 1 }"><td><a href="commitOrder?oid=${order.oid}&ostatus=${order.ostatus}">배달 요청</a></td></c:if>
+				<c:if test="${order.ostatus == 0 }"><td><a href="commitOrder?oid=${order.oid}&lat=${order.lat}&lng=${order.lng}&datetime=<fmt:formatDate value="${order.datetime}" pattern="yyyy.MM.dd HH:mm"/>&ostatus=${order.ostatus}">요청 수락</a></td></c:if>
+				<c:if test="${order.ostatus == 1 }"><td><a href="commitOrder?oid=${order.oid}&lat=${order.lat}&lng=${order.lng}&datetime=<fmt:formatDate value="${order.datetime}" pattern="yyyy.MM.dd HH:mm"/>&ostatus=${order.ostatus}">배달 요청</a></td></c:if>
 				<td><a href="detailOrder?oid=${order.oid}">상세보기</a></td>
 				</tr>
 			</c:forEach>
 		</table>
-		<div id="divRecieve"></div>
+		
+		<br/>
+		<a href="logout">로그아웃</a>
 	</body>
 </html>

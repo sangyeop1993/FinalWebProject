@@ -2,6 +2,8 @@ package com.kosateam2.chicken.dto;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Order {
 	private int oid;
 	private String mid;
@@ -9,7 +11,16 @@ public class Order {
 	private int price;
 	private double lat;
 	private double lng;
-	private Date date;
+	
+	@DateTimeFormat(pattern="yyyy.MM.dd HH:mm")
+	private Date datetime;
+	
+	public Date getDatetime() {
+		return datetime;
+	}
+	public void setDatetime(Date datetime) {
+		this.datetime = datetime;
+	}
 	private int ostatus;
 	
 	public int getOid() {
@@ -48,12 +59,7 @@ public class Order {
 	public void setLng(double lng) {
 		this.lng = lng;
 	}
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
+	
 	public int getOstatus() {
 		return ostatus;
 	}
