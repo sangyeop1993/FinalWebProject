@@ -69,7 +69,7 @@
 		      function onConnect() {
 		         // 연결이 완료되었을 때 자동으로 콜백되는 함수
 		         client.subscribe("/chicken/order/pub");
-		
+		         console.log("/chicken/order/pub에 연결되었다.");
 		      }
 		
 		      //메세지를 수신했을때 자동으로 실행(콜백)되는 함수
