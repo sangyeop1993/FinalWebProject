@@ -54,7 +54,8 @@
 		     h5{
 		     	font-size: 30px;
 		     	margin: 0px;
-		     }	     
+		     }	
+		       
 		</style>
 
 		<script type="text/javascript">   
@@ -118,8 +119,10 @@
 						<td>${order.mphonenumber}</td>
 						<td>${order.lname}</td>
 						<td>${order.price}</td>
-						<c:if test="${order.ostatus == 0 }" ><td><a style="color:red;" href="commitOrder?oid=${order.oid}&lat=${order.lat}&lng=${order.lng}&datetime=<fmt:formatDate value="${order.datetime}" pattern="yyyy.MM.dd HH:mm"/>&ostatus=${order.ostatus}">주문 접수</a></td></c:if>
-						<c:if test="${order.ostatus == 1 }" ><td><a style="color:#007bff;" href="commitOrder?oid=${order.oid}&lat=${order.lat}&lng=${order.lng}&datetime=<fmt:formatDate value="${order.datetime}" pattern="yyyy.MM.dd HH:mm"/>&ostatus=${order.ostatus}">배달 요청</a></td></c:if>
+						<c:if test="${order.ostatus == 0 }" ><td><a class="btn btn-danger" style="width: 100px; height: 30px; padding-top: 4px; font-size: 15px;" href="commitOrder?oid=${order.oid}&lat=${order.lat}&lng=${order.lng}&datetime=<fmt:formatDate value="${order.datetime}" pattern="yyyy.MM.dd HH:mm"/>&ostatus=0">주문 접수</a></td></c:if>
+						<c:if test="${order.ostatus == 1 }" ><td><a class="btn btn-warning" style="width: 100px; height: 30px; padding-top: 4px; font-size: 15px;" href="commitOrder?oid=${order.oid}&lat=${order.lat}&lng=${order.lng}&datetime=<fmt:formatDate value="${order.datetime}" pattern="yyyy.MM.dd HH:mm"/>&ostatus=1">배달 요청</a></td></c:if>
+						<c:if test="${order.ostatus == 2 }" ><td><a class="btn btn-primary" style="width: 100px; height: 30px; padding-top: 4px; font-size: 15px;" href="commitOrder?oid=${order.oid}&lat=${order.lat}&lng=${order.lng}&datetime=<fmt:formatDate value="${order.datetime}" pattern="yyyy.MM.dd HH:mm"/>&ostatus=2">배달중</a></td></c:if>
+						<c:if test="${order.ostatus == 3 }" ><td><a class="btn btn-success"style="width: 100px; height: 30px; padding-top: 4px; font-size: 15px;"  href="commitOrder?oid=${order.oid}&lat=${order.lat}&lng=${order.lng}&datetime=<fmt:formatDate value="${order.datetime}" pattern="yyyy.MM.dd HH:mm"/>&ostatus=3">배달완료</a></td></c:if>
 						<td><a style="color:gray;" href="detailOrder?oid=${order.oid}">상세보기</a></td>
 						</tr>
 		    <tr>

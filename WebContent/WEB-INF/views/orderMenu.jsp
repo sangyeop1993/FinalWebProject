@@ -60,7 +60,7 @@
 				    padding-top: 15px;
 				}
 				a {
-				    font-size: 21px;
+				    font-size: 20px;
 				    color: #ffffff;
 				    text-align: center;
 				}
@@ -90,6 +90,9 @@
 				/*표 css*/
 				td{
 					padding : 65px;
+				}
+				li{
+					font-size: 20px;
 				}
 				/*장바구니 css*/
 				 #shoping-box{

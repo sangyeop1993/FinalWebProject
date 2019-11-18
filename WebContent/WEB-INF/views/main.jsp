@@ -38,10 +38,10 @@
 		    	border-radius: 8px;
 		    	height: 110px;
 		    	padding: 7px;
+		    	padding-left: 11px;
 		    	padding-top: 11px;
 		    	
 		    }
-		    
 		    
 		    #logoBox{
 		    	text-align: center;
@@ -77,20 +77,22 @@
 				margin-top: 10px;
 		    	background-color:white;
 		    	border-radius: 8px;
-		    	height: 200px;
-		    	padding: 7px;
+		    	height: 140px;
+		    	width: 355px;
+		    	padding: 10px;
+		    	padding-left: 10px;
 		    } 
-     		
 		    #mapBox {
 		  		margin-left: 10px;
 				margin-right: 10px;
 				margin-top: 10px;
-		    	margin: 10px;
-		    	height: 600px;
-		    	border: 4px solid white;
+		    	height: 420px;
+		    	width: 355px;
+		    	border-radius: 8px;
+		    	background-color:white;
 		    }
 		    footer {
-		    	height: 50px;
+		    	height: 30px;
 		        line-height: 50px;
 		        text-align: center;
 		    }
@@ -162,15 +164,11 @@
 				</div>
 
 				<div id="TemperatureBox">
-						<img id="tempericon" src="<%=application.getContextPath()%>/resources/images/Chicken_tempicon.png" width=100px;/>
-						<p style="margin-top: 0; margin-bottom: 0;">NAME: ${member.mname} </p>
-				</div>
+						<img id="tempericon" src="<%=application.getContextPath()%>/resources/images/Chicken_tempicon.png" width="130px" style="padding-right: 50px;"/>
+				</div>			
 
-			<div id="mapBox">
-				<div id="map" style="width:400px; height:300px; margin: 10px;"></div>
-			</div>
-			<div id="loggerBox" class="sideBar"></div>
-
+			<div id="mapBox"></div>
+			
 		<div id="lower">
 		<footer>
 			<div id="footer">&copy;copyright 2019 . <a href="https://github.com/sangyeop1993/FinalWebProject" target="_blank">치킨날다</a></div>
@@ -180,7 +178,7 @@
 		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dad7fb57c07b01439820b31881802e7a"></script>
 		<script type="text/javascript">
 		//---------------------------------------------------------------------------- 카카오 지도
-        var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+        var container = document.getElementById('mapBox'); //지도를 담을 영역의 DOM 레퍼런스
         var options = { //지도를 생성할 때 필요한 기본 옵션
            center: new kakao.maps.LatLng(37.495046, 127.1223785), //지도의 중심좌표.
            level: 6 //지도의 레벨(확대, 축소 정도)
@@ -294,6 +292,16 @@
                var nowLng = obj.currLng;
                // 마커가 표시될 위치입니다 
                var markerPosition  = new kakao.maps.LatLng(nowLat, nowLng);
+               var imageSrc = "${pageContext.request.contextPath}/resources/images/drone.png"; // 마커이미지의 주소입니다    
+               imageSize = new kakao.maps.Size(30, 30); // 마커이미지의 크기입니다.
+               
+               var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+               
+               var marker = new kakao.maps.Marker({
+            	    position: markerPosition, 
+            	    image: markerImage // 마커이미지 설정 
+            	});
+
 
                if(marker != null) {
                   marker.setMap(null);
@@ -318,6 +326,16 @@
         	client.subscribe("/drone/fc/+");
         }
         //-----------------------------------------------------------------------------
+        // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+            var mapTypeControl = new kakao.maps.MapTypeControl();
+
+            // 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+            // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+            map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+            // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+            var zoomControl = new kakao.maps.ZoomControl();
+            map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
         
      </script>

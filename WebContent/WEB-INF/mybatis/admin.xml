@@ -5,7 +5,6 @@
 		select oid, m.mid as mid, mname, mphonenumber, did, price, datetime, ostatus, lname, lat, lng
 		from orders o, members m, levels l
 		where o.mid=m.mid and m.mlevel=l.mlevel
-		and ostatus in (0,1)
 		order by datetime desc
 	</select>
 	

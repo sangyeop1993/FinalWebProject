@@ -130,7 +130,7 @@
 		<div id="center" style="margin-bottom: 0px;">
          <div class="centerElements">
             <div class="elementTitle">
-               <p class="elementnName">★주문 제품★</p> <hr/>
+               <p class="elementnName">★주문 제품★</p> <hr/><hr style="border-top-width: 10px; border-color: white;"/>
             </div>
             <div class="elementContent" style="text-align: center;">
                   <%for(int i=0;i<costArr.length;i+=1){ %>
@@ -207,7 +207,7 @@
          <form method="post" name="payment_form" action="payment" style="height: 80px; padding-top:10px;">
             <input name="nowLat" value="" type="hidden">
             <input name="nowLng" value="" type="hidden">
-            <button id="paymentButton" class="btn btn-primary" disabled="disabled" style="width: 150px; height: 45px;">${finalCost}원 결제하기</button>
+            <button id="paymentButton" class="btn btn-primary" disabled="disabled" style="width: 300px; height: 45px;">${finalCost}원 결제하기</button>
          </form>
       </div>
       <footer>
@@ -283,5 +283,6 @@
             var zoomControl = new kakao.maps.ZoomControl();
             map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
       </script>
+     
    </body>
 </html>
