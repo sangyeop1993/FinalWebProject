@@ -199,7 +199,7 @@
         }
         
         var polyline;
-        var lastMission;
+        var lastMission = -1;
         
         polyline = new kakao.maps.Polyline({
             path: linePath, // 선을 구성하는 좌표배열 입니다
@@ -261,7 +261,7 @@
                  
                  //마지막 미션번호 구하기
                      var missionArr = obj.items;
-                    lastMission = missionArr[missionArr.length - 1].seq;
+                    lastMission = missionArr.length - 1;
                  setCookie("lastMissionNum", lastMission, 7);
                  // 지도에 선을 표시합니다 
                  polyline.setMap(map);
