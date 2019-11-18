@@ -263,6 +263,11 @@
 				if(obj.seq == lastMission) {
 					deleteCookie("missionArray");
 					var check = confirm("드론이 도착했습니까?");
+					if(check) {
+						var message = new Paho.MQTT.Message("hello");
+						message.destinationName = "/drone/chicken/delivery/success";
+						client.send(message);
+					}
                     lastMission++;
                  }
               }

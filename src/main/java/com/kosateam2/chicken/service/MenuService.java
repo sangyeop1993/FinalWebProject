@@ -22,7 +22,7 @@ public class MenuService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MenuService.class);
 	
-	public String mqttBrockerConnStr = "tcp://localhost:1882";
+	public String mqttBrockerConnStr = "tcp://106.253.56.124:1882";
 	public String pubTopic = "/chicken/order/pub";
 	public String subTopic = "";
 	public MqttClient client;
