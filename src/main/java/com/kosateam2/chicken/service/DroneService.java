@@ -27,8 +27,8 @@ public class DroneService {
 	@Autowired
 	private DroneDao droneDao;
 
-	public String mqttBrokerConnStr = "tcp://localhost:1882";
-	//public String mqttBrokerConnStr = "tcp://106.253.56.124:1882";
+	//public String mqttBrokerConnStr = "tcp://localhost:1882";
+	public String mqttBrokerConnStr = "tcp://106.253.56.124:1882";
     public String pubTopic = "/drone/fc/pub";
     public String subTopic = "/drone/fc/sub"; 
     public MqttClient mqttClient;

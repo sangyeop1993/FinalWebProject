@@ -134,6 +134,7 @@
 			    return unescape(cookieValue);
 			}
 			
+			
 			var cookieArr = getCookie("missionArray");
 			
 		</script>
@@ -218,18 +219,23 @@
         
         
         //---------------------------------------------------------------------------- MQTT연결
-        client = new Paho.MQTT.Client(location.hostname, 61622, "clientId"+new Date().getTime());
+        client = new Paho.MQTT.Client("106.253.56.124", 61622, "clientId"+new Date().getTime());
         // Message를  수신했을 때 자동으로 실행(콜백) 되는 함수
         client.onMessageArrived = function(message) {
            var JSONString = message.payloadString;
            var obj = JSON.parse(JSONString);
+           var totalDistance=0;
            if(obj.msgid=="MISSION_UPLOAD") {
               console.log("좌표 받았는데?");
               if(linePath.length==0){
                  var objArr = obj.items;
                  for(var i=0;i<objArr.length;i++){
                     linePath.push(new kakao.maps.LatLng(objArr[i].x, objArr[i].y));
+                    if(i>0){
+                    	totalDistance += Math.pow(Math.pow(88.3197*(objArr[i].y-objArr[i-1].y),2)+Math.pow(111*(objArr[i].x-objArr[i-1].x),2), 0.5);
+                    }
                  }
+                 console.log(totalDistance);
                  
                  var jsonLine = JSON.stringify(linePath);
                  setCookie("missionArray", jsonLine, 7);
@@ -260,8 +266,25 @@
 				//console.log("now mission: " +obj.seq);
                 //console.log("lastMission: " + lastMission);
 				if(obj.seq == lastMission) {
+					var message;
 					deleteCookie("missionArray");
 					var check = confirm("드론이 도착했습니까?");
+					if(check) {
+						$.ajax({
+							url: "orderEnd",
+							success: function(data) {
+								console.log("지운거같은디?");
+							}
+						});
+						console.log("보낸것같다");
+						message = new Paho.MQTT.Message("true");
+						
+					} else {
+						message = new Paho.MQTT.Message("false");
+					}
+					message.destinationName = "/drone/chicken/delivery/success";
+					console.log(message);
+					client.send(message);
                     lastMission++;
                  }
               }
@@ -289,9 +312,10 @@
         client.connect({onSuccess:onConnect});
         
         // 연결이 완료되었을 때 자동으로 실행(콜백) 되는 함수
-        function onConnect() {
-           console.log("##연결 되었다")
-            client.subscribe("/drone/fc/+");
+		function onConnect() {
+			console.log("##연결 되었다");
+            console.log(${orderId});
+        	client.subscribe("/drone/fc/+");
         }
         //-----------------------------------------------------------------------------
 

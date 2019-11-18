@@ -47,8 +47,6 @@ public class AdminService {
 		String message=json.toString();
 		socket.sendMessage("/drone/chicken/delivery/request", message);
 		socket.destroy();
-		
-		
 	}
 
 	
