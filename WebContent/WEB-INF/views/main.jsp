@@ -152,13 +152,13 @@
 							<p style="padding-left: 10px;"><img id="userPng" src="<%=application.getContextPath()%>/resources/images/user_icon.png" width=80px;/></p>
 						<div>		
 							<p>${member.lname} &nbsp ${member.mname}님 환영합니다.</p>
-							<p>DRONE: ${droen.dname}</p>
+							<p>DRONE: ${drone.dname}</p>
 							
 							<div style="padding-left: 0px; padding-top:5px; ">
 							<button id="logoutButton" class="btn btn-danger" type="button" onclick="location.href='logout'" >로그아웃</button>
 							<a href="deleteMember?mid=${member.mid}" id="deleteButton" class="btn btn-secondary" >회원탈퇴</a>	</div>
 						</div>
-					</div>	
+					</div>
 				</div>
 
 				<div id="TemperatureBox">

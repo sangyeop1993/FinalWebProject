@@ -73,8 +73,11 @@ public class OrderController {
 			orderId = service.getOid();
 			sess.setAttribute("orderId", orderId);
 			ArrayList<ItemMember> itemList = new ArrayList<>();
+			
 			Drone drone = service.getDid();
 			sess.setAttribute("drone", drone);
+			
+			logger.debug("########################"+drone.getDname());
 			ChickenMember member = (ChickenMember)sess.getAttribute("member");
 			Order order = new Order();
 			order.setOid(orderId);
