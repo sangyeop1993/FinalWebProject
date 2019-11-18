@@ -36,6 +36,11 @@ public class AdminController {
 	public String detailOrder(int oid, Model model) {
 		ChickenMemberAndOrder member=service.searchOrder(oid);
 		List<ItemMenusAndMenus> itemList=service.orderItems(oid);
+		int totalWeight = 0;
+		for(int i=0;i<itemList.size();i+=1) {
+			totalWeight += itemList.get(i).getAmount()*itemList.get(i).getMenuWeight();
+		}
+		model.addAttribute("totalWeight", totalWeight);
 		model.addAttribute("member",member);
 		model.addAttribute("itemList",itemList);
 		return "detailPage";

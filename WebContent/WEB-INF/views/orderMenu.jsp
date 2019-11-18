@@ -126,6 +126,7 @@
 			var menuArray = [0,0,0,0,0,0,0,0,0,0,0];
 			var menuNameArray = ["허니콤보","뿌링클","황금올리브","황금올리브 순살","갈비천왕","감자튀김","치즈볼","소떡소떡","콜라","사이다","맥주"];
 			var menuPriceArray = ["19000","20000","18000","20000","20000","4000","5000","2500","2000","2000","3000"];
+			var menuWeightArray= ["700","700","700","500","500","150","150","120","1500","1500","500"];
 			
 			var i = 0;
 			var html1 = "";
@@ -156,6 +157,7 @@
 				$(".item_count" + param).html(menuArray[param]);
 				$(".selecItem").html(html1);
 				$("#totalPrice").html("총합계금액  "+tp+" 원");
+				checkWeight();
 			}
 			function countDown(param) {
 				if(menuArray[param] > 0){
@@ -177,9 +179,23 @@
 				$(".item_count" + param).html(menuArray[param]);
 				$(".selecItem").html(html1);
 				$("#totalPrice").html("총합계금액  "+tp+" 원");
+				checkWeight();
 			}
 			function send() {
 				location.href="finalOrder?arr="+menuArray;
+			}
+			function checkWeight(){
+				var totalWeight =0;
+				for(var i=0;i<11;i++){
+					totalWeight += menuArray[i]*menuWeightArray[i];
+				}
+				if(totalWeight >= 5000){
+					$("#selec_button").attr("disabled","disabled");
+					$("#weightMessage").html("5kg 이하 주문가능");
+				} else{
+					$("#selec_button").removeAttr("disabled");
+					$("#weightMessage").html("");
+				}
 			}
 </script>
 	</head>
@@ -197,6 +213,7 @@
 				<div id="menus" style=" text-align: center;">
 				    <ol class="selecItem" id=selec-manue></ol>
 				    <div id="totalPrice" style="font-size: 20px;"></div>
+				    <p id="weightMessage" style="color:red; font-size: 20px;"></p>
 				    <button onclick="send()" class="btn btn-danger" id="selec_button">구매하기</button>
 				</div>
 			</div>
