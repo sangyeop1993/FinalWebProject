@@ -245,7 +245,7 @@
              
              nowLat = latlng.getLat();
              nowLng = latlng.getLng();
-             if(Math.pow(88.9*(nowLng-127.117972),2)+Math.pow(111*(nowLat-37.545293),2)<=25) {
+             if(Math.pow(88.3197*(nowLng-127.117972),2)+Math.pow(111*(nowLat-37.545293),2)<=25) {
                 $("#pointError").html("");
                 document.payment_form.nowLat.value=nowLat;
                 document.payment_form.nowLng.value=nowLng;

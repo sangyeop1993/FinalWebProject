@@ -1,38 +1,38 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<p>ÁÖ¹®¹øÈ£: ${member.oid}</p>
-<p>»ç¿ëÀÚ id: ${member.mid}</p>
-<p>ÀÌ¸§: ${member.mname}</p>
-<p>ÀüÈ­¹øÈ£: ${member.mphonenumber}</p>
-<p>µå·Ğ¾ÆÀÌµğ: ${member.did}</p>
-<p>°áÀç ±İ¾×: ${member.price}</p>
+<p>ì£¼ë¬¸ë²ˆí˜¸: ${member.oid}</p>
+<p>ì‚¬ìš©ì id: ${member.mid}</p>
+<p>ì´ë¦„: ${member.mname}</p>
+<p>ì „í™”ë²ˆí˜¸: ${member.mphonenumber}</p>
+<p>ë“œë¡ ì•„ì´ë””: ${member.did}</p>
+<p>ê²°ì¬ ê¸ˆì•¡: ${member.price}</p>
 <p>${member.datetime}</p>
-<p>ÁøÇà»óÅÂ: ${member.ostatus}</p>
-<p>µî±Ş: ${member.lname}</p>
-<p>À§µµ: ${member.lat}</p>
-<p>°æµµ: ${member.lng}</p>
+<p>ì§„í–‰ìƒíƒœ: ${member.ostatus}</p>
+<p>ë“±ê¸‰: ${member.lname}</p>
+<p>ìœ„ë„: ${member.lat}</p>
+<p>ê²½ë„: ${member.lng}</p>
 
 <hr/>
 
-<h5>ÁÖ¹® ¸®½ºÆ®</h5>
+<h5>ì£¼ë¬¸ ë¦¬ìŠ¤íŠ¸</h5>
 <table border="1">
 	<thead>
 	<tr>
-	<th>¿äÃ» ¹øÈ£</th>
-	<th>¸Ş´º ¹øÈ£</th>
-	<th>ÀÌ¸§</th>
-	<th>¼ö·®</th>
-	<th>°¡°İ</th>
-	<th>¹«°Ô</th>
+	<th>ìš”ì²­ ë²ˆí˜¸</th>
+	<th>ë©”ë‰´ ë²ˆí˜¸</th>
+	<th>ì´ë¦„</th>
+	<th>ìˆ˜ëŸ‰</th>
+	<th>ê°€ê²©</th>
+	<th>ë¬´ê²Œ</th>
 	</tr>
 	</thead>
 	<tbody>
@@ -50,7 +50,7 @@
 	</tbody>
 </table>
 <br/>
-<a href="returnList">´İ±â</a>
+<a href="returnList">ë‹«ê¸°</a>
 
 </body>
 </html>

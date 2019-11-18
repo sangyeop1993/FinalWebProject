@@ -1,5 +1,7 @@
 package com.kosateam2.chicken.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,10 +115,22 @@ public class OrderController {
 	}
 	
 	@RequestMapping("/adminPage")
-	public String requestList(HttpServletRequest request,HttpServletResponse response,Model model) {
+	public String requestList(HttpServletRequest request,HttpServletResponse response, Model model) {
 		List<ChickenMemberAndOrder> list=service.requestChickenOrder();
 		System.out.println(list.get(0).getDatetime());
 		model.addAttribute("list",list);
 		return "admin";
+	}
+	
+	@RequestMapping("/orderEnd")
+	public void orderEnd(HttpSession sess, HttpServletResponse response) throws IOException {
+		PrintWriter pw = response.getWriter();
+		logger.debug("byebye orderId");
+		sess.removeAttribute("orderId");
+		JSONObject object = new JSONObject();
+		object.put("success", "true");
+		pw.print(object.toString());
+		pw.flush();
+		pw.close();
 	}
 }
