@@ -219,7 +219,7 @@
         
         
         //---------------------------------------------------------------------------- MQTT연결
-        client = new Paho.MQTT.Client(location.hostname, 61622, "clientId"+new Date().getTime());
+        client = new Paho.MQTT.Client("106.253.56.124", 61622, "clientId"+new Date().getTime());
         // Message를  수신했을 때 자동으로 실행(콜백) 되는 함수
         client.onMessageArrived = function(message) {
            var JSONString = message.payloadString;
