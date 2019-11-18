@@ -12,6 +12,8 @@
 		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/paho-mqtt-min.js"></script>
 		<link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/Highcharts-7.2.1/code/highcharts.js"></script>
+		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/Highcharts-7.2.1/code/themes/skies.js"></script>
 		<style>
 		@import url('https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean');
 	
@@ -165,6 +167,7 @@
 
 				<div id="TemperatureBox">
 						<img id="tempericon" src="<%=application.getContextPath()%>/resources/images/Chicken_tempicon.png" width="130px" style="padding-right: 50px;"/>
+						<!-- <div id="divChart" style="width:100%; height:800px;"></div> -->
 				</div>			
 
 			<div id="mapBox"></div>
@@ -222,6 +225,13 @@
         client.onMessageArrived = function(message) {
            var JSONString = message.payloadString;
            var obj = JSON.parse(JSONString);
+           /*
+           if(obj.msgid == "NOW_TEMPERATURE") {
+        	   var series = chart.series[0];
+        	   var shift = series.data.length > 20;
+				series.addPoint(json, true, shift);
+           }
+           */
            var totalDistance=0;
            if(obj.msgid=="MISSION_UPLOAD") {
               console.log("좌표 받았는데?");
@@ -261,11 +271,12 @@
            //---------------------------------------
            //Drone이 미션을 완료하면 드론이 도착했는지를 묻는 알림창을 표시하기
 			if(obj.msgid=="MISSION_CURRENT") {
-				//console.log("now mission: " +obj.seq);
-                //console.log("lastMission: " + lastMission);
+				console.log("now mission: " +obj.seq);
+                console.log("lastMission: " + lastMission);
 				if(obj.seq == lastMission) {
 					var message;
 					deleteCookie("missionArray");
+					deleteCookie("lastMissionNum");
 					var check = confirm("드론이 도착했습니까?");
 					if(check) {
 						$.ajax({
@@ -324,8 +335,34 @@
 		function onConnect() {
 			console.log("##연결 되었다");
             console.log(${orderId});
-        	client.subscribe("/drone/fc/+");
+        	client.subscribe("/drone/+/+");
         }
+        /*
+		var chart = null;
+		$(function() {
+			chart = new Highcharts.Chart({
+				chart: {
+					renderTo: "divChart",
+					defaultSeriesType: "spline"
+				},
+				title: {
+					text: "Temperature Chart"
+				},
+				xAxis: {
+					type: "datetime",
+					tickPixelInterval: 100,
+					maxZoom: 20000
+				},
+				yAxis: {
+					minPadding: 0.2,
+					maxPadding: 0.2
+				},
+				series: [
+					{name: "temperature", data: []}
+				]
+			});
+		});*/
+		
         //-----------------------------------------------------------------------------
         // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
             var mapTypeControl = new kakao.maps.MapTypeControl();
