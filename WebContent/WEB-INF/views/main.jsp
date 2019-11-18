@@ -284,6 +284,7 @@
 					console.log(message);
 					client.send(message);
                     lastMission++;
+                    location.href = "endPage";
                  }
               }
            
