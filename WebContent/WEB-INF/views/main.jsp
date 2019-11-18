@@ -28,7 +28,6 @@
 		    	flex-direction: column;
 		        background-color: rgb(253, 189, 51);
 		        height: 100vh;
-		        width: 
 		    }
 		    
 		    #userBox {
