@@ -250,7 +250,7 @@
                 document.payment_form.nowLat.value=nowLat;
                 document.payment_form.nowLng.value=nowLng;
                 $("#paymentButton").removeAttr("disabled");
-             } else { 
+             } else {
                 $("#pointError").html("*배달불가 지역입니다*");
                 document.payment_form.nowLat.value=null;
                 document.payment_form.nowLng.value=null;
