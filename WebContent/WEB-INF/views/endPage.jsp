@@ -30,6 +30,6 @@
 		</style>
 	</head>
 	<body>
-		<h3>수고하셨습니다!</h3>
+		<h3><a href="/FinalWebProject">감사합니다!</a></h3>
 	</body>
 </html>
