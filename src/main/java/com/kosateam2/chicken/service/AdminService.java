@@ -17,8 +17,8 @@ public class AdminService {
 	@Autowired
 	private AdminDao adminDao;
 
-	public List<ChickenMemberAndOrder> orderList() {
-		List<ChickenMemberAndOrder> list= adminDao.orderList();
+	public List<ChickenMemberAndOrder> orderList(int startRowNo,int endRowNo) {
+		List<ChickenMemberAndOrder> list= adminDao.orderList(startRowNo, endRowNo);
 		return list;
 	}
 
@@ -35,6 +35,11 @@ public class AdminService {
 	public boolean updateOrderStatus(Order order) {
 		boolean result=adminDao.updateOrderState(order);
 		return result;
+	}
+	
+	public int getTotalRowNum() {
+		int num = adminDao.selectTotalRowNum();
+		return num;
 	}
 
 	public void sendMqtt(Order order) {
