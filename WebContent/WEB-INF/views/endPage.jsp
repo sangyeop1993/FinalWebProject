@@ -143,9 +143,9 @@
 					margin-top: 20px;
 				}
 				#text{
-					font-size: 40px;
+					font-size: 35px;
 					text-align: center;	
-
+					color:white;
 				}
 				p{
 					margin: 0px;	
