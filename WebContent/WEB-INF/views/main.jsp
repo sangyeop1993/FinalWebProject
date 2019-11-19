@@ -80,10 +80,9 @@
 		    	background-color:white;
 		    	border-radius: 8px;
 		    	height: 140px;
-
 		    	padding: 10px;
 		    	padding-left: 10px;
-		    } 
+		    }
 		    #mapBox {
 		  		margin-left: 10px;
 				margin-right: 10px;
@@ -170,7 +169,7 @@
 
 				<div id="TemperatureBox">
 						<img id="tempericon" src="<%=application.getContextPath()%>/resources/images/Chicken_tempicon.png" width="130px" style="padding-right: 50px;"/>
-						<!-- <div id="divChart" style="width:100%; height:800px;"></div> -->
+						<!-- <div id="divChart"></div> -->
 				</div>			
 
 			
@@ -348,11 +347,10 @@
         // 연결이 완료되었을 때 자동으로 실행(콜백) 되는 함수
 		function onConnect() {
 			console.log("##연결 되었다");
-            console.log(${orderId});
+			console.log(${orderId});
         	client.subscribe("/drone/+/+");
         }
-        /*
-		var chart = null;
+		/*var chart = null;
 		$(function() {
 			chart = new Highcharts.Chart({
 				chart: {
@@ -360,7 +358,7 @@
 					defaultSeriesType: "spline"
 				},
 				title: {
-					text: "Temperature Chart"
+					text: ""
 				},
 				xAxis: {
 					type: "datetime",
@@ -375,8 +373,8 @@
 					{name: "temperature", data: []}
 				]
 			});
-		});*/
-		
+		});
+		*/
         //-----------------------------------------------------------------------------
         // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
             var mapTypeControl = new kakao.maps.MapTypeControl();
@@ -390,6 +388,8 @@
             map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
             
             function endMission() {
+            	deleteCookie("missionArray");
+				deleteCookie("lastMissionNum");
             	location.href = "endPage";
             }
             //-------------------------------
