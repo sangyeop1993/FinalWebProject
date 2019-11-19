@@ -98,6 +98,9 @@
 		        line-height: 50px;
 		        text-align: center;
 		    }
+		     .wrap_content {overflow:hidden;}
+   			 .wrap_map {width:50%;float:left;position:relative}
+    		.wrap_button {position:absolute;left:15px;top:12px;z-index:2}
 		</style>
 		<script type="text/javascript">
 			function test(param) {
@@ -170,7 +173,17 @@
 						<!-- <div id="divChart" style="width:100%; height:800px;"></div> -->
 				</div>			
 
-			<div id="mapBox"></div>
+			
+				<div class="wrap_content">
+    				<div class="wrap_map">
+    				<div id="mapBox"></div>
+    				<div class="wrap_button">
+						<a href="javascript:;" class="btn_comm btn_resetMap" onclick="endMission()">
+						<img src="${pageContext.request.contextPath}/resources/images/replay.png" width="20px"/></a>
+					</div>
+				</div>
+			</div>
+			
 			
 		<div id="lower">
 		<footer>
@@ -379,6 +392,7 @@
             function endMission() {
             	location.href = "endPage";
             }
+            //-------------------------------
         
      </script>
   </body>
