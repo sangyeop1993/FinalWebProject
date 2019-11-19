@@ -287,7 +287,9 @@
 	
 		<div class="main">
 		<div id="box" style="height: 350px">
-		<div style="height: 150px">감사합니다</div>
+		<div style="POSITION: RELATIVE;TOP: 150px;LINE-HEIGHT: 150PX;TEXT-ALIGN: CENTER;FONT-SIZE: 40PX;">
+		<a>배달 완료</a>
+		</div>
 		<img src="${pageContext.request.contextPath}/resources/images/HEAD.png" style="height: 200px;width: 300px;margin-top: 100px;margin-left: 60px;"/>
 		</div>
 	    <div class="monster">
