@@ -50,7 +50,7 @@
 				  display: flex;
 				  justify-content: center;
 				  position: relative;
-				  width: 375px;
+				  width: 415px;
 				  height: 490px;
 				  border-top-left-radius: 200px;
 				  border-top-right-radius: 200px;
@@ -286,7 +286,10 @@
 	<body style="height: 300px">
 	
 		<div class="main">
-		<div id="box" style="height: 400px"></div>
+		<div id="box" style="height: 350px">
+		<div style="height: 150px">감사합니다</div>
+		<img src="${pageContext.request.contextPath}/resources/images/HEAD.png" style="height: 200px;width: 300px;margin-top: 100px;margin-left: 60px;"/>
+		</div>
 	    <div class="monster">
 	        <div class="monster__face">
 	            <div class="monster__eyes">
