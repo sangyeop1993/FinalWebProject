@@ -187,7 +187,7 @@
            level: 6 //지도의 레벨(확대, 축소 정도)
         };
         var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-        var marker;
+        var marker = null;
         // 선을 만드는 변수
         var linePath = [];
         if(cookieArr != ""){
@@ -298,31 +298,32 @@
                     location.href = "endPage";
                  }
               }
-           
-              if(obj.msgid=="GLOBAL_POSITION_INT"){
-               var nowLat = obj.currLat;
-               var nowLng = obj.currLng;
+			
+			
+			if(obj.msgid=="GLOBAL_POSITION_INT"){
+				var nowLat = obj.currLat;
+                var nowLng = obj.currLng;
                // 마커가 표시될 위치입니다 
                var markerPosition  = new kakao.maps.LatLng(nowLat, nowLng);
                var imageSrc = "${pageContext.request.contextPath}/resources/images/drone.png"; // 마커이미지의 주소입니다    
                imageSize = new kakao.maps.Size(30, 30); // 마커이미지의 크기입니다.
                
                var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-               
-               var marker = new kakao.maps.Marker({
-            	    position: markerPosition, 
-            	    image: markerImage // 마커이미지 설정 
-            	});
-
-
+               /*marker = new kakao.maps.Marker({
+              	    position: markerPosition, 
+              	  	image: markerImage // 마커이미지 설정 
+              		});
+               */
                if(marker != null) {
                   marker.setMap(null);
                   marker.setPosition(markerPosition);
                } else {
                   marker = new kakao.maps.Marker({
-                      position: markerPosition
+                      position: markerPosition,
+                      image: markerImage // 마커이미지 설정 
                   });
                }
+               
                
                marker.setMap(map);
                map.setCenter(markerPosition);
@@ -374,7 +375,10 @@
             // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
             var zoomControl = new kakao.maps.ZoomControl();
             map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-
+            
+            function endMission() {
+            	location.href = "endPage";
+            }
         
      </script>
   </body>

@@ -37,6 +37,7 @@ public class HomeController {
 		sess.removeAttribute("finalCost");
 		sess.removeAttribute("member");
 		sess.removeAttribute("loginResult");
+		sess.removeAttribute("orderId");
 		return "endPage";
 	}
 }
