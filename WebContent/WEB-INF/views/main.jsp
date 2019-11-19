@@ -80,7 +80,6 @@
 		    	background-color:white;
 		    	border-radius: 8px;
 		    	height: 140px;
-		    	
 		    	padding: 10px;
 		    	padding-left: 10px;
 		    }
@@ -89,6 +88,7 @@
 				margin-right: 10px;
 				margin-top: 10px;
 		    	height: 420px;
+		    	width: 400px;
 		    	border-radius: 8px;
 		    	background-color:white;
 		    }
