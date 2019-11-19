@@ -27,31 +27,28 @@
 				
 				/* Generic */
 				body {
-				  display: flex;
-				  justify-content: center;
-				  align-items: flex-end;
+				  flex-direction:column;
 				  width: 100%;
 				  height: 100vh;
 				  background-color: rgb(253, 189, 51);
 				}
-				
-				.main {
-				  flex: 1;
-				  justify-content: center;
-				  align-items: flex-end;
-				  position: relative;
-				  width: 800px;
-				  height: 400px;
+				.box1{
+					display: flex;
+					flex-direction:column; 
+					height: 290px;
 				}
-				.head{
+				.box2{
+					 display: flex;
+					 flex: 1;
 				}
+
 				
 				.monster {
 				  display: flex;
 				  justify-content: center;
 				  position: relative;
 				  width: 415px;
-				  height: 490px;
+				  height: 460px;
 				  border-top-left-radius: 200px;
 				  border-top-right-radius: 200px;
 				  background-color: #ffffff;
@@ -140,6 +137,22 @@
 				  background-color: #ffffff;
 				  z-index: 100;
 				  animation: b 1.75s infinite;
+				}
+				#home{
+					margin-left: 375px;
+					margin-top: 20px;
+				}
+				#text{
+					font-size: 40px;
+					text-align: center;	
+
+				}
+				p{
+					margin: 0px;	
+				}
+				#icon{
+					text-align: center;
+					margin-top: 90px;
 				}
 				
 				/**/
@@ -283,15 +296,16 @@
 				}
 </style>
 	</head>
-	<body style="height: 300px">
-	
-		<div class="main">
-		<div id="box" style="height: 350px">
-		<div style="POSITION: RELATIVE;TOP: 150px;LINE-HEIGHT: 150PX;TEXT-ALIGN: CENTER;FONT-SIZE: 40PX;">
-		<a>배달 완료</a>
+	<body>
+	<div class="box1">
+		<div style="width: 414px; height: 50px"><a href="logout"><img src="<%=application.getContextPath()%>/resources/images/home.png" id="home" style="width: 30px;"/></a></div>
+		<div id="text" style="width: 414px; height: 100px"><p style="margin-top: 40px;">★배달완료★<br/>주문해주셔서 감사합니다</p></div>
+		<div id="icon">
+		<a href="<%=application.getContextPath()%>/"><img src="<%=application.getContextPath()%>/resources/images/HEAD.png" style="width: 230px;"/></a>
 		</div>
-		<img src="${pageContext.request.contextPath}/resources/images/HEAD.png" style="height: 200px;width: 300px;margin-top: 100px;margin-left: 60px;"/>
-		</div>
+	</div>
+		
+		<div class="box2">
 	    <div class="monster">
 	        <div class="monster__face">
 	            <div class="monster__eyes">
@@ -304,6 +318,6 @@
 	            </div>
 	        </div>
 	    </div>
-		</div>
+	    </div>
 	</body>
 </html>
