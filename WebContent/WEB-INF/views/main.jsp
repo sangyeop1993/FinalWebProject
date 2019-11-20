@@ -12,8 +12,10 @@
 		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/js/paho-mqtt-min.js"></script>
 		<link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/Highcharts-7.2.1/code/highcharts.js"></script>
-		<script type="text/javascript" src="<%=application.getContextPath()%>/resources/Highcharts-7.2.1/code/themes/skies.js"></script>
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/series-label.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		<script src="https://code.highcharts.com/modules/export-data.js"></script>
 		<style>
 		@import url('https://fonts.googleapis.com/css?family=Jua&display=swap&subset=korean');
 	
@@ -74,21 +76,27 @@
      		}
      		
      		#TemperatureBox {
+     			margin-top: 10px;
 				margin-left: 10px;
 				margin-right: 10px;
-				margin-top: 10px;
 		    	background-color:white;
 		    	border-radius: 8px;
+		    	height: 150px;
+		    	
+		    }
+		    
+		    #container {
 		    	height: 140px;
-		    	padding: 10px;
-		    	padding-left: 10px;
+		    	width: 355px;
+		    	text-align: center;
+		    	padding-top: 5px;
 		    }
 		    #mapBox {
 		  		margin-left: 10px;
 				margin-right: 10px;
 				margin-top: 10px;
 		    	height: 420px;
-		    	width: 400px;
+		    	width: 395px;
 		    	border-radius: 8px;
 		    	background-color:white;
 		    }
@@ -100,6 +108,9 @@
 		     .wrap_content {overflow:hidden;}
    			 .wrap_map {width:50%;float:left;position:relative}
     		.wrap_button {position:absolute;left:15px;top:12px;z-index:2}
+    		.highcharts-background {
+    			height: 120px !important;
+    		}
 		</style>
 		<script type="text/javascript">
 			function test(param) {
@@ -168,8 +179,10 @@
 				</div>
 
 				<div id="TemperatureBox">
-						<img id="tempericon" src="<%=application.getContextPath()%>/resources/images/Chicken_tempicon.png" width="130px" style="padding-right: 50px;"/>
-						<!-- <div id="divChart"></div> -->
+					<div style="display: flex;">
+						<div id="container"></div>
+					</div>
+						
 				</div>			
 
 			
@@ -241,7 +254,7 @@
            if(obj.msgid == "NOW_TEMPERATURE") {
         	   var series = chart.series[0];
         	   var shift = series.data.length > 20;
-				series.addPoint(json, true, shift);
+        	   series.addPoint(json, true, shift);
            }
            */
            var totalDistance=0;
@@ -283,8 +296,6 @@
            //---------------------------------------
            //Drone이 미션을 완료하면 드론이 도착했는지를 묻는 알림창을 표시하기
 			if(obj.msgid=="MISSION_CURRENT") {
-				console.log("now mission: " +obj.seq);
-                console.log("lastMission: " + lastMission);
 				if(obj.seq == lastMission) {
 					var message;
 					deleteCookie("missionArray");
@@ -340,6 +351,13 @@
                marker.setMap(map);
                map.setCenter(markerPosition);
             }
+			
+			if(obj.msgid=="TEMPERATURE") {
+				console.log(obj.temperature);
+				var series = chart.series[0];
+	        	var shift = series.data.length > 5;
+	        	series.addPoint(obj.temperature, true, shift);
+			}
         }
         
         client.connect({onSuccess:onConnect});
@@ -350,31 +368,61 @@
 			console.log(${orderId});
         	client.subscribe("/drone/+/+");
         }
-		/*var chart = null;
+        
+        var chart = null;
 		$(function() {
-			chart = new Highcharts.Chart({
-				chart: {
-					renderTo: "divChart",
-					defaultSeriesType: "spline"
-				},
-				title: {
-					text: ""
-				},
-				xAxis: {
-					type: "datetime",
-					tickPixelInterval: 100,
-					maxZoom: 20000
-				},
-				yAxis: {
-					minPadding: 0.2,
-					maxPadding: 0.2
-				},
-				series: [
-					{name: "temperature", data: []}
-				]
-			});
+			chart = new Highcharts.chart('container', {
+				  chart: {
+					    type: 'spline'
+					  },
+				  title: {
+						text: '나의 치킨 온도는?'
+				  },
+				  xAxis: {
+				      tickPixelInterval: 100,
+				      visible: false,
+				      labels: {
+				        enabled: false
+				      }
+				  },
+				  legend:{
+					  enabled: false
+				  },
+				  yAxis: {
+				    title: {
+					  text: 'Temperature'
+				    },
+					    labels: {
+					      formatter: function () {
+					        return this.value + '°';
+					      }
+					    }
+					  },
+					  tooltip: {
+					    crosshairs: true,
+					    shared: true
+					  },
+					  plotOptions: {
+					    spline: {
+					      marker: {
+					        radius: 4,
+					        lineColor: '#FDBD33',
+					        lineWidth: 1
+					      }
+					    }
+					  },
+					  series: [{
+						  marker: {
+						      symbol: "url(${pageContext.request.contextPath}/resources/images/Chicken_tempicon.png)",
+						      width: 15,
+						      height: 20
+						  },
+						  name: "", 
+						  color: '#FDBD33',
+						  data: []}
+					  ]
+			  });	
 		});
-		*/
         //-----------------------------------------------------------------------------
         // 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
             var mapTypeControl = new kakao.maps.MapTypeControl();

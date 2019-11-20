@@ -145,7 +145,7 @@
 				#text{
 					font-size: 35px;
 					text-align: center;	
-					color:white;
+					color: white;
 				}
 				p{
 					margin: 0px;	
