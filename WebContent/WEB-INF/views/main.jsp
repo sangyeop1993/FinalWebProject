@@ -244,131 +244,152 @@
         }
         
         
-        //---------------------------------------------------------------------------- MQTT연결
-        client = new Paho.MQTT.Client("106.253.56.124", 61622, "clientId"+new Date().getTime());
-        // Message를  수신했을 때 자동으로 실행(콜백) 되는 함수
-        client.onMessageArrived = function(message) {
-           var JSONString = message.payloadString;
-           var obj = JSON.parse(JSONString);
-           /*
-           if(obj.msgid == "NOW_TEMPERATURE") {
-        	   var series = chart.series[0];
-        	   var shift = series.data.length > 20;
-        	   series.addPoint(json, true, shift);
-           }
-           */
-           var totalDistance=0;
-           if(obj.msgid=="MISSION_UPLOAD") {
-              console.log("좌표 받았는데?");
-              if(linePath.length==0){
-                 var objArr = obj.items;
-                 for(var i=0;i<objArr.length;i++){
-                    linePath.push(new kakao.maps.LatLng(objArr[i].x, objArr[i].y));
-                    if(i>0){
-                    	totalDistance += Math.pow(Math.pow(88.3197*(objArr[i].y-objArr[i-1].y),2)+Math.pow(111*(objArr[i].x-objArr[i-1].x),2), 0.5);
-                    }
-                 }
-                 console.log(totalDistance);
-                 
-                 var jsonLine = JSON.stringify(linePath);
-                 setCookie("missionArray", jsonLine, 7);
-                 
-                 console.log(linePath);
-                    
-                 // 지도에 표시할 선을 생성합니다
-                 polyline = new kakao.maps.Polyline({
-                     path: linePath, // 선을 구성하는 좌표배열 입니다
-                     strokeWeight: 5, // 선의 두께 입니다
-                     strokeColor: '#FF0000', // 선의 색깔입니다
-                     strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-                     strokeStyle: 'solid' // 선의 스타일입니다
-                 });
-                 
-                 //마지막 미션번호 구하기
-                     var missionArr = obj.items;
-                    lastMission = missionArr.length - 1;
-                 setCookie("lastMissionNum", lastMission, 7);
-                 // 지도에 선을 표시합니다 
-                 polyline.setMap(map);
-              }
-           }
-           
-           //---------------------------------------
-           //Drone이 미션을 완료하면 드론이 도착했는지를 묻는 알림창을 표시하기
-			if(obj.msgid=="MISSION_CURRENT") {
-				if(obj.seq == lastMission) {
-					var message;
-					deleteCookie("missionArray");
-					deleteCookie("lastMissionNum");
-					var check = confirm("드론이 도착했습니까?");
-					if(check) {
-						$.ajax({
-							url: "orderEnd",
-							success: function(data) {
-								console.log("지운거같은디?");
-							}
-						});
-						console.log("보낸것같다");
-						message = new Paho.MQTT.Message("true");
-						
-					} else {
-						message = new Paho.MQTT.Message("false");
-					}
-					message.destinationName = "/drone/chicken/delivery/success";
-					console.log(message);
-					client.send(message);
-                    lastMission++;
-                    location.href = "endPage";
-                 }
-              }
-			
-			
-			if(obj.msgid=="GLOBAL_POSITION_INT"){
-				var nowLat = obj.currLat;
-                var nowLng = obj.currLng;
-               // 마커가 표시될 위치입니다 
-               var markerPosition  = new kakao.maps.LatLng(nowLat, nowLng);
-               var imageSrc = "${pageContext.request.contextPath}/resources/images/drone.png"; // 마커이미지의 주소입니다    
-               imageSize = new kakao.maps.Size(30, 30); // 마커이미지의 크기입니다.
-               
-               var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-               /*marker = new kakao.maps.Marker({
-              	    position: markerPosition, 
-              	  	image: markerImage // 마커이미지 설정 
-              		});
-               */
-               if(marker != null) {
-                  marker.setMap(null);
-                  marker.setPosition(markerPosition);
-               } else {
-                  marker = new kakao.maps.Marker({
-                      position: markerPosition,
-                      image: markerImage // 마커이미지 설정 
-                  });
-               }
-               
-               
-               marker.setMap(map);
-               map.setCenter(markerPosition);
+        //---------------------------------------------------------------------------- client1 연결
+        $(function() {
+        	client1 = new Paho.MQTT.Client("106.253.56.124", 61622, "clientId"+new Date().getTime() + 1);
+        	
+        	client1.connect({onSuccess:function() {
+        		client1.subscribe("/drone/fc/pub");
+        		console.log("client1 연결");
+        	}});
+        	client1.onMessageArrived = function(message) {     
+        		var JSONString = message.payloadString;
+                var obj = JSON.parse(JSONString);
+                
+                if(obj.msgid=="GLOBAL_POSITION_INT"){
+    				var nowLat = obj.currLat;
+                    var nowLng = obj.currLng;
+                   // 마커가 표시될 위치입니다 
+                   var markerPosition  = new kakao.maps.LatLng(nowLat, nowLng);
+                   var imageSrc = "${pageContext.request.contextPath}/resources/images/drone.png"; // 마커이미지의 주소입니다    
+                   imageSize = new kakao.maps.Size(30, 30); // 마커이미지의 크기입니다.
+                   
+                   var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+                   /*marker = new kakao.maps.Marker({
+                  	    position: markerPosition, 
+                  	  	image: markerImage // 마커이미지 설정 
+                  		});
+                   */
+                   if(marker != null) {
+                      marker.setMap(null);
+                      marker.setPosition(markerPosition);
+                   } else {
+                      marker = new kakao.maps.Marker({
+                          position: markerPosition,
+                          image: markerImage // 마커이미지 설정 
+                      });
+                   }
+                   
+                   
+                   marker.setMap(map);
+                   map.setCenter(markerPosition);
+                }
+                
+
+                //Drone이 미션을 완료하면 드론이 도착했는지를 묻는 알림창을 표시하기
+    			if(obj.msgid=="MISSION_CURRENT") {
+    				if(obj.seq == lastMission) {
+    					var message;
+    					deleteCookie("missionArray");
+    					deleteCookie("lastMissionNum");
+    					var check = confirm("드론이 도착했습니까?");
+    					if(check) {
+    						$.ajax({
+    							url: "orderEnd",
+    							success: function(data) {
+    								console.log("지운거같은디?");
+    							}
+    						});
+    						console.log("보낸것같다");
+    						message = new Paho.MQTT.Message("true");
+    						
+    					} else {
+    						message = new Paho.MQTT.Message("false");
+    					}
+    					
+    					message.destinationName = "/drone/chicken/delivery/success";
+    					console.log(message);
+    					client1.send(message);
+                        lastMission++;
+                        location.href = "endPage";
+                     }
+                  }
+                
             }
-			
-			if(obj.msgid=="TEMPERATURE") {
-				console.log(obj.temperature);
-				var series = chart.series[0];
-	        	var shift = series.data.length > 5;
-	        	series.addPoint(obj.temperature, true, shift);
-			}
-        }
+        });
         
-        client.connect({onSuccess:onConnect});
+        //---------------------------------------------------------------------------- client2 연결
+        $(function() {
+        	client2 = new Paho.MQTT.Client("106.253.56.124", 61622, "clientId"+new Date().getTime() + 2);
+        	
+        	client2.connect({onSuccess:function() {
+        		client2.subscribe("/drone/fc/sub");
+        		console.log("client2 연결");
+        	}});
+        	client2.onMessageArrived = function(message) {     
+        		var JSONString = message.payloadString;
+                var obj = JSON.parse(JSONString);
+                var totalDistance=0;
+                
+                if(obj.msgid=="MISSION_UPLOAD") {
+                   console.log("좌표 받았는데?");
+                   if(linePath.length==0){
+                      var objArr = obj.items;
+                      for(var i=0;i<objArr.length;i++){
+                         linePath.push(new kakao.maps.LatLng(objArr[i].x, objArr[i].y));
+                         if(i>0){
+                         	totalDistance += Math.pow(Math.pow(88.3197*(objArr[i].y-objArr[i-1].y),2)+Math.pow(111*(objArr[i].x-objArr[i-1].x),2), 0.5);
+                         }
+                      }
+                      console.log(totalDistance);
+                      
+                      var jsonLine = JSON.stringify(linePath);
+                      setCookie("missionArray", jsonLine, 7);
+                      
+                      console.log(linePath);
+                         
+                      // 지도에 표시할 선을 생성합니다
+                      polyline = new kakao.maps.Polyline({
+                          path: linePath, // 선을 구성하는 좌표배열 입니다
+                          strokeWeight: 5, // 선의 두께 입니다
+                          strokeColor: '#FF0000', // 선의 색깔입니다
+                          strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+                          strokeStyle: 'solid' // 선의 스타일입니다
+                      });
+                      
+                      //마지막 미션번호 구하기
+                          var missionArr = obj.items;
+                         lastMission = missionArr.length - 1;
+                      setCookie("lastMissionNum", lastMission, 7);
+                      // 지도에 선을 표시합니다 
+                      polyline.setMap(map);
+                   }
+                }
+            }
+        });
         
-        // 연결이 완료되었을 때 자동으로 실행(콜백) 되는 함수
-		function onConnect() {
-			console.log("##연결 되었다");
-			console.log(${orderId});
-        	client.subscribe("/drone/+/+");
-        }
+        //---------------------------------------------------------------------------- client3 연결
+        $(function() {
+        	client3 = new Paho.MQTT.Client("106.253.56.124", 61622, "clientId"+new Date().getTime()+3);
+        	
+        	client3.connect({onSuccess:function() {
+        		client3.subscribe("/drone/temperature/pub");
+        		console.log("client3 연결");
+        	}});
+        	client3.onMessageArrived = function(message) {     
+        		var JSONString = message.payloadString;
+                var obj = JSON.parse(JSONString);
+                if(obj.msgid=="TEMPERATURE") {
+    				console.log(obj.temperature);
+    				var series = chart.series[0];
+    	        	var shift = series.data.length > 5;
+    	        	series.addPoint(obj.temperature, true, shift);
+    			}
+                
+            }
+        });
         
+        //---------------------------------------------------------------------------- 네트워크 끝
         var chart = null;
 		$(function() {
 			chart = new Highcharts.chart('container', {
